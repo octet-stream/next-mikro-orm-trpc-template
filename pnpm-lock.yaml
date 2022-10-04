@@ -37,6 +37,7 @@ specifiers:
   eslint-plugin-jsx-a11y: ^6.6.1
   eslint-plugin-react: ^7.31.8
   eslint-plugin-react-hooks: ^4.6.0
+  global-jsdom: ^8.6.0
   jsdom: ^20.0.1
   lodash: ^4.17.21
   mysql2: ^2.3.3
@@ -116,6 +117,7 @@ devDependencies:
   eslint-plugin-jsx-a11y: 6.6.1_eslint@8.24.0
   eslint-plugin-react: 7.31.8_eslint@8.24.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.24.0
+  global-jsdom: 8.6.0_jsdom@20.0.1
   jsdom: 20.0.1
   postcss: 8.4.17
   sinon: 14.0.1
@@ -2638,6 +2640,15 @@ packages:
       inherits: 2.0.4
       minimatch: 5.1.0
       once: 1.4.0
+
+  /global-jsdom/8.6.0_jsdom@20.0.1:
+    resolution: {integrity: sha512-eSxfleEMJILNCq1r8ay8tEWpTzRFlWExWEj/1m3pqo9AsNU3JaOCZLH2yynI8JALSY5hU0+Yw5ZzOzTacbw1pg==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      jsdom: '>=10.0.0 <21'
+    dependencies:
+      jsdom: 20.0.1
+    dev: true
 
   /globals/13.17.0:
     resolution: {integrity: sha512-1C+6nQRb1GwGMKm2dH/E7enFAMxGTmGI7/dEdhy/DNelv85w9B72t3uc5frtMNXIbzrarJJ/lTCjcaZwbLJmyw==}
