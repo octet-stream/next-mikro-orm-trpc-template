@@ -15,6 +15,7 @@ specifiers:
   '@trpc/react': ^9.27.4
   '@trpc/server': ^9.27.4
   '@types/bcrypt': ^5.0.0
+  '@types/lodash': ^4.14.186
   '@types/node': ^18.8.0
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
@@ -95,6 +96,7 @@ devDependencies:
   '@octetstream/eslint-config': 6.2.2_sn3q6kallln4yjumacxaxhl4xi
   '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
   '@types/bcrypt': 5.0.0
+  '@types/lodash': 4.14.186
   '@types/node': 18.8.1
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
@@ -784,6 +786,10 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/lodash/4.14.186:
+    resolution: {integrity: sha512-eHcVlLXP0c2FlMPm56ITode2AgLMSa6aJ05JTTbYbI+7EMkCEE5qk2E41d5g2lCVTqRe0GnnRFurmlCsDODrPw==}
     dev: true
 
   /@types/node/18.8.1:
