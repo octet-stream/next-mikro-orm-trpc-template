@@ -1,0 +1,63 @@
+{
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "airbnb",
+    "plugin:react/jsx-runtime",
+    "@octetstream/eslint-config/typescript"
+  ],
+  "rules": {
+    "import/extensions": 0,
+
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "argsIgnorePattern": "^_"
+    }],
+
+    // TODO: Add these to my eslint config
+    "react/function-component-definition": ["error", {
+      "namedComponents": "arrow-function",
+      "unnamedComponents": "arrow-function"
+    }],
+    "react/jsx-props-no-multi-spaces": 0,
+    "react/jsx-fragments": ["error", "element"],
+    "react/jsx-props-no-spreading": 0,
+    "max-len": ["error", 80, {
+      "ignoreComments": true,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true
+    }],
+
+    "indent": ["error", 2, {
+      "ignoredNodes": [
+        "PropertyDefinition[decorators]"
+      ]
+    }],
+    "@typescript-eslint/indent": ["error", 2, {
+      "ignoredNodes": [
+        "PropertyDefinition[decorators]"
+      ]
+    }],
+    "semi-style": ["error", "first"],
+    "no-shadow": 0,
+    "react/require-default-props": 0,
+    "react/no-unused-prop-types": ["error", {
+      "ignore": ["session"]
+    }],
+    "react/jsx-one-expression-per-line": 0,
+
+    "jsx-a11y/anchor-is-valid": 0,
+
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/__macro__/**/*.ts",
+        "**/__helper__/**/*.ts"
+      ]
+    }]
+  }
+}
