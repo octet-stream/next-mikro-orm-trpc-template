@@ -20,7 +20,7 @@ const createNativeConnection = () => mysql.createConnection({
 })
 
 export const setup = async () => {
-  const name = `eri-test__${await createDatabaseNameSuffix()}`
+  const name = `mysql-test-db__${await createDatabaseNameSuffix()}`
 
   const connection = await createNativeConnection()
 
