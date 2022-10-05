@@ -1,11 +1,13 @@
 import {Entity, Property} from "@mikro-orm/core"
 
+import type {INodeWithDates} from "server/trpc/type/common/NodeWithDates"
+
 import {Base} from "./Base"
 
 export type OptionalDates = "createdAt" | "updatedAt"
 
 @Entity({abstract: true})
-export abstract class BaseDates extends Base {
+export abstract class BaseDates extends Base implements INodeWithDates {
   /**
    * Date and time the entity was created
    */

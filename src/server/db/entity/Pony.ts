@@ -1,5 +1,7 @@
 import {Entity, Property, Enum, OptionalProps} from "@mikro-orm/core"
 
+import type {IPonyOutput} from "server/trpc/type/output/PonyOutput"
+
 import type {OptionalDates} from "./BaseDates"
 import {BaseDates} from "./BaseDates"
 
@@ -11,7 +13,7 @@ export enum PonyRace {
 }
 
 @Entity()
-export class Pony extends BaseDates {
+export class Pony extends BaseDates implements IPonyOutput {
   [OptionalProps]?: OptionalDates
 
   @Property()
