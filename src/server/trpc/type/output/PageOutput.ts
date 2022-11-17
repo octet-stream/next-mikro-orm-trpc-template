@@ -1,10 +1,12 @@
 import {z, ZodType} from "zod"
 
+import type {FilterEntity} from "server/lib/type/FilterEntity"
+
 export interface IPageOutput<T> {
   /**
    * List of current page items
    */
-  items: T[]
+  items: FilterEntity<T>[]
 
   /**
    * Next page number.

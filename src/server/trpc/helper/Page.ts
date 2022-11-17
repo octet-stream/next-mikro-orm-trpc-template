@@ -1,4 +1,5 @@
 import type {IPageOutput} from "server/trpc/type/output/PageOutput"
+import type {FilterEntity} from "server/lib/type/FilterEntity"
 
 import {PageArgs} from "./PageArgs"
 
@@ -6,7 +7,7 @@ export interface PageOutputInput<T> {
   /**
    * List of current page items
    */
-  items: T[]
+  items: FilterEntity<T>[]
 
   /**
    * An amount of total rows in a table
@@ -20,7 +21,7 @@ export interface PageOutputInput<T> {
 }
 
 export class Page<T> implements IPageOutput<T> {
-  readonly #items: T[]
+  readonly #items: FilterEntity<T>[]
 
   readonly #total: number
 
@@ -41,7 +42,7 @@ export class Page<T> implements IPageOutput<T> {
   /**
    * List of current page items
    */
-  get items(): T[] {
+  get items(): FilterEntity<T>[] {
     return this.#items
   }
 
