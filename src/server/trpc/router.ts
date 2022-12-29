@@ -1,19 +1,12 @@
-import {router as trpc} from "@trpc/server"
+import {trpc} from "server/trpc/def"
 
-import superjson from "superjson"
+import ponies from "./route/ponies"
+import pony from "./route/pony"
 
-import type {GlobalContext} from "server/trpc/context"
-
-import ormContext from "server/trpc/middleware/ormContext"
-
-import query from "server/trpc/route/query"
-import mutation from "server/trpc/route/mutation"
-
-export const router = trpc<GlobalContext>()
-  .transformer(superjson)
-  .middleware(ormContext)
-  .merge(query)
-  .merge(mutation)
+export const router = trpc.router({
+  ponies,
+  pony
+})
 
 export type Router = typeof router
 

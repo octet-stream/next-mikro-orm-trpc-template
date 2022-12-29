@@ -65,9 +65,9 @@
     "@mikro-orm/core": "^5.4.2",
     "@mikro-orm/mysql": "^5.4.2",
     "@sindresorhus/slugify": "1.1.2",
-    "@trpc/client": "^9.27.4",
+    "@trpc/client": "^10.7.0",
     "@trpc/react": "^9.27.4",
-    "@trpc/server": "^9.27.4",
+    "@trpc/server": "^10.7.0",
     "bcrypt": "^5.0.1",
     "clsx": "^1.2.1",
     "lodash": "^4.17.21",
@@ -85,6 +85,6 @@
     "reflect-metadata": "^0.1.13",
     "superjson": "^1.10.0",
     "validator": "^13.7.0",
-    "zod": "^3.19.1"
+    "zod": "^3.20.2"
   }
 }

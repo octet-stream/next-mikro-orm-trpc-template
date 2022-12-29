@@ -15,7 +15,7 @@ test.before(setup)
 test.after.always(cleanup)
 
 test("Creates a new pony", withTRPC, async (t, trpc) => {
-  const actual = await trpc.mutation("pony.create", {
+  const actual = await trpc.pony.create({
     name: "Lyra Heartstrings",
     race: PonyRace.UNICORN
   })

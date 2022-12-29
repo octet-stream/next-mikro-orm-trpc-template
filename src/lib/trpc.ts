@@ -1,18 +1,14 @@
-import {createReactQueryHooks} from "@trpc/react"
+import {httpBatchLink, createTRPCProxyClient} from "@trpc/client"
 
 import superjson from "superjson"
 
 import type {Router} from "server/trpc/router"
 
-const {Provider, createClient, ...trpc} = createReactQueryHooks<Router>()
-
-export const client = createClient({
-  url: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/trpc`,
-  transformer: superjson
+export const client = createTRPCProxyClient<Router>({
+  transformer: superjson,
+  links: [
+    httpBatchLink({
+      url: `${process.env.NEXT_PUBLIC_SERVER_URL}/api/trpc`
+    })
+  ]
 })
-
-export const trpcClient = client
-export const TRPCProvider = Provider
-export const hooks = trpc
-
-export const {useQuery, useMutation, useInfiniteQuery, useSubscription} = trpc

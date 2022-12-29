@@ -11,9 +11,9 @@ specifiers:
   '@octetstream/eslint-config': ^6.2.2
   '@sindresorhus/slugify': 1.1.2
   '@tailwindcss/typography': ^0.5.7
-  '@trpc/client': ^9.27.4
+  '@trpc/client': ^10.7.0
   '@trpc/react': ^9.27.4
-  '@trpc/server': ^9.27.4
+  '@trpc/server': ^10.7.0
   '@types/bcrypt': ^5.0.0
   '@types/lodash': ^4.14.186
   '@types/node': ^18.8.0
@@ -60,16 +60,16 @@ specifiers:
   tsconfig-paths: ^4.1.0
   typescript: ^4.8.4
   validator: ^13.7.0
-  zod: ^3.19.1
+  zod: ^3.20.2
 
 dependencies:
   '@hookform/resolvers': 2.9.8_react-hook-form@7.36.1
   '@mikro-orm/core': 5.4.2_cj3qwfeptuwovylvyquky2y4xq
   '@mikro-orm/mysql': 5.4.2_kdfmmkkd46hr2266p3exwsatv4
   '@sindresorhus/slugify': 1.1.2
-  '@trpc/client': 9.27.4_@trpc+server@9.27.4
-  '@trpc/react': 9.27.4_2g6rn7sj2da6xgohvi4oglgmnq
-  '@trpc/server': 9.27.4
+  '@trpc/client': 10.7.0_@trpc+server@10.7.0
+  '@trpc/react': 9.27.4_wege3qkh3mvciydda6yiolywaa
+  '@trpc/server': 10.7.0
   bcrypt: 5.0.1
   clsx: 1.2.1
   lodash: 4.17.21
@@ -87,7 +87,7 @@ dependencies:
   reflect-metadata: 0.1.13
   superjson: 1.10.0
   validator: 13.7.0
-  zod: 3.19.1
+  zod: 3.20.2
 
 devDependencies:
   '@mikro-orm/cli': 5.4.2_3lnlycu7u6e3rkv7og44tqamgy
@@ -723,16 +723,15 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
-  /@trpc/client/9.27.4_@trpc+server@9.27.4:
-    resolution: {integrity: sha512-NyS3J333xy8PJWGTSKO0egvj3x/s4SaSPx7XDWHf/i51W/i5Fla+sNxYpv+4z+SwE2xyJKszN2EZbvKIW2X/wA==}
+  /@trpc/client/10.7.0_@trpc+server@10.7.0:
+    resolution: {integrity: sha512-xCPc2hp37REJst6TXMkJvdc85CHvxpVY6YVdZIjl7uCYoQcrstwy8AWi7ElB3x7e19Cweke+9CAaUXKwAE1AKQ==}
     peerDependencies:
-      '@trpc/server': 9.27.4
+      '@trpc/server': 10.7.0
     dependencies:
-      '@babel/runtime': 7.19.0
-      '@trpc/server': 9.27.4
+      '@trpc/server': 10.7.0
     dev: false
 
-  /@trpc/react/9.27.4_2g6rn7sj2da6xgohvi4oglgmnq:
+  /@trpc/react/9.27.4_wege3qkh3mvciydda6yiolywaa:
     resolution: {integrity: sha512-bP74Tf6vWcMoWYiTAvbWrieV9cFQiKUDKRoRj0+VeGJbxdbhdJyUzv4zos0T4SiSKuhgoEm9bP4jWU2NhNhpIA==}
     peerDependencies:
       '@trpc/client': 9.27.4
@@ -742,15 +741,15 @@ packages:
       react-query: ^3.37.0
     dependencies:
       '@babel/runtime': 7.19.0
-      '@trpc/client': 9.27.4_@trpc+server@9.27.4
-      '@trpc/server': 9.27.4
+      '@trpc/client': 10.7.0_@trpc+server@10.7.0
+      '@trpc/server': 10.7.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-query: 3.39.2_biqbaboplfbrettd7655fr4n2y
     dev: false
 
-  /@trpc/server/9.27.4:
-    resolution: {integrity: sha512-yw0omUrxGp8+gEAuieZFeXB4bCqFvmyCDL3GOBv+Q6+cK0m5824ViHZKPgK5DYG1ijN/lbi1hP3UVKywPN7rbQ==}
+  /@trpc/server/10.7.0:
+    resolution: {integrity: sha512-kFhlqhzZt5PwVRRDci8oJKMMFGjjq9189stT6bvS9xuuLjRzzwhMShRi99sm/jqhdjWmlXyO3Ncx0rnghUvH+w==}
     dev: false
 
   /@tsconfig/node10/1.0.9:
@@ -5081,6 +5080,6 @@ packages:
     engines: {node: '>=12.20'}
     dev: true
 
-  /zod/3.19.1:
-    resolution: {integrity: sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==}
+  /zod/3.20.2:
+    resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
     dev: false
