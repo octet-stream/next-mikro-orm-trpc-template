@@ -9,7 +9,7 @@ import "style/tailwind.css"
 
 interface Props extends AppProps { }
 
-const MyApp: FC<Props> = ({Component, pageProps}) => (
+const PageContainer: FC<Props> = ({Component, pageProps}) => (
   <Fragment>
     <Head>
       <title>Next.js template with Mikro ORM and tRPC</title>
@@ -19,4 +19,4 @@ const MyApp: FC<Props> = ({Component, pageProps}) => (
   </Fragment>
 )
 
-export default MyApp
+export default PageContainer
