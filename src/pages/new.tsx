@@ -10,8 +10,8 @@ import Select from "react-select"
 import {client} from "lib/trpc"
 
 import {PonyInput} from "server/trpc/type/input/PonyInput"
+import {PonyRace, PonyRaceNames} from "server/trpc/type/common/PonyRace"
 import type {IPonyInput} from "server/trpc/type/input/PonyInput"
-import {PonyRace} from "server/trpc/type/common/PonyRace"
 
 import {BaseLayout} from "layout/BaseLayout"
 
@@ -20,19 +20,19 @@ import {ReactSelectOption} from "lib/type/ReactSelectOption"
 const races: ReactSelectOption<PonyRace>[] = [
   {
     value: PonyRace.EARTH_PONY,
-    label: "Earth pony"
+    label: PonyRaceNames[PonyRace.EARTH_PONY]
   },
   {
     value: PonyRace.PEGASUS,
-    label: "Pegasus"
+    label: PonyRaceNames[PonyRace.PEGASUS]
   },
   {
     value: PonyRace.UNICORN,
-    label: "Unicorn"
+    label: PonyRaceNames[PonyRace.UNICORN]
   },
   {
     value: PonyRace.ALICORN,
-    label: "Alicorn"
+    label: PonyRaceNames[PonyRace.ALICORN]
   }
 ]
 
