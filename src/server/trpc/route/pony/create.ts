@@ -9,12 +9,13 @@ import {Pony} from "server/db/entity"
 const create = procedure
   .input(PonyInput)
   .output(PonyOutput)
-  .mutation(async ({input}) => {
+  .mutation(async ({input, ctx}) => {
     const orm = await getORM()
 
     const pony = orm.em.create(Pony, input)
 
     await orm.em.persistAndFlush(pony)
+    await ctx.res.revalidate("/")
 
     return pony
   })

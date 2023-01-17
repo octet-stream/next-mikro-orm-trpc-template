@@ -1,8 +1,7 @@
-import {procedure} from "server/trpc/procedure/server"
+import {procedure} from "server/trpc/procedure/base"
 
 import {PageInput} from "server/trpc/type/input/PageInput"
-import {PonyOutput} from "server/trpc/type/output/PonyOutput"
-import {createPageOutput} from "server/trpc/type/output/PageOutput"
+import {PoniesPageOutput} from "server/trpc/type/output/PoniesPageOutput"
 import {PageArgs} from "server/trpc/helper/PageArgs"
 import {Page} from "server/trpc/helper/Page"
 import {getORM} from "server/lib/db"
@@ -11,7 +10,7 @@ import {Pony} from "server/db/entity"
 
 const list = procedure
   .input(PageInput)
-  .output(createPageOutput(PonyOutput))
+  .output(PoniesPageOutput)
   .query(async ({input}) => {
     const args = new PageArgs(input)
     const orm = await getORM()

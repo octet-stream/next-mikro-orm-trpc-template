@@ -4,10 +4,14 @@ import type {FC} from "react"
 
 import Head from "next/head"
 
-import "style/globals.css"
 import "style/tailwind.css"
 
-interface Props extends AppProps { }
+import {PageDataProvider} from "lib/context/PageDataContext"
+import type {SerializedPageDataProps} from "lib/type/PageDataProps"
+
+interface PageProps extends SerializedPageDataProps { }
+
+interface Props extends AppProps<PageProps> { }
 
 const PageContainer: FC<Props> = ({Component, pageProps}) => (
   <Fragment>
@@ -15,7 +19,9 @@ const PageContainer: FC<Props> = ({Component, pageProps}) => (
       <title>Next.js template with Mikro ORM and tRPC</title>
     </Head>
 
-    <Component {...pageProps} />
+    <PageDataProvider data={pageProps.data}>
+      <Component {...pageProps} />
+    </PageDataProvider>
   </Fragment>
 )
 
