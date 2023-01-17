@@ -81,7 +81,7 @@ const NewPonyPage: FC = () => {
                   placeholder="Select a race"
                   styles={{
                     placeholder: base => ({
-                      ...base, color: "#cccccc"
+                      ...base, color: "rgb(209, 213, 219)"
                     })
                   }}
                 />
