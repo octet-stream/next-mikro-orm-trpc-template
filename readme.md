@@ -1,6 +1,6 @@
 # next-mikro-orm-trpc-template
 
-This template implements minimal architecture on [TypeScript](https://www.typescriptlang.org/) + [Next.js](https://nextjs.org/) + [MikroORM](https://mikro-orm.io/) + [tRPC](https://trpc.io/) + [Tailwind CSS](https://tailwindcss.com/) stack to help you start your next full-stack react application.
+This template implements minimal architecture on [TypeScript](https://www.typescriptlang.org/) + [Next.js](https://nextjs.org/) + [MikroORM](https://mikro-orm.io/) + [tRPC](https://trpc.io/) + [Tailwind CSS](https://tailwindcss.com/) stack to help you start your next full-stack React application.
 
 ## What's included?
 
