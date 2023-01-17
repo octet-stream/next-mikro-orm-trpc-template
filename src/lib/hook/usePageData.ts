@@ -3,7 +3,7 @@ import {useContext} from "react"
 import {PageDataContext} from "lib/context/PageDataContext"
 
 /**
- * Returns parsed page data from context, and a function to apply patch for this data, after it was updated on the server.
+ * Returns parsed page data from context
  */
 export const usePageData = <T>(): T => {
   const data = useContext(PageDataContext)
