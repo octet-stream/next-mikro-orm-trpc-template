@@ -1,10 +1,10 @@
 import {z, infer as Infer} from "zod"
 
-import {PonyRace} from "server/db/entity/Pony"
+import {PonyRaceSchema} from "server/trpc/type/common/PonyRace"
 
 export const PonyInput = z.object({
   name: z.string().min(1),
-  race: z.nativeEnum(PonyRace)
+  race: PonyRaceSchema
 })
 
 export interface IPonyInput extends Infer<typeof PonyInput> { }

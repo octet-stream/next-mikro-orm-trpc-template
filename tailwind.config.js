@@ -12,10 +12,12 @@ module.exports = {
   theme: {
     extend: {
       width: {
-        laptop
+        laptop,
+        mobile
       },
       maxWidth: {
-        laptop
+        laptop,
+        mobile
       }
     },
     screens: {

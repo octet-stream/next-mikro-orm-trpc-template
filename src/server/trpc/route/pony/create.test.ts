@@ -6,7 +6,7 @@ import {withTRPC} from "server/__macro__/withTRPC"
 import {setup, cleanup} from "server/__helper__/database"
 import type {WithTRPCContext} from "server/__macro__/withTRPC"
 
-import {PonyRace} from "server/db/entity/Pony"
+import {PonyRace} from "server/trpc/type/common/PonyRace"
 
 const test = anyTest as TestFn<WithTRPCContext>
 
