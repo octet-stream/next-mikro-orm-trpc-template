@@ -13,7 +13,5 @@ RUN pnpm install --frozen-lockfile
 COPY . /usr/src/demo
 
 RUN pnpm exec next telemetry disable
-RUN DISABLE_ENV_ASSERT=1 pnpm run build
 
 EXPOSE 3000
-CMD ["pnpm", "run", "start"]

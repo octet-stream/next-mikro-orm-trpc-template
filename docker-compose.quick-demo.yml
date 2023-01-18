@@ -3,7 +3,6 @@ version: "3.9"
 services:
   mysql:
     image: mysql:8-oracle
-    restart: unless-stopped
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root"]
       interval: 10s
@@ -17,6 +16,7 @@ services:
       - mysql:/var/lib/mysql
 
   app:
+    restart: unless-stopped
     links:
       - mysql:mysql
     depends_on:
@@ -25,8 +25,12 @@ services:
     build:
       context: "."
       dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - DISABLE_ENV_ASSERT=1
+    command: pnpm exec mikro-orm database:create && pnpm exec mikro-orm schema:fresh && pnpm run build && pnpm run start
     ports:
-      - 3000:3000
+      - "3000:3000"
 
 volumes:
   mysql:
