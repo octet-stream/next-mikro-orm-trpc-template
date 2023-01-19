@@ -3,6 +3,7 @@ import {useForm, Controller} from "react-hook-form"
 import type {SubmitHandler} from "react-hook-form"
 import {useEvent} from "react-use-event-hook"
 import {useRouter} from "next/router"
+import {toast} from "react-hot-toast"
 import type {FC} from "react"
 
 import Select from "react-select"
@@ -48,7 +49,10 @@ const NewPonyPage: FC = () => {
       .then(() => router.replace("/", undefined, {
         unstable_skipClientCache: true
       }))
-      .catch(error => console.error(error))
+      .catch(error => {
+        toast.error("Can't add a pony")
+        console.error(error)
+      })
   ))
 
   return (

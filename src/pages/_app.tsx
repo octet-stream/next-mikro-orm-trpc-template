@@ -1,3 +1,4 @@
+import {Toaster} from "react-hot-toast"
 import type {AppProps} from "next/app"
 import {Fragment} from "react"
 import type {FC} from "react"
@@ -21,6 +22,8 @@ const PageContainer: FC<Props> = ({Component, pageProps}) => (
 
     <PageDataProvider data={pageProps.data}>
       <Component {...pageProps} />
+
+      <Toaster position="top-center" />
     </PageDataProvider>
   </Fragment>
 )
