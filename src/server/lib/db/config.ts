@@ -1,4 +1,6 @@
+import {Migrator} from "@mikro-orm/migrations"
 import {defineConfig} from "@mikro-orm/mysql"
+import {SeedManager} from "@mikro-orm/seeder"
 
 import {Pony} from "server/db/entity"
 
@@ -14,5 +16,6 @@ export const getConfig = () => defineConfig({
   seeder: {
     path: "seed"
   },
+  extensions: [Migrator, SeedManager],
   entities: [Pony]
 })

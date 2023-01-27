@@ -2,6 +2,7 @@ import {Entity, Property, Enum, OptionalProps} from "@mikro-orm/core"
 import {isString} from "lodash"
 
 import type {IPonyOutput} from "server/trpc/type/output/PonyOutput"
+import type {IPonyInput} from "server/trpc/type/input/PonyInput"
 import {PonyRace} from "server/trpc/type/common/PonyRace"
 
 import type {OptionalDates} from "./BaseDates"
@@ -19,4 +20,11 @@ export class Pony extends BaseDates implements IPonyOutput {
   // ! MikroORM can't discover emun when it declared in separate file. To fix this, we extract values from enum manually
   @Enum({items: races, type: "string"})
   race!: PonyRace
+
+  constructor(pony: IPonyInput) {
+    super()
+
+    this.name = pony.name
+    this.race = pony.race
+  }
 }

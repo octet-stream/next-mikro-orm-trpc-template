@@ -12,7 +12,8 @@ const create = procedure
   .mutation(async ({input, ctx}) => {
     const orm = await getORM()
 
-    const pony = orm.em.create(Pony, input)
+    // const pony = orm.em.create(Pony, input)
+    const pony = new Pony(input) // <- Issue appears here if you try and create new pony on the `/new` page
 
     await orm.em.persistAndFlush(pony)
     await ctx.res.revalidate("/")

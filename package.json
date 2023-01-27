@@ -24,9 +24,7 @@
     ]
   },
   "devDependencies": {
-    "@mikro-orm/cli": "5.6.8",
-    "@mikro-orm/migrations": "5.6.8",
-    "@mikro-orm/seeder": "5.6.8",
+    "@mikro-orm/cli": "6.0.0-dev.23",
     "@next/env": "13.1.5",
     "@octetstream/eslint-config": "6.2.2",
     "@tailwindcss/typography": "0.5.9",
@@ -62,8 +60,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "2.9.10",
-    "@mikro-orm/core": "5.6.8",
-    "@mikro-orm/mysql": "5.6.8",
+    "@mikro-orm/core": "6.0.0-dev.23",
+    "@mikro-orm/migrations": "6.0.0-dev.23",
+    "@mikro-orm/mysql": "6.0.0-dev.23",
+    "@mikro-orm/seeder": "6.0.0-dev.23",
     "@sindresorhus/slugify": "2.1.1",
     "@trpc/client": "10.9.0",
     "@trpc/server": "10.9.0",
