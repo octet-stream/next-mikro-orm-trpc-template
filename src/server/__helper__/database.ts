@@ -21,6 +21,7 @@ const createNativeConnection = () => mysql.createConnection({
 
 export const setup = async () => {
   const name = `mysql-test-db__${await createDatabaseNameSuffix()}`
+  process.env.MIKRO_ORM_DB_NAME = name
 
   const connection = await createNativeConnection()
 
@@ -28,10 +29,6 @@ export const setup = async () => {
   await connection.end()
 
   const orm = await getORM()
-
-  orm.config.set("dbName", name)
-
-  await orm.connect()
 
   const generator = orm.getSchemaGenerator()
 
