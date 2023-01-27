@@ -1,9 +1,9 @@
 {
-  "name": "next-micro-orm-trpc-template",
+  "name": "next-mikro-orm-trpc-template",
   "description": "Yet another project template",
   "author": "Nick K. <io@octetstream.me>",
   "license": "MIT",
-  "repository": "octet-stream/next-micro-orm-trpc-template",
+  "repository": "octet-stream/next-mikro-orm-trpc-template",
   "private": true,
   "scripts": {
     "dev": "next dev",
