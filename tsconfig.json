@@ -5,6 +5,8 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -15,8 +17,6 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "src",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
   },
   "include": ["next-env.d.ts", "env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],

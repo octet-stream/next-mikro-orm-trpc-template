@@ -9,7 +9,7 @@ import {getORM} from "server/lib/db"
 const ormContext = middleware(async ({ctx, next}) => {
   const orm = await getORM()
 
-  return RequestContext.createAsync(orm.em, () => next({ctx}))
+  return RequestContext.createAsync(orm.em, () => next({ctx: {...ctx, orm}}))
 })
 
 export default ormContext
