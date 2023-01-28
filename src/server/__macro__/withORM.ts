@@ -4,7 +4,7 @@ import type {ImplementationFn} from "ava"
 import {RequestContext} from "@mikro-orm/core"
 import type {MikroORM} from "@mikro-orm/core"
 
-import {getORM} from "server/lib/db"
+import {getORM} from "server/lib/db/orm"
 
 type Args = [orm: MikroORM]
 

@@ -5,7 +5,7 @@ import type {ImplementationFn, TestFn} from "ava"
 import type {MikroORM} from "@mikro-orm/core"
 import {noop} from "lodash"
 
-import {getORM} from "server/lib/db"
+import {getORM} from "server/lib/db/orm"
 import type {Caller} from "server/trpc/router"
 import {router} from "server/trpc/router"
 

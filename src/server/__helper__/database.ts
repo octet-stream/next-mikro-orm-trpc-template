@@ -3,7 +3,7 @@ import {urlAlphabet} from "nanoid"
 
 import mysql from "mysql2/promise"
 
-import {getORM} from "server/lib/db"
+import {getORM} from "server/lib/db/orm"
 
 const alphanum = urlAlphabet.replace(/[^a-z0-9]/gi, "")
 const createDatabaseNameSuffix = customAlphabet(alphanum, 21)
