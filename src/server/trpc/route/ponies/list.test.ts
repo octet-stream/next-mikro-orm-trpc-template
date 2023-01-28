@@ -2,7 +2,7 @@ import anyTest from "ava"
 
 import type {TestFn} from "ava"
 
-import {runIsolatied} from "server/lib/db"
+import {runIsolatied} from "server/lib/db/orm"
 import {withTRPC} from "server/__macro__/withTRPC"
 import {setup, cleanup} from "server/__helper__/database"
 import type {WithTRPCContext} from "server/__macro__/withTRPC"
