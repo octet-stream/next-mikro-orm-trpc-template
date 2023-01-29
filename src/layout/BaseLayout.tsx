@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const BaseLayout: FC<Props> = ({children}) => (
-  <main className="h-screen w-laptop mx-auto py-5 laptop:w-full laptop:p-5 laptop:mx-0">
+  <main className="h-screen w-screen p-5 laptop:mx-auto laptop:max-w-laptop laptop:px-0">
     {children}
   </main>
 )

@@ -8,6 +8,7 @@ import Head from "next/head"
 import isString from "lodash/isString"
 
 import "style/tailwind.css"
+import "style/global.css"
 
 import type {SerializedPageDataProps} from "lib/type/PageDataProps"
 

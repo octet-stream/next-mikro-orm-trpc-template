@@ -5,13 +5,16 @@ import type {FC} from "react"
 import Link from "next/link"
 
 import {router} from "server/trpc/router"
-import {PonyRaceNames} from "server/trpc/type/common/PonyRace"
 import type {IPoniesPageOutput} from "server/trpc/type/output/PoniesPageOutput"
 
 import {getPageDataStaticProps} from "lib/util/getPageDataStaticProps"
 import type {PageDataProps} from "lib/type/PageDataProps"
 
+import {PonyDataProvider} from "context/PonyDataContext"
 import {PoniesDataProvider} from "context/PoniesDataContext"
+
+import {FloatingButton} from "component/FloatingButton"
+import {PonyCard} from "component/PonyCard"
 
 type PageData = PageDataProps<IPoniesPageOutput>
 
@@ -29,7 +32,7 @@ interface Props extends PageData { }
 
 const HomePage: FC<Props> = ({data: ponies}) => (
   <PoniesDataProvider data={ponies}>
-    <div className="h-screen w-laptop mx-auto py-5 laptop:w-full laptop:p-5 laptop:mx-0">
+    <div className="min-h-screen lg:w-screen lg:max-w-laptop lg:mx-auto lg:py-5 w-full p-5">
       {isEmpty(ponies.items) ? (
         <div className="w-full h-full flex flex-col justify-center items-center text-slate-400 select-none">
           <div>There are no ponies just yet</div>
@@ -40,14 +43,18 @@ const HomePage: FC<Props> = ({data: ponies}) => (
           </Link>
         </div>
       ) : (
-        <ul>
+        <ul className="grid grid-cols-1 gap-2 mobile:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
           {ponies.items.map(pony => (
             <li key={pony.id}>
-              {pony.name} ({PonyRaceNames[pony.race]})
+              <PonyDataProvider data={pony}>
+                <PonyCard />
+              </PonyDataProvider>
             </li>
           ))}
         </ul>
       )}
+
+      <FloatingButton />
     </div>
   </PoniesDataProvider>
 )

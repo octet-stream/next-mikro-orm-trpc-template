@@ -16,6 +16,10 @@ import type {IPonyInput} from "server/trpc/type/input/PonyInput"
 
 import {BaseLayout} from "layout/BaseLayout"
 
+import {Button} from "component/Button"
+
+import styles from "style/select.module.css"
+
 import {ReactSelectOption} from "lib/type/ReactSelectOption"
 
 const races: ReactSelectOption<PonyRace>[] = [
@@ -59,7 +63,7 @@ const NewPonyPage: FC = () => {
     <BaseLayout>
       <div className="w-full h-full flex justify-center items-center">
         <div className="w-mobile prose">
-          <h2 className="text-center">Add a new pony</h2>
+          <h2 className="text-center dark:text-white">Add a new pony</h2>
 
           <form onSubmit={handleSubmit(submit)}>
             <input
@@ -67,7 +71,7 @@ const NewPonyPage: FC = () => {
 
               type="text"
               placeholder="Enter a name"
-              className="w-full p-2 mt-2 border-gray-300 border rounded placeholder:text-gray-300"
+              className="w-full p-2 mt-2 dark:text-white border-gray-300 border rounded placeholder:text-gray-300 dark:bg-slate-700 dark:border-gray-500 dark:placeholder:text-gray-500"
             />
 
             <Controller
@@ -76,6 +80,7 @@ const NewPonyPage: FC = () => {
               render={({field: {ref, onChange, value}}) => (
                 <Select
                   isClearable
+                  isSearchable
                   value={races.find(race => race.value === value)}
                   ref={ref}
                   onChange={selected => onChange(selected?.value)}
@@ -83,18 +88,47 @@ const NewPonyPage: FC = () => {
                   className="w-full mt-2 h-[46px]"
                   options={races}
                   placeholder="Select a race"
-                  styles={{
-                    placeholder: base => ({
-                      ...base, color: "rgb(209, 213, 219)"
-                    })
+                  classNames={{
+                    control: () => styles.control,
+
+                    input: () => styles.input,
+
+                    indicatorsContainer: ({selectProps}) => (
+                      selectProps.menuIsOpen
+                        ? styles["indicator-container-open"]
+                        : styles["indicator-container"]
+                    ),
+
+                    indicatorSeparator: () => styles["indicator-separator"],
+
+                    placeholder: () => styles.placeholder,
+
+                    singleValue: () => styles["single-value"],
+
+                    menu: () => styles.menu,
+
+                    menuList: () => styles.list,
+
+                    option({isFocused, data, isSelected}) {
+                      switch (true) {
+                      case isFocused && value !== data.value:
+                        return styles["option-active"]
+
+                      case isSelected:
+                        return styles["option-selected"]
+
+                      default:
+                        return styles.option
+                      }
+                    }
                   }}
                 />
               )}
             />
 
-            <button type="submit" className="mt-2 py-2 px-5 text-center w-full h-[46] rounded bg-fuchsia-400 text-white">
+            <Button type="submit" className="mt-2 py-2 px-5 text-center h-[46]" wide>
               Submit
-            </button>
+            </Button>
           </form>
         </div>
       </div>
