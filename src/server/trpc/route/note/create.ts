@@ -8,7 +8,7 @@ import {Note} from "server/db/entity"
 export const create = procedure
   .input(NoteCreateInput)
   .output(NoteOutput)
-  .query(async ({input, ctx}) => {
+  .mutation(async ({input, ctx}) => {
     const {orm} = ctx
 
     const note = orm.em.create(Note, input)

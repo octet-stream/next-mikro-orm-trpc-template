@@ -12,7 +12,7 @@ import {BaseLayout} from "layout/BaseLayout"
 import {NoteDataContextProvider} from "context/NoteDataContext"
 import {NotesDataContextProvider} from "context/NotesDataContext"
 
-import {FloatingButton} from "component/FloatingButton"
+import {NoteCreateModal} from "component/NoteModal"
 import {NoteCard} from "component/NoteCard"
 
 type PageData = PageDataProps<TNotesPageOutput>
@@ -51,7 +51,7 @@ const HomePage: FC<Props> = ({data: notes}) => (
         </ul>
       )}
 
-      <FloatingButton />
+      <NoteCreateModal />
     </NotesDataContextProvider>
   </BaseLayout>
 )

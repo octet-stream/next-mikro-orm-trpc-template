@@ -26,7 +26,7 @@ const PageContainer: FC<Props> = ({Component, pageProps}) => {
   return (
     <Fragment>
       <Head>
-        <title>Next.js template with Mikro ORM and tRPC</title>
+        <title>Simple Notes</title>
       </Head>
 
       <Component {...pageProps} data={data} />

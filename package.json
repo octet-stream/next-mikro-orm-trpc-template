@@ -61,6 +61,7 @@
     "typescript": "4.9.4"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.8",
     "@hookform/resolvers": "2.9.10",
     "@mikro-orm/core": "5.6.8",
     "@mikro-orm/mysql": "5.6.8",
@@ -82,6 +83,7 @@
     "react-hot-toast": "2.4.0",
     "react-query": "3.39.2",
     "react-select": "^5.7.0",
+    "react-textarea-autosize": "^8.4.0",
     "react-use-event-hook": "0.9.3",
     "reflect-metadata": "0.1.13",
     "superjson": "1.12.2",

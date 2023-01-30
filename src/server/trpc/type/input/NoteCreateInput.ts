@@ -11,4 +11,4 @@ export const NoteCreateInput = z.object({
   completions: z.array(CompletionCreateInput).optional()
 })
 
-export type TNodeCreateInput = Infer<typeof NoteCreateInput>
+export type TNoteCreateInput = Infer<typeof NoteCreateInput>
