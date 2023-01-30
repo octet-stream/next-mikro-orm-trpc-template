@@ -5,7 +5,6 @@ import {
   CompletionCreateInput
 } from "server/trpc/type/input/CompletionCreateInput"
 
-export const CompletionOutput = Record
-  .extend(CompletionCreateInput.shape)
+export const CompletionOutput = Record.extend(CompletionCreateInput.shape)
 
 export type TCompletionOutput = Infer<typeof CompletionOutput>

@@ -36,6 +36,6 @@ export class Note extends BaseDates {
   @Enum({type: "string", items: statuses})
   status: NoteStatus = NoteStatus.INCOMPLETED
 
-  @OneToMany(() => Completion, completion => completion.note, {eager: true})
+  @OneToMany(() => Completion, completion => completion.note)
   completions = new Collection<Completion, Note>(this)
 }
