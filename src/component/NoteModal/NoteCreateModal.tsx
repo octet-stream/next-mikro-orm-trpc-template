@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import type {SubmitHandler} from "react-hook-form"
 import {useEvent} from "react-use-event-hook"
-import {useRouter} from "next/navigation"
 import {toast} from "react-hot-toast"
 import type {FC} from "react"
 
@@ -20,11 +19,8 @@ const Modal = createNoteModal({
 })
 
 export const NoteCreateModal: FC = () => {
-  const router = useRouter()
-
   const submit = useEvent<SubmitHandler<TNoteCreateInput>>(data => (
     client.note.create.mutate(data)
-      .then(() => router.refresh())
       .catch(error => {
         console.log(error)
         toast.error("Can't create a note.")

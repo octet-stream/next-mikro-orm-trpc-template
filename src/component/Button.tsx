@@ -32,11 +32,12 @@ export const Button = forwardRef<HTMLButtonElement, Props>((
     ref={ref}
     type={type}
     className={cn(
-      "py-2 px-6 rounded-md text-center",
+      "py-2 px-6 rounded-md text-center disabled:cursor-not-allowed",
 
       {
         "w-full": wide,
-        "disabled:cursor-not-allowed disabled:bg-gray-400 disabled:dark:bg-slate-600": variant === "primary",
+        "disabled:bg-gray-400 disabled:dark:bg-slate-600": variant === "primary",
+        "disabled:border-gray-300 disabled:text-gray-300 bg-transparent active:disabled:bg-transparent dark:disabled:border-slate-500 dark:disabled:text-slate-500": variant === "secondary",
         "bg-blue-500 active:bg-blue-600 text-white": (!variant || variant === "primary") && (!color || color === "brand"),
         "bg-white active:bg-gray-200 border dark:bg-slate-700 dark:text-white dark:active:bg-slate-600": variant === "secondary",
         "border-gray-200 bg-white active:bg-gray-200 text-black": variant === "secondary" && !color,
