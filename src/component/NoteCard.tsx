@@ -16,7 +16,7 @@ import {useNoteDataContext} from "context/NoteDataContext"
 interface Props { }
 
 export const NoteCard: FC<Props> = () => {
-  const {id, title, status} = useNoteDataContext()
+  const {id, title, isCompleted, status} = useNoteDataContext()
 
   const notePath = `/view/${id}`
 
@@ -41,15 +41,15 @@ export const NoteCard: FC<Props> = () => {
 
         <button
           type="button"
-          className="relative z-0 cursor-pointer w-6 h-6 rounded-full border dark:border-gray-500"
+          className="relative z-0 cursor-pointer w-6 h-6 flex items-center justify-center rounded-full border dark:border-gray-500"
           onClick={updateStatus}
         >
-          {status === NoteStatus.COMPLETED && <Check size={16} className="text-gray-300 dark:text-gray-500" />}
+          {isCompleted && <Check size={16} className="text-gray-300 dark:text-gray-500" />}
         </button>
       </div>
 
       <Link href={notePath} className="flex flex-1">
-        <div className={cn("py-4 pl-1 pr-4", {"line-through text-gray-300 dark:text-gray-500": status === NoteStatus.COMPLETED})}>
+        <div className={cn("py-4 pl-1 pr-4", {"line-through text-gray-300 dark:text-gray-500": isCompleted})}>
           {title}
         </div>
       </Link>

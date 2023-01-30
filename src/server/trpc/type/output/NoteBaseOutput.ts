@@ -6,7 +6,12 @@ import {NoteCreateInput} from "server/trpc/type/input/NoteCreateInput"
 export const NoteBaseOutput = Record
   .extend(NoteCreateInput.shape)
   .omit({completions: true})
-  .extend({details: z.string().nullable()})
   .required({status: true})
+  .extend({
+    details: z.string().nullable(),
+    isCompleted: z.boolean(),
+    isRejected: z.boolean(),
+    isInProgress: z.boolean()
+  })
 
 export type TNoteBaseOutput = Infer<typeof NoteBaseOutput>

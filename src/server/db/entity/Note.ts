@@ -45,4 +45,19 @@ export class Note extends BaseDates {
 
   @OneToMany(() => Completion, completion => completion.note)
   completions = new Collection<Completion, Note>(this)
+
+  @Property({persist: false})
+  get isCompleted(): boolean {
+    return this.status === NoteStatus.COMPLETED
+  }
+
+  @Property({persist: false})
+  get isRejected(): boolean {
+    return this.status === NoteStatus.REJECTED
+  }
+
+  @Property({persist: false})
+  get isInProgress(): boolean {
+    return this.status === NoteStatus.IN_PROGRESS
+  }
 }

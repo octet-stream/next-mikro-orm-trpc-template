@@ -1,5 +1,6 @@
-import {isEmpty} from "lodash"
 import type {FC} from "react"
+
+import isEmpty from "lodash/isEmpty"
 
 import {router} from "server/trpc/router"
 import type {TNotesPageOutput} from "server/trpc/type/output/NotesPageOutput"
