@@ -68,7 +68,7 @@ export function createNoteModal<T extends AnyZodObject>({
 
     return (
       <Modal ref={modalRef} openButton={openButton}>
-        <ModalPanel className="flex flex-col w-mobile mobile:w-full overflow-hidden rounded-md text-left align-middle border-4 border-white">
+        <ModalPanel className="flex flex-col overflow-hidden rounded-md text-left align-middle border-4 border-white">
           <ModalTitle>
             {title}
           </ModalTitle>
