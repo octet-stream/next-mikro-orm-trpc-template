@@ -27,11 +27,11 @@ test.after.always(cleanup)
 test("Returns list with maximum records", withTRPC, async (t, trpc) => {
   const page = await trpc.ponies.list()
 
-  t.is(page.rows, 50)
-  t.is(page.items.length, 50)
+  t.is(page.rowsCount, 50)
+  t.is(page.itemsCount, 50)
   t.is(page.nextCursor, null)
   t.is(page.prevCursor, null)
-  t.is(page.total, 1)
+  t.is(page.pagesCount, 1)
 })
 
 test("Follows the limit parameter", withTRPC, async (t, trpc) => {
@@ -40,7 +40,7 @@ test("Follows the limit parameter", withTRPC, async (t, trpc) => {
     cursor: 1
   })
 
-  t.is(page.total, 5)
+  t.is(page.pagesCount, 5)
 })
 
 test(

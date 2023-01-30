@@ -1,18 +1,15 @@
 import {omitBy, isNil} from "lodash"
 
-import type {IPageInput} from "server/trpc/type/input/PageInput"
+import type {IPageInput} from "server/trpc/helper/createPageInput"
 
-interface IPageArgs extends IPageInput {
-  cursor: number
-  limit: number
-}
+type TPageArgs = Required<IPageInput>
 
-export const DEFAULT_PAGE_INPUT: IPageArgs = {
+export const DEFAULT_PAGE_INPUT: TPageArgs = {
   cursor: 1,
   limit: 50
 }
 
-export class PageArgs implements IPageArgs {
+export class PageArgs implements TPageArgs {
   readonly #cursor: number
 
   readonly #limit: number

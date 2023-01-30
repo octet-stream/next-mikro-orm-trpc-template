@@ -1,6 +1,10 @@
+import {resolve, join} from "node:path"
+
 import {defineConfig} from "@mikro-orm/mysql"
 
-import {Pony} from "server/db/entity"
+import {Note, Completion} from "server/db/entity"
+
+const ROOT = resolve("db")
 
 export const getConfig = () => defineConfig({
   implicitTransactions: true,
@@ -9,10 +13,10 @@ export const getConfig = () => defineConfig({
   port: parseInt(process.env.MIKRO_ORM_PORT || "", 10) || undefined,
   debug: process.env.NODE_ENV === "development",
   migrations: {
-    path: "migration"
+    path: join(ROOT, "migration")
   },
   seeder: {
-    path: "seed"
+    path: join(ROOT, "seed")
   },
-  entities: [Pony]
+  entities: [Note, Completion]
 })

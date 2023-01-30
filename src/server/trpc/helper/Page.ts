@@ -1,18 +1,17 @@
-import type {IPageOutput} from "server/trpc/type/output/PageOutput"
-import type {FilterEntity} from "server/lib/type/FilterEntity"
+import type {IPageOutput} from "server/trpc/helper/createPageOutput"
 
 import {PageArgs} from "./PageArgs"
 
-export interface PageOutputInput<T> {
+export interface PageOutputInput<T extends Record<string, unknown>> {
   /**
    * List of current page items
    */
-  items: FilterEntity<T>[]
+  items: T[]
 
   /**
    * An amount of total rows in a table
    */
-  rows: number
+  count: number
 
   /**
    * Instance of `PageArgs` class
@@ -20,44 +19,54 @@ export interface PageOutputInput<T> {
   args: PageArgs
 }
 
-export class Page<T> implements IPageOutput<T> {
-  readonly #items: FilterEntity<T>[]
+export class Page<T extends Record<string, unknown>> implements IPageOutput<T> {
+  readonly #items: T[]
 
-  readonly #total: number
+  readonly #pagesCount: number
 
-  readonly #rows: number
+  readonly #rowsCount: number
+
+  readonly #itemsCount: number
 
   readonly #nextCursor: number | null
 
   readonly #prevCursor: number | null
 
-  constructor({items, rows, args}: PageOutputInput<T>) {
+  constructor({items, count, args}: PageOutputInput<T>) {
     this.#items = items
-    this.#rows = rows
-    this.#total = (args.limit && Math.ceil(rows / args.limit)) || 1 // If `args.limit` is present, calculate total pages. Otherwise, return `1`.
-    this.#nextCursor = args.getNextCursor(this.total)
+    this.#rowsCount = count
+    this.#itemsCount = items.length
+    this.#pagesCount = (args.limit && Math.ceil(count / args.limit)) || 1 // If `args.limit` is present, calculate total pages. Otherwise, return `1`.
+    this.#nextCursor = args.getNextCursor(this.pagesCount)
     this.#prevCursor = args.getPrevCursor()
   }
 
   /**
    * List of current page items
    */
-  get items(): FilterEntity<T>[] {
+  get items(): T[] {
     return this.#items
   }
 
   /**
    * Total number of pages. Will always be `1` when the `limit` is `undefined`.
    */
-  get total(): number {
-    return this.#total
+  get pagesCount(): number {
+    return this.#pagesCount
   }
 
   /**
    * Total amount of rows in table
    */
-  get rows(): number {
-    return this.#rows
+  get rowsCount(): number {
+    return this.#rowsCount
+  }
+
+  /**
+   * Total amount of items in the list
+   */
+  get itemsCount(): number {
+    return this.#itemsCount
   }
 
   /**
@@ -76,13 +85,14 @@ export class Page<T> implements IPageOutput<T> {
     return this.#prevCursor
   }
 
-  toJSON() {
+  toJSON(): IPageOutput<T> {
     return {
       prevCursor: this.prevCursor,
       nextCursor: this.nextCursor,
       items: this.items,
-      total: this.total,
-      rows: this.rows
+      pagesCount: this.pagesCount,
+      rowsCount: this.rowsCount,
+      itemsCount: this.itemsCount
     }
   }
 }

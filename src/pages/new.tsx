@@ -8,7 +8,7 @@ import type {FC} from "react"
 
 import Select from "react-select"
 
-import {client} from "lib/trpc"
+import {client} from "lib/trpc/client"
 
 import {PonyInput} from "server/trpc/type/input/PonyInput"
 import {PonyRace, PonyRaceNames} from "server/trpc/type/common/PonyRace"

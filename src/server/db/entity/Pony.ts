@@ -9,6 +9,9 @@ import {BaseDates} from "./BaseDates"
 
 const races = [...new Set(Object.values(PonyRace).filter(isString))]
 
+/**
+ * @deprecated Pony was replaced with Note and Completion
+ */
 @Entity()
 export class Pony extends BaseDates implements IPonyOutput {
   [OptionalProps]?: OptionalDates

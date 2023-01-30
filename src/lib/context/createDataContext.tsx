@@ -8,12 +8,12 @@ import isString from "lodash/isString"
 
 import type {MaybeUndefined} from "lib/type/MaybeUndefined"
 
-interface Props<T extends Record<string, unknown>> {
+interface Props<T extends {}> {
   data: T | string
   children: ReactNode
 }
 
-export function createDataContext<T extends Record<string, unknown> = {}>() {
+export function createDataContext<T extends {} = {}>() {
   const Context = createContext<MaybeUndefined<T>>(undefined)
 
   function useDataContext(): T {

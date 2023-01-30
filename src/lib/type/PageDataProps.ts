@@ -2,8 +2,6 @@ export interface SerializedPageDataProps {
   data: string
 }
 
-export interface PageDataProps<
-  T extends Record<string, unknown> = Record<string, unknown>
-> {
+export interface PageDataProps<T extends {} = {}> {
   data: T
 }

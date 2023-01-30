@@ -1,62 +1,59 @@
-import {Plus} from "lucide-react"
 import {isEmpty} from "lodash"
 import type {FC} from "react"
 
-import Link from "next/link"
-
 import {router} from "server/trpc/router"
-import type {IPoniesPageOutput} from "server/trpc/type/output/PoniesPageOutput"
+import type {TNotesPageOutput} from "server/trpc/type/output/NotesPageOutput"
 
 import {getPageDataStaticProps} from "lib/util/getPageDataStaticProps"
 import type {PageDataProps} from "lib/type/PageDataProps"
 
-import {PonyDataProvider} from "context/PonyDataContext"
-import {PoniesDataProvider} from "context/PoniesDataContext"
+import {BaseLayout} from "layout/BaseLayout"
+
+import {NoteDataContextProvider} from "context/NoteDataContext"
+import {NotesDataContextProvider} from "context/NotesDataContext"
 
 import {FloatingButton} from "component/FloatingButton"
-import {PonyCard} from "component/PonyCard"
+import {NoteCard} from "component/NoteCard"
 
-type PageData = PageDataProps<IPoniesPageOutput>
+type PageData = PageDataProps<TNotesPageOutput>
 
 export const getStaticProps = getPageDataStaticProps<PageData>(async () => {
   const trpc = router.createCaller({})
 
   return {
     props: {
-      data: await trpc.ponies.list()
+      data: await trpc.notes.list()
     }
   }
 })
 
 interface Props extends PageData { }
 
-const HomePage: FC<Props> = ({data: ponies}) => (
-  <PoniesDataProvider data={ponies}>
-    <div className="min-h-screen lg:w-screen lg:max-w-laptop lg:mx-auto lg:py-5 w-full p-5">
-      {isEmpty(ponies.items) ? (
-        <div className="w-full h-full flex flex-col justify-center items-center text-slate-400 select-none">
-          <div>There are no ponies just yet</div>
-          <div>To add one, click on the button down below</div>
-
-          <Link href="/new" role="button">
-            <Plus size={32} className="mt-4" />
-          </Link>
+const HomePage: FC<Props> = ({data: notes}) => (
+  <BaseLayout>
+    <NotesDataContextProvider data={notes}>
+      {isEmpty(notes.items) ? (
+        <div className="w-full h-full flex justify-center items-center select-none">
+          <div className="border rounded-md text-gray-400 border-gray-400 dark:text-slate-500 dark:border-slate-500 p-5 text-center">
+            <div>There are no notes just yet</div>
+            <div>To add one, click on the button down below</div>
+          </div>
         </div>
       ) : (
         <ul className="grid grid-cols-1 gap-2 mobile:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
-          {ponies.items.map(pony => (
-            <li key={pony.id}>
-              <PonyDataProvider data={pony}>
-                <PonyCard />
-              </PonyDataProvider>
+          {notes.items.map(note => (
+            <li key={note.id}>
+              <NoteDataContextProvider data={note}>
+                <NoteCard />
+              </NoteDataContextProvider>
             </li>
           ))}
         </ul>
       )}
 
       <FloatingButton />
-    </div>
-  </PoniesDataProvider>
+    </NotesDataContextProvider>
+  </BaseLayout>
 )
 
 export default HomePage
