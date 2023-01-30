@@ -21,7 +21,7 @@ test("Creates a note", withTRPC, async (t, trpc) => {
 
   t.is(actual.title, "Test note #1")
   t.is(actual.status, NoteStatus.INCOMPLETED)
-  t.is(actual.details, null)
+  t.is(actual.details, undefined)
 })
 
 test("Creates a note with given status", withTRPC, async (t, trpc) => {
