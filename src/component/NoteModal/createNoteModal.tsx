@@ -1,7 +1,6 @@
 "use client"
 
 import type {AnyZodObject, infer as Infer} from "zod"
-
 import {
   useForm,
   // Controller,
@@ -15,6 +14,8 @@ import {useRef} from "react"
 
 // import cn from "clsx"
 import TextArea from "react-textarea-autosize"
+import isEmpty from "lodash/isEmpty"
+import omitBy from "lodash/omitBy"
 
 import {TNoteCreateInput} from "server/trpc/type/input/NoteCreateInput"
 
@@ -62,7 +63,7 @@ export function createNoteModal<T extends AnyZodObject>({
     })
 
     const handler = handleSubmit(data => (
-      submit(data).then(() => closeModal())
+      submit(omitBy(data, isEmpty)).then(() => closeModal())
     ))
 
     return (

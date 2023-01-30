@@ -6,7 +6,7 @@ import {CompletionCreateInput} from "./CompletionCreateInput"
 
 export const NoteCreateInput = z.object({
   title: z.string().min(1).max(255),
-  details: z.string().min(1).nullable().optional(),
+  details: z.string().nullable().optional(),
   status: NoteStatusSchema.optional(),
   completions: z.array(CompletionCreateInput).optional()
 })

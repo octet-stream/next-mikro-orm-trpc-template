@@ -35,13 +35,13 @@ export const NoteCard: FC<Props> = () => {
   }, [id, status])
 
   return (
-    <Card>
-      <div className="p-4 pr-1 relative">
+    <Card className="flex flex-row">
+      <div className="pl-4 pr-1 relative flex justify-center items-center">
         <Link href={notePath} className="absolute inset-0" />
 
         <button
           type="button"
-          className="relative z-0 cursor-pointer w-6 h-6 rounded-full border dark:border-gray-500 flex justify-center items-center"
+          className="relative z-0 cursor-pointer w-6 h-6 rounded-full border dark:border-gray-500"
           onClick={updateStatus}
         >
           {status === NoteStatus.COMPLETED && <Check size={16} className="text-gray-300 dark:text-gray-500" />}
@@ -49,7 +49,7 @@ export const NoteCard: FC<Props> = () => {
       </div>
 
       <Link href={notePath} className="flex flex-1">
-        <div className={cn("p-4 pl-1 flex flex-1", {"line-through text-gray-300 dark:text-gray-500": status === NoteStatus.COMPLETED})}>
+        <div className={cn("py-4 pl-1 pr-4", {"line-through text-gray-300 dark:text-gray-500": status === NoteStatus.COMPLETED})}>
           {title}
         </div>
       </Link>

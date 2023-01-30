@@ -40,9 +40,9 @@ const HomePage: FC<Props> = ({data: notes}) => (
           </div>
         </div>
       ) : (
-        <ul className="grid grid-cols-1 gap-2 mobile:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+        <ul className="w-full mobile:max-w-mobile mobile:mx-auto">
           {notes.items.map(note => (
-            <li key={note.id}>
+            <li key={note.id} className="py-1 first:pt-0 last:pb-0">
               <NoteDataContextProvider data={note}>
                 <NoteCard />
               </NoteDataContextProvider>
