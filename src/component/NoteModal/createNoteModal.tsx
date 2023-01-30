@@ -1,12 +1,5 @@
-"use client"
-
+import {useForm, SubmitHandler, FieldValues} from "react-hook-form"
 import type {AnyZodObject, infer as Infer} from "zod"
-import {
-  useForm,
-  // Controller,
-  SubmitHandler,
-  FieldValues
-} from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useEvent} from "react-use-event-hook"
 import type {FC} from "react"

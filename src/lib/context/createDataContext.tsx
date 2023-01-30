@@ -1,5 +1,3 @@
-"use client"
-
 import {createContext, useContext, useMemo} from "react"
 import type {FC, ReactNode} from "react"
 import {parse} from "superjson"
