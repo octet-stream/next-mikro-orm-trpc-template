@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-cycle */
 import {
   Entity,
   Property,
@@ -5,6 +7,7 @@ import {
   OptionalProps,
   Collection,
   OneToMany,
+  Filter
 } from "@mikro-orm/core"
 
 import isString from "lodash/isString"
@@ -17,12 +20,16 @@ import type {PickKeys} from "lib/type/PickKeys"
 import {BaseDates} from "./BaseDates"
 import type {OptionalDates} from "./BaseDates"
 
-// eslint-disable-next-line import/no-cycle
 import {Completion} from "./Completion"
 
 const statuses = [...new Set(Object.values(NoteStatus).filter(isString))]
 
 @Entity()
+@Filter<Note>({
+  name: "active",
+  cond: {status: {$ne: NoteStatus.REJECTED}},
+  default: true
+})
 export class Note extends BaseDates {
   // eslint-disable-next-line no-use-before-define
   [OptionalProps]?: OptionalDates | PickKeys<Note, "details" | "status">
