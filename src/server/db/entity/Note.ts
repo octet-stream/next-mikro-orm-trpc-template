@@ -32,7 +32,7 @@ const statuses = [...new Set(Object.values(NoteStatus).filter(isString))]
 })
 export class Note extends BaseDates {
   // eslint-disable-next-line no-use-before-define
-  [OptionalProps]?: OptionalDates | PickKeys<Note, "details" | "status">
+  [OptionalProps]?: OptionalDates | PickKeys<Note, "details" | "status" | "isCompleted" | "isInProgress" | "isRejected">
 
   @Property({length: 255})
   title!: string
