@@ -19,8 +19,8 @@ import {NoteDataContextProvider} from "context/NoteDataContext"
 import {BaseLayout} from "layout/BaseLayout"
 
 import {Card} from "component/Card"
+import {NoteControls} from "component/NoteControls"
 import {NoteRemoveDialog} from "component/NoteRemoveDialog"
-import {NoteCompleteButton} from "component/NoteCompleteButton"
 import {NoteUpdateModal} from "component/NoteModal/NoteUpdateModal"
 
 export const getStaticPaths = patchStaticPaths(async () => {
@@ -79,7 +79,7 @@ const NoteViewPage: FC<Props> = ({data: note}) => (
         <Card className="w-full p-6 mobile:p-10 mobile:w-mobile mobile:max-w-full mobile:mx-auto">
           <nav className="flex w-full mb-10">
             <Link href="/">
-              <ArrowLeft size={24} />
+              <ArrowLeft size={28} />
             </Link>
 
             <div className="flex-1" />
@@ -110,9 +110,11 @@ const NoteViewPage: FC<Props> = ({data: note}) => (
           </div>
 
           <div className="flex flex-row mt-10">
-            <NoteCompleteButton />
+            <NoteControls />
 
             <div className="flex-1" />
+
+            <div className="border-r border-gray-400 dark:border-gray-700 mr-4" />
 
             <NoteRemoveDialog />
           </div>

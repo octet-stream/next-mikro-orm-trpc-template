@@ -45,7 +45,7 @@ export const NoteRemoveDialog: FC<Props> = () => {
       )}
       openButton={({open}) => (
         <button type="button" onClick={open}>
-          <Trash size={24} className="text-red-500 dark:text-red-800" />
+          <Trash size={28} className="text-red-500 dark:text-red-800" />
         </button>
       )}
     >

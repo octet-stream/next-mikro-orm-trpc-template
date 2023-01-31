@@ -11,9 +11,11 @@ import {client} from "lib/trpc/client"
 
 import {useNoteDataContext} from "context/NoteDataContext"
 
-interface Props { }
+interface Props {
+  className?: string
+}
 
-export const NoteCompleteButton: FC<Props> = () => {
+export const NoteCompleteButton: FC<Props> = ({className}) => {
   const {id, isCompleted, status} = useNoteDataContext()
 
   const toggle = useCallback(() => (
@@ -31,12 +33,12 @@ export const NoteCompleteButton: FC<Props> = () => {
   ), [id, status])
 
   return (
-    <button type="button" onClick={toggle} className="flex pr-2">
-      <div className={cn("relative mr-1 z-0 cursor-pointer w-6 h-6 rounded-full border flex justify-center items-center", {"border-gray-300 dark:border-gray-700": isCompleted, "border-gray-400 dark:border-gray-600": !isCompleted})}>
-        {isCompleted && <Check size={16} className="text-gray-300 dark:text-gray-700" />}
+    <button type="button" onClick={toggle} className={cn("flex items-center", className)}>
+      <div className={cn("mr-1 w-7 h-7 rounded-full border flex justify-center items-center", {"border-gray-300 dark:border-gray-700": isCompleted, "border-gray-400 dark:border-gray-600": !isCompleted})}>
+        {isCompleted && <Check size={20} className="text-gray-300 dark:text-gray-700" />}
       </div>
 
-      <div className={cn("ml-1 flex flex-1", {"line-through text-gray-200 dark:text-gray-700": isCompleted, "text-gray-400 dark:text-gray-600": !isCompleted})}>
+      <div className={cn("max-mobile:hidden ml-1 flex flex-1", {"line-through text-gray-200 dark:text-gray-700": isCompleted, "text-gray-400 dark:text-gray-600": !isCompleted})}>
         Mark as completed
       </div>
     </button>

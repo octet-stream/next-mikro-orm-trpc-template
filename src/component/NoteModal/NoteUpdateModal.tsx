@@ -46,7 +46,7 @@ export const NoteUpdateModal: FC = () => {
       submit={submit}
       openButton={({open}) => (
         <button type="button" onClick={open}>
-          <Pencil size={24} />
+          <Pencil size={28} />
         </button>
       )}
     />
