@@ -27,7 +27,7 @@ export const createControlButton = ({
     const updateStatus = useCallback(() => (
       client.note.update.mutate({id, status})
         .catch(error => {
-          console.log(error)
+          console.error(error)
           toast.error("Can't update note's status")
         })
     ), [id])
