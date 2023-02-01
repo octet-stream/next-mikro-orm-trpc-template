@@ -39,11 +39,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>((
     type={type}
     disabled={disabled || loading}
     className={cn(
-      "relative py-2 px-6 rounded-md text-center",
+      "py-2 px-6 rounded-md text-center",
 
       {
         "w-full": wide,
-        "cursor-progress": loading,
+        "relative cursor-progress": loading,
         "disabled:cursor-not-allowed": disabled && !loading,
         "disabled:bg-gray-400 disabled:dark:bg-slate-600": (variant === "primary" && !loading),
         "disabled:border-gray-300 disabled:text-gray-300 bg-transparent active:disabled:bg-transparent dark:disabled:border-slate-500 dark:disabled:text-slate-500": variant === "secondary",

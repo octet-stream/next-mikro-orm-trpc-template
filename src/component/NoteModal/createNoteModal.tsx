@@ -85,7 +85,7 @@ export function createNoteModal<T extends AnyZodObject>({
             />
 
             <div className="flex flex-row mt-4">
-              <Button loading={formState.isLoading} type="submit" variant="primary" disabled={!formState.isValid}>
+              <Button type="submit" variant="primary" disabled={!formState.isValid}>
                 Submit
               </Button>
 
