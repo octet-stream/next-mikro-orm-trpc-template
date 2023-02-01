@@ -8,31 +8,35 @@ import Link from "next/link"
 
 import {NoteStatus} from "server/trpc/type/common/NoteStatus"
 
+import {patchNodeStatus} from "lib/util/patchNoteStatus"
 import {client} from "lib/trpc/client"
 
 import {Card} from "component/Card"
-import {useNoteDataContext} from "context/NoteDataContext"
+import {useNoteStateSnapshot, useNoteStateProxy} from "context/NoteStateContext"
 
 interface Props { }
 
 export const NoteCard: FC<Props> = () => {
-  const {id, title, isCompleted, status} = useNoteDataContext()
+  const state = useNoteStateProxy()
+
+  const {id, title, status, isCompleted} = useNoteStateSnapshot()
 
   const notePath = `/view/${id}`
 
   const updateStatus = useCallback(() => {
-    const newStatus = status === NoteStatus.COMPLETED
+    const newStatus = isCompleted
       ? NoteStatus.INCOMPLETED
       : NoteStatus.COMPLETED
 
     return (
       client.note.update.mutate({id, status: newStatus})
+        .then(updated => patchNodeStatus(state, updated))
         .catch(error => {
           console.error(error)
           toast.error("Can't update this note")
         })
     )
-  }, [id, status])
+  }, [id, status, isCompleted])
 
   return (
     <Card className="flex flex-row">

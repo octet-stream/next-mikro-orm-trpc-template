@@ -58,14 +58,15 @@ specifiers:
   react-use-event-hook: 0.9.3
   reflect-metadata: 0.1.13
   sinon: 15.0.1
+  spinners-react: ^1.0.7
   superjson: 1.12.2
   tailwindcss: 3.2.4
   ts-node: 10.9.1
   tsconfig-paths: 4.1.2
   typescript: 4.9.4
   validator: 13.7.0
+  valtio: ^1.9.0
   zod: 3.20.2
-  zustand: ^4.3.2
 
 dependencies:
   '@headlessui/react': 1.7.8_biqbaboplfbrettd7655fr4n2y
@@ -94,10 +95,11 @@ dependencies:
   react-textarea-autosize: 8.4.0_3stiutgnnbnfnf3uowm5cip22i
   react-use-event-hook: 0.9.3_react@18.2.0
   reflect-metadata: 0.1.13
+  spinners-react: 1.0.7_fxtgt6bjwd6p4cwoordejim2zi
   superjson: 1.12.2
   validator: 13.7.0
+  valtio: 1.9.0_react@18.2.0
   zod: 3.20.2
-  zustand: 4.3.2_react@18.2.0
 
 devDependencies:
   '@mikro-orm/cli': 5.6.8_ruvx2ogigatjjmp2ebh7zxo4ma
@@ -1025,7 +1027,6 @@ packages:
     resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
     dependencies:
       '@types/react': 18.0.27
-    dev: true
 
   /@types/react-transition-group/4.4.5:
     resolution: {integrity: sha512-juKD/eiSM3/xZYzjuzH6ZwpP+/lejltmiS3QEzV/vmb/Q8+HfDmxu+Baga8UEMGBqV88Nbg4l2hY/K2DkyaLLA==}
@@ -4461,6 +4462,10 @@ packages:
       object-assign: 4.1.1
       react-is: 16.13.1
 
+  /proxy-compare/2.4.0:
+    resolution: {integrity: sha512-FD8KmQUQD6Mfpd0hywCOzcon/dbkFP8XBd9F1ycbKtvVsfv6TsFUKJ2eC0Iz2y+KzlkdT1Z8SY6ZSgm07zOyqg==}
+    dev: false
+
   /psl/1.9.0:
     resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
     dev: true
@@ -4855,6 +4860,20 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /spinners-react/1.0.7_fxtgt6bjwd6p4cwoordejim2zi:
+    resolution: {integrity: sha512-Xcgpc7Ybm6HOrpCVJjbH1G/NV852HaV4Zc9T1sJ2+S2hn05lGiBZS1dBOKGLc1kp8wv2sd3wtt94I/NNqDjs3Q==}
+    peerDependencies:
+      '@types/react': ^16.x || ^17.x || ^18.x
+      '@types/react-dom': ^16.x || ^17.x || ^18.x
+      react: ^16.x || ^17.x || ^18.x
+      react-dom: ^16.x || ^17.x || ^18.x
+    dependencies:
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /sprintf-js/1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
@@ -5392,6 +5411,20 @@ packages:
     engines: {node: '>= 0.10'}
     dev: false
 
+  /valtio/1.9.0_react@18.2.0:
+    resolution: {integrity: sha512-mQLFsAlKbYascZygFQh6lXuDjU5WHLoeZ8He4HqMnWfasM96V6rDbeFkw1XeG54xycmDonr/Jb4xgviHtuySrA==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      react: '>=16.8'
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      proxy-compare: 2.4.0
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
+
   /w3c-xmlserializer/4.0.0:
     resolution: {integrity: sha512-d+BFHzbiCx6zGfz0HyQ6Rg69w9k19nviJspaj4yNscGjrHu94sVP+aRm75yEbCh+r2/yR+7q6hux9LVtbuTGBw==}
     engines: {node: '>=14'}
@@ -5644,20 +5677,4 @@ packages:
 
   /zod/3.20.2:
     resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
-    dev: false
-
-  /zustand/4.3.2_react@18.2.0:
-    resolution: {integrity: sha512-rd4haDmlwMTVWVqwvgy00ny8rtti/klRoZjFbL/MAcDnmD5qSw/RZc+Vddstdv90M5Lv6RPgWvm1Hivyn0QgJw==}
-    engines: {node: '>=12.7.0'}
-    peerDependencies:
-      immer: '>=9.0'
-      react: '>=16.8'
-    peerDependenciesMeta:
-      immer:
-        optional: true
-      react:
-        optional: true
-    dependencies:
-      react: 18.2.0
-      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false

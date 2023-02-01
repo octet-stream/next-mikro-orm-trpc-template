@@ -9,7 +9,8 @@ import type {FC} from "react"
 
 import {client} from "lib/trpc/client"
 
-import {useNoteDataContext} from "context/NoteDataContext"
+import {useNoteStateSnapshot} from "context/NoteStateContext"
+
 import {ConfirmationDialog} from "component/ConfirmationDialog"
 import {Button} from "component/Button"
 
@@ -18,7 +19,7 @@ interface Props { }
 export const NoteRemoveDialog: FC<Props> = () => {
   const router = useRouter()
 
-  const {id} = useNoteDataContext()
+  const {id} = useNoteStateSnapshot()
 
   const remove = useCallback(() => (
     client.note.remove.mutate({id})

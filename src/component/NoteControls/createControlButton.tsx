@@ -5,8 +5,10 @@ import {toast} from "react-hot-toast"
 
 import {NoteStatus} from "server/trpc/type/common/NoteStatus"
 
-import {useNoteDataContext} from "context/NoteDataContext"
 import {client} from "lib/trpc/client"
+import {patchNodeStatus} from "lib/util/patchNoteStatus"
+
+import {useNoteStateProxy, useNoteStateSnapshot} from "context/NoteStateContext"
 
 import cn from "clsx"
 
@@ -22,10 +24,13 @@ export const createControlButton = ({
   status
 }: CreateControlButtonOptions) => forwardRef<HTMLButtonElement, Props>(
   ({className, ...props}, ref) => {
-    const {id} = useNoteDataContext()
+    const state = useNoteStateProxy()
+
+    const {id} = useNoteStateSnapshot()
 
     const updateStatus = useCallback(() => (
       client.note.update.mutate({id, status})
+        .then(updated => patchNodeStatus(state, updated))
         .catch(error => {
           console.error(error)
           toast.error("Can't update note's status")
@@ -38,7 +43,7 @@ export const createControlButton = ({
 
         ref={ref}
         type="button"
-        className={cn("cursor-pointer mr-3 disabled:cursor-not-allowed text-gray-300 disabled:text-gray-300 dark:text-gray-700 disabled:dark:text-gray-700 hover:text-white transition-colors duration-200 disabled:transition-none", className)}
+        className={cn("cursor-pointer mr-3 disabled:cursor-not-allowed text-gray-300 disabled:text-gray-300 dark:text-gray-400 disabled:dark:text-gray-700 hover:text-white transition-colors duration-200 disabled:transition-none", className)}
         onClick={updateStatus}
       >
         {createElement(icon, {size: 28})}

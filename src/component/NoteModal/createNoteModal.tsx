@@ -5,7 +5,6 @@ import {useEvent} from "react-use-event-hook"
 import type {FC} from "react"
 import {useRef} from "react"
 
-// import cn from "clsx"
 import TextArea from "react-textarea-autosize"
 import isEmpty from "lodash/isEmpty"
 import omitBy from "lodash/omitBy"
@@ -86,7 +85,7 @@ export function createNoteModal<T extends AnyZodObject>({
             />
 
             <div className="flex flex-row mt-4">
-              <Button type="submit" variant="primary" disabled={!formState.isValid}>
+              <Button loading={formState.isLoading} type="submit" variant="primary" disabled={!formState.isValid}>
                 Submit
               </Button>
 

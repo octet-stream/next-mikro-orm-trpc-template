@@ -1,17 +1,18 @@
 /* eslint-disable react/no-unstable-nested-components */
 import type {SubmitHandler} from "react-hook-form"
-import {useRouter} from "next/navigation"
 import {toast} from "react-hot-toast"
 import {Pencil} from "lucide-react"
 import {useCallback} from "react"
 import type {FC} from "react"
+
+import merge from "lodash/merge"
 
 import {NoteUpdateInput} from "server/trpc/type/input/NoteUpdateInput"
 import type {TNoteUpdateInput} from "server/trpc/type/input/NoteUpdateInput"
 
 import {client} from "lib/trpc/client"
 
-import {useNoteDataContext} from "context/NoteDataContext"
+import {useNoteStateProxy, useNoteStateSnapshot} from "context/NoteStateContext"
 
 import {createNoteModal} from "./createNoteModal"
 
@@ -23,14 +24,16 @@ const Modal = createNoteModal({
 })
 
 export const NoteUpdateModal: FC = () => {
-  const router = useRouter()
+  const {id, ...rest} = useNoteStateSnapshot()
 
-  const {id, ...rest} = useNoteDataContext()
+  const proxy = useNoteStateProxy()
 
   const submit = useCallback<Submit>(data => (
     client.note.update.mutate({...data, id})
-      .then(() => {
-        router.refresh()
+      .then(updated => {
+        // Update state
+        merge(proxy, updated)
+
         toast.success("Note updated!")
       })
       .catch(error => {

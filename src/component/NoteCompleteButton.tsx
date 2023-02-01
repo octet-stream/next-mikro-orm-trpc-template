@@ -1,5 +1,5 @@
+import {Check, CheckCheck} from "lucide-react"
 import {toast} from "react-hot-toast"
-import {Check} from "lucide-react"
 import {useCallback} from "react"
 import type {FC} from "react"
 
@@ -7,39 +7,50 @@ import cn from "clsx"
 
 import {NoteStatus} from "server/trpc/type/common/NoteStatus"
 
+import {patchNodeStatus} from "lib/util/patchNoteStatus"
 import {client} from "lib/trpc/client"
 
-import {useNoteDataContext} from "context/NoteDataContext"
+import {
+  useNoteStateSnapshot,
+  useNoteStateProxy
+} from "context/NoteStateContext"
 
 interface Props {
   className?: string
 }
 
 export const NoteCompleteButton: FC<Props> = ({className}) => {
-  const {id, isCompleted, status} = useNoteDataContext()
+  const state = useNoteStateProxy()
+
+  const {id, isCompleted} = useNoteStateSnapshot()
 
   const toggle = useCallback(() => (
     client.note.update.mutate({
       id,
 
-      status: status === NoteStatus.COMPLETED
+      status: isCompleted
         ? NoteStatus.INCOMPLETED
         : NoteStatus.COMPLETED
     })
+      .then(updated => patchNodeStatus(state, updated))
       .catch(error => {
         console.error(error)
         toast.error("Can't update this note.")
       })
-  ), [id, status])
+  ), [id, isCompleted])
 
   return (
-    <button type="button" onClick={toggle} className={cn("flex items-center", className)}>
-      <div className={cn("mr-1 w-7 h-7 rounded-full border flex justify-center items-center", {"border-gray-300 dark:border-gray-700": isCompleted, "border-gray-400 dark:border-gray-600": !isCompleted})}>
-        {isCompleted && <Check size={20} className="text-gray-300 dark:text-gray-700" />}
-      </div>
+    <button type="button" onClick={toggle} className={cn("w-full flex rounded-md py-2 px-6 justify-center border border-gray-400 dark:border-gray-400", className)}>
+      <div className="flex flex-row items-center">
+        {
+          isCompleted
+            ? <CheckCheck size={20} className="text-black dark:text-white" />
+            : <Check size={20} className="text-black dark:text-white" />
+        }
 
-      <div className={cn("max-mobile:hidden ml-1 flex flex-1", {"line-through text-gray-200 dark:text-gray-700": isCompleted, "text-gray-400 dark:text-gray-600": !isCompleted})}>
-        Mark as completed
+        <div className="ml-2">
+          Mark as completed
+        </div>
       </div>
     </button>
   )

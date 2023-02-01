@@ -1,8 +1,8 @@
 import type {FC} from "react"
 
-import {useNoteDataContext} from "context/NoteDataContext"
+import cn from "clsx"
 
-import {NoteCompleteButton} from "component/NoteCompleteButton"
+import {useNoteStateSnapshot} from "context/NoteStateContext"
 
 import {PauseButton} from "./PauseButton"
 import {PlayButton} from "./PlayButton"
@@ -11,7 +11,7 @@ import {StopButton} from "./StopButton"
 interface Props { }
 
 export const NoteControls: FC<Props> = () => {
-  const {isInProgress, isCompleted} = useNoteDataContext()
+  const {isCompleted, isInProgress} = useNoteStateSnapshot()
 
   return (
     <div className="flex flex-row select-none">
@@ -19,9 +19,7 @@ export const NoteControls: FC<Props> = () => {
 
       {!isInProgress && <PlayButton disabled={isCompleted} />}
 
-      {isInProgress && <PauseButton />}
-
-      <NoteCompleteButton className="mr-3" />
+      {isInProgress && <PauseButton className={cn({"!text-black dark:!text-white": isInProgress})} />}
     </div>
   )
 }
