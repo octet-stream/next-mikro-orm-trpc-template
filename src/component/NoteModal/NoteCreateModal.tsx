@@ -9,6 +9,8 @@ import type {TNoteCreateInput} from "server/trpc/type/input/NoteCreateInput"
 
 import {client} from "lib/trpc/client"
 
+import {useNotesStateProxy} from "context/NotesStateContext"
+
 import {FloatingButton} from "component/FloatingButton"
 
 import {createNoteModal} from "./createNoteModal"
@@ -19,8 +21,15 @@ const Modal = createNoteModal({
 })
 
 export const NoteCreateModal: FC = () => {
+  const state = useNotesStateProxy()
+
   const submit = useEvent<SubmitHandler<TNoteCreateInput>>(data => (
     client.note.create.mutate(data)
+      .then(note => {
+        state.items.unshift(note)
+        state.itemsCount++
+        state.rowsCount++
+      })
       .catch(error => {
         console.log(error)
         toast.error("Can't create a note.")
