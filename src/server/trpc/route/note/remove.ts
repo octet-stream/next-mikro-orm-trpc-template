@@ -13,13 +13,10 @@ export const remove = procedure
   .mutation(async ({input, ctx}) => {
     const {orm} = ctx
 
-    const note = await orm.em.findOne(Note, input.id, {
-      filters: {active: false}
+    const note = await orm.em.findOneOrFail(Note, input.id, {
+      filters: {active: false},
+      failHandler: () => new TRPCError({code: "NOT_FOUND"})
     })
-
-    if (!note) {
-      throw new TRPCError({code: "BAD_REQUEST"})
-    }
 
     await orm.em.removeAndFlush(note)
 

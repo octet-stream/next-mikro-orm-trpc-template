@@ -15,11 +15,9 @@ export const update = procedure
     const {id, ...fields} = input
     const {orm, res} = ctx
 
-    const note = await orm.em.findOne(Note, id)
-
-    if (!note) {
-      throw new TRPCError({code: "NOT_FOUND"})
-    }
+    const note = await orm.em.findOneOrFail(Note, id, {
+      failHandler: () => new TRPCError({code: "NOT_FOUND"})
+    })
 
     wrap(note).assign(fields)
 

@@ -1,6 +1,8 @@
 import anyTest from "ava"
 
+import {ZodError} from "zod"
 import type {TestFn} from "ava"
+import {TRPCError} from "@trpc/server"
 
 import {withTRPC} from "server/__macro__/withTRPC"
 import {setup, cleanup} from "server/__helper__/database"
@@ -31,4 +33,20 @@ test("Creates a note with given status", withTRPC, async (t, trpc) => {
   })
 
   t.is(actual.status, NoteStatus.IN_PROGRESS)
+})
+
+test("Fails creating a note with unknown status", withTRPC, async (t, trpc) => {
+  const trap = () => trpc.note.create({
+    title: "Test note #3",
+
+    // @ts-expect-error
+    status: "some_invalid_status"
+  })
+
+  const error = await t.throwsAsync(trap, {instanceOf: TRPCError}) as TRPCError
+
+  const {errors} = error.cause as ZodError
+  const [actual] = errors
+
+  t.is(actual.code, "invalid_enum_value")
 })
