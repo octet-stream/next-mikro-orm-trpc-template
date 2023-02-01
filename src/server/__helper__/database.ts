@@ -12,7 +12,6 @@ const createDatabaseNameSuffix = customAlphabet(alphanum, 21)
  * Creates a new MySQL connection using mysql2 driver.
  *
  * **Important**: this function requires a user with database management access.
- * You'll probably gonna need to create a user that can manage databases with names starting with twi-test__ name
  */
 const createNativeConnection = () => mysql.createConnection({
   port: parseInt(process.env.MIKRO_ORM_PORT!, 10) || undefined,
