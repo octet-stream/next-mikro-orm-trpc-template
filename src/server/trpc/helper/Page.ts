@@ -1,4 +1,4 @@
-import {MaybeNull} from "lib/type/MaybeNull"
+import type {MaybeNull} from "lib/type/MaybeNull"
 import {PageArgs} from "./PageArgs"
 
 export interface PageOutputInput<T extends Record<string, unknown>> {
@@ -27,7 +27,7 @@ export interface IPageOutput<T extends Record<string, unknown>> {
   /**
    * Items per page limit.
    */
-  limit: number
+  limit: MaybeNull<number>
 
   /**
    * Max amount of the items for this page type
@@ -72,7 +72,7 @@ export class Page<T extends Record<string, unknown>> implements IPageOutput<T> {
 
   readonly #current: number
 
-  readonly #limit: number
+  readonly #limit: MaybeNull<number>
 
   readonly #maxLimit: MaybeNull<number>
 
@@ -90,7 +90,7 @@ export class Page<T extends Record<string, unknown>> implements IPageOutput<T> {
     this.#items = items
     this.#rowsCount = count
     this.#current = args.cursor
-    this.#limit = args.limit
+    this.#limit = args.limit ?? null
     this.#maxLimit = args.maxLimit
     this.#itemsCount = items.length
     this.#pagesCount = (args.limit && Math.ceil(count / args.limit)) || 1 // If `args.limit` is present, calculate total pages. Otherwise, return `1`.
@@ -102,7 +102,7 @@ export class Page<T extends Record<string, unknown>> implements IPageOutput<T> {
     return this.#items
   }
 
-  get limit(): number {
+  get limit(): MaybeNull<number> {
     return this.#limit
   }
 

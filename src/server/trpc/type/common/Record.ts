@@ -1,10 +1,11 @@
-import {z, infer as Infer} from "zod"
+import type {infer as Infer} from "zod"
 
 import {Node} from "./Node"
+import {DateTime} from "./DateTime"
 
 export const Record = Node.extend({
-  createdAt: z.date(),
-  updatedAt: z.date()
+  createdAt: DateTime,
+  updatedAt: DateTime
 })
 
 export type TRecord = Infer<typeof Record>

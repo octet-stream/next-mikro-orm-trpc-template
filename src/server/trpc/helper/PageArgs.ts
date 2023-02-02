@@ -1,7 +1,5 @@
-import {omitBy, isNil} from "lodash"
-
-import type {MaybeNull} from "lib/type/MaybeNull"
 import type {MaybeUndefined} from "lib/type/MaybeUndefined"
+import type {MaybeNull} from "lib/type/MaybeNull"
 
 export interface IPageArgs {
   /**
@@ -12,7 +10,7 @@ export interface IPageArgs {
   /**
    * The items limmit per page.
    */
-  limit?: MaybeNull<number>
+  limit?: MaybeUndefined<number>
 
   /**
    * The max limit of the items for this page type.
@@ -22,27 +20,27 @@ export interface IPageArgs {
   maxLimit: MaybeNull<number>
 }
 
-const defaults: Required<IPageArgs> = {
-  cursor: 1,
-  limit: null,
-  maxLimit: null
-}
-
 export class PageArgs implements IPageArgs {
   readonly #cursor: number
 
-  readonly #limit: MaybeNull<number>
-
-  readonly #offset: MaybeUndefined<number>
+  readonly #limit: MaybeUndefined<number>
 
   readonly #maxLimit: MaybeNull<number>
 
+  readonly #offset: MaybeUndefined<number>
+
   constructor(input: IPageArgs) {
-    const {cursor, limit, maxLimit} = {
-      ...defaults, ...omitBy<IPageArgs>(input, isNil)
+    let {cursor, limit, maxLimit} = input
+
+    maxLimit ??= null
+    cursor ??= 1
+
+    // Defaults to the same value as maxLimit
+    if (!limit && maxLimit != null) {
+      limit = maxLimit
     }
 
-    this.#limit = limit ?? maxLimit // Defaults to the same value as maxLimit
+    this.#limit = limit
     this.#cursor = cursor
     this.#maxLimit = maxLimit
     this.#offset = limit ? limit * (cursor - 1) : undefined
@@ -56,7 +54,7 @@ export class PageArgs implements IPageArgs {
     return this.#cursor
   }
 
-  get limit(): MaybeNull<number> {
+  get limit(): MaybeUndefined<number> {
     return this.#limit
   }
 
