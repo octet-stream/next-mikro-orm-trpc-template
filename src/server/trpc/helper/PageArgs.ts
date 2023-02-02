@@ -17,7 +17,7 @@ export interface IPageArgs {
    *
    * Unlike the others args, this field is borrowed from the `createPageInput()` helper.
    */
-  maxLimit: MaybeNull<number>
+  maxLimit?: MaybeNull<number>
 }
 
 export class PageArgs implements IPageArgs {
@@ -29,7 +29,7 @@ export class PageArgs implements IPageArgs {
 
   readonly #offset: MaybeUndefined<number>
 
-  constructor(input: IPageArgs) {
+  constructor(input: IPageArgs = {}) {
     let {cursor, limit, maxLimit} = input
 
     maxLimit ??= null
