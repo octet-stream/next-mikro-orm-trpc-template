@@ -12,7 +12,7 @@ export interface IPageArgs {
   /**
    * The items limmit per page.
    */
-  limit?: number
+  limit?: MaybeNull<number>
 
   /**
    * The max limit of the items for this page type.
@@ -22,16 +22,16 @@ export interface IPageArgs {
   maxLimit: MaybeNull<number>
 }
 
-export const defaults: Required<IPageArgs> = {
+const defaults: Required<IPageArgs> = {
   cursor: 1,
-  limit: 50,
+  limit: null,
   maxLimit: null
 }
 
 export class PageArgs implements IPageArgs {
   readonly #cursor: number
 
-  readonly #limit: number
+  readonly #limit: MaybeNull<number>
 
   readonly #offset: MaybeUndefined<number>
 
@@ -42,7 +42,7 @@ export class PageArgs implements IPageArgs {
       ...defaults, ...omitBy<IPageArgs>(input, isNil)
     }
 
-    this.#limit = limit
+    this.#limit = limit ?? maxLimit // Defaults to the same value as maxLimit
     this.#cursor = cursor
     this.#maxLimit = maxLimit
     this.#offset = limit ? limit * (cursor - 1) : undefined
@@ -56,7 +56,7 @@ export class PageArgs implements IPageArgs {
     return this.#cursor
   }
 
-  get limit(): number {
+  get limit(): MaybeNull<number> {
     return this.#limit
   }
 

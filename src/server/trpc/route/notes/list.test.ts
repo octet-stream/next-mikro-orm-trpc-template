@@ -6,7 +6,7 @@ import {withTRPC} from "server/__macro__/withTRPC"
 import {setup, cleanup} from "server/__helper__/database"
 import type {WithTRPCContext} from "server/__macro__/withTRPC"
 
-import {getORM} from "server/lib/db/orm"
+import {runIsolatied} from "server/lib/db/orm"
 
 import {Note} from "server/db/entity"
 
@@ -15,13 +15,13 @@ const test = anyTest as TestFn<WithTRPCContext>
 test.before(async () => {
   await setup()
 
-  const orm = await getORM()
+  await runIsolatied(async em => {
+    const notes = Array.from({length: 100}).fill(undefined).map((_, index) => (
+      em.create(Note, {title: `Test note #${index}`})
+    ))
 
-  const notes = Array.from({length: 100}).fill(undefined).map((_, index) => (
-    orm.em.create(Note, {title: `Test note #${index}`})
-  ))
-
-  await orm.em.persistAndFlush(notes)
+    await em.persistAndFlush(notes)
+  })
 })
 
 test.after.always(cleanup)
