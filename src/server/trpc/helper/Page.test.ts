@@ -11,7 +11,7 @@ type Note = {
   status: NoteStatus
 }
 
-const data: Note[] = Array.from({length: 100}).fill(undefined).map((_, i) => ({
+const data: Note[] = Array.from({length: 100}).fill({}).map((_, i) => ({
   id: `${i + 1}`,
   title: `Test note #${i + 1}`,
   status: NoteStatus.INCOMPLETED

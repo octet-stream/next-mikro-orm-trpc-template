@@ -16,7 +16,7 @@ test.before(async () => {
   await setup()
 
   await runIsolatied(async em => {
-    const notes = Array.from({length: 100}).fill(undefined).map((_, index) => (
+    const notes = Array.from({length: 100}).fill({}).map((_, index) => (
       em.create(Note, {title: `Test note #${index}`})
     ))
 
