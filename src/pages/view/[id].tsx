@@ -6,8 +6,8 @@ import {patchStaticPaths} from "lib/util/patchStaticPaths"
 import type {PageDataProps} from "lib/type/PageDataProps"
 
 import {Note} from "server/db/entity"
+import {getORM} from "server/lib/db/orm"
 import {router} from "server/trpc/router"
-import {runIsolatied} from "server/lib/db/orm"
 import type {TNoteOutput} from "server/trpc/type/output/NoteOutput"
 
 import {NoteStateContextProvider} from "context/NoteStateContext"
@@ -17,19 +17,22 @@ import {BaseLayout} from "layout/BaseLayout"
 import {NoteView} from "view/NoteView/NoteView"
 
 export const getStaticPaths = patchStaticPaths(async () => {
-  const notes = await runIsolatied(async em => em.find(
+  const orm = await getORM()
+
+  const notes = await orm.em.find(
     Note,
 
     {},
 
     {
+      disableIdentityMap: true,
       fields: ["id"],
       limit: 1000,
       orderBy: {
         createdAt: "desc"
       }
     }
-  ))
+  )
 
   return {
     fallback: "blocking",
