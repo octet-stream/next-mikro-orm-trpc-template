@@ -1,8 +1,8 @@
 import {useForm, SubmitHandler, FieldValues} from "react-hook-form"
 import type {AnyZodObject, infer as Infer} from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
+import type {FC, KeyboardEventHandler} from "react"
 import {useEvent} from "react-use-event-hook"
-import type {FC} from "react"
 import {useRef} from "react"
 
 import TextArea from "react-textarea-autosize"
@@ -14,6 +14,8 @@ import {TNoteCreateInput} from "server/trpc/type/input/NoteCreateInput"
 import type {ModalRef, BaseModalProps} from "component/Modal"
 import {Modal, ModalPanel, ModalTitle} from "component/Modal"
 import {Button} from "component/Button"
+
+type BlockReturnHandler = KeyboardEventHandler<HTMLTextAreaElement>
 
 interface Props<T extends FieldValues> extends BaseModalProps {
   title: string
@@ -49,30 +51,38 @@ export function createNoteModal<T extends AnyZodObject>({
       values: values as TNoteCreateInput
     })
 
+    const blockReturn = useEvent<BlockReturnHandler>(event => {
+      if (event.key.toLowerCase() === "enter") {
+        event.preventDefault()
+      }
+    })
+
     const closeModal = useEvent(() => {
       modalRef.current?.close()
-      reset()
     })
+
+    const onCloseReset = useEvent(() => reset())
 
     const handler = handleSubmit(data => (
       submit(omitBy(data, isEmpty)).then(() => closeModal())
     ))
 
     return (
-      <Modal ref={modalRef} openButton={openButton}>
+      <Modal ref={modalRef} openButton={openButton} onClose={onCloseReset}>
         <ModalPanel className="flex flex-col overflow-hidden rounded-md text-left align-middle border-4 border-white">
           <ModalTitle>
             {title}
           </ModalTitle>
 
           <form onSubmit={handler} className="mobile:flex-1 p-6 overflow-y-auto">
-            <input
+            <TextArea
               {...register("title")}
 
-              type="text"
-              className="w-full border p-2 rounded-md dark:bg-slate-700 dark:border-gray-400"
+              className="w-full resize-none border p-2 rounded-md dark:bg-slate-700 dark:border-gray-400"
               placeholder="Title"
               maxLength={255}
+              maxRows={3}
+              onKeyDown={blockReturn}
             />
 
             <TextArea
@@ -80,7 +90,8 @@ export function createNoteModal<T extends AnyZodObject>({
 
               className="w-full border p-2 mt-4 rounded-md resize-none overflow-hidden dark:bg-slate-700 dark:border-gray-400"
               placeholder="Details"
-              minRows={3}
+              minRows={6}
+              maxRows={10}
               maxLength={1000}
             />
 

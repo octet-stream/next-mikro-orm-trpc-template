@@ -23,6 +23,7 @@ export interface OpenModalButton {
 
 export interface BaseModalProps {
   openButton: OpenModalButton
+  onClose?(): void
 }
 
 interface Props extends BaseModalProps {
@@ -39,6 +40,7 @@ type ModalRefInput = MaybeUndefined<ModalRef>
 
 export const Modal = forwardRef<ModalRefInput, Props>((
   {
+    onClose,
     openButton,
     children
   },
@@ -49,7 +51,10 @@ export const Modal = forwardRef<ModalRefInput, Props>((
 
   const open = useEvent(() => setOpen(true))
 
-  const close = useEvent(() => setOpen(false))
+  const close = useEvent(() => {
+    setOpen(false)
+    onClose?.()
+  })
 
   const context = useMemo<ModalRef>(() => ({
     isOpen, open, close

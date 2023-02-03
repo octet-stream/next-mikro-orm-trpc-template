@@ -43,7 +43,7 @@ export const createControlButton = ({
 
         ref={ref}
         type="button"
-        className={cn("cursor-pointer mr-3 disabled:cursor-not-allowed text-gray-300 disabled:text-gray-300 dark:text-gray-400 disabled:dark:text-gray-700 hover:text-white transition-colors duration-200 disabled:transition-none", className)}
+        className={cn("cursor-pointer mr-3 disabled:cursor-not-allowed text-gray-300 disabled:text-gray-300 dark:text-gray-400 disabled:dark:text-gray-700 hover:text-black hover:dark:text-white transition-colors duration-200 disabled:transition-none", className)}
         onClick={updateStatus}
       >
         {createElement(icon, {size: 28})}
