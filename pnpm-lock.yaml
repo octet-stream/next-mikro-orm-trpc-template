@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@headlessui/react': ^1.7.8
+  '@headlessui/react': 1.7.8
   '@hookform/resolvers': 2.9.10
   '@mikro-orm/cli': 5.6.8
   '@mikro-orm/core': 5.6.8
@@ -10,7 +10,6 @@ specifiers:
   '@mikro-orm/seeder': 5.6.8
   '@next/env': 13.1.6
   '@octetstream/eslint-config': 6.2.2
-  '@tailwindcss/typography': 0.5.9
   '@trpc/client': 10.9.1
   '@trpc/server': 10.9.1
   '@types/bcrypt': 5.0.0
@@ -27,7 +26,7 @@ specifiers:
   bcrypt: 5.1.0
   c8: 7.12.0
   clsx: 1.2.1
-  date-fns: ^2.29.3
+  date-fns: 2.29.3
   eslint: 8.33.0
   eslint-config-airbnb: 19.0.4
   eslint-config-airbnb-typescript: 17.0.0
@@ -40,7 +39,7 @@ specifiers:
   global-jsdom: 8.7.0
   jsdom: 21.1.0
   lodash: 4.17.21
-  lucide-react: ^0.109.0
+  lucide-react: 0.109.0
   mysql2: 3.1.0
   nanoid: 3.3.4
   next: 13.1.6
@@ -52,25 +51,25 @@ specifiers:
   react-hook-form: 7.43.0
   react-hot-toast: 2.4.0
   react-query: 3.39.3
-  react-select: ^5.7.0
-  react-textarea-autosize: ^8.4.0
+  react-select: 5.7.0
+  react-textarea-autosize: 8.4.0
   react-use-event-hook: 0.9.3
   reflect-metadata: 0.1.13
-  rehype-parse: ^8.0.4
-  rehype-react: ^7.1.2
-  rehype-sanitize: ^5.0.1
-  remark-parse: ^10.0.1
-  remark-rehype: ^10.1.0
+  rehype-parse: 8.0.4
+  rehype-react: 7.1.2
+  rehype-sanitize: 5.0.1
+  remark-parse: 10.0.1
+  remark-rehype: 10.1.0
   sinon: 15.0.1
-  spinners-react: ^1.0.7
+  spinners-react: 1.0.7
   superjson: 1.12.2
   tailwindcss: 3.2.4
   ts-node: 10.9.1
   tsconfig-paths: 4.1.2
   typescript: 4.9.5
-  unified: ^10.1.2
+  unified: 10.1.2
   validator: 13.9.0
-  valtio: ^1.9.0
+  valtio: 1.9.0
   zod: 3.20.2
 
 dependencies:
@@ -117,7 +116,6 @@ devDependencies:
   '@mikro-orm/seeder': 5.6.8_@mikro-orm+core@5.6.8
   '@next/env': 13.1.6
   '@octetstream/eslint-config': 6.2.2_cwtedka3uapjmxhpp3fwiuxray
-  '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
   '@types/bcrypt': 5.0.0
   '@types/lodash': 4.14.191
   '@types/node': 18.11.18
@@ -209,6 +207,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
+    dev: true
 
   /@babel/types/7.20.7:
     resolution: {integrity: sha512-69OnhBxSSgK0OzTJai4kyPDiKTIe3j+ctaHdIGVbRahTLAT7L3R9oeXHC2aVSuGYt3cVnoAMDmOCgJ2yaiLMvg==}
@@ -237,7 +236,7 @@ packages:
     dependencies:
       '@babel/helper-module-imports': 7.18.6
       '@babel/plugin-syntax-jsx': 7.18.6
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       '@emotion/hash': 0.9.0
       '@emotion/memoize': 0.8.0
       '@emotion/serialize': 1.1.1
@@ -279,7 +278,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       '@emotion/babel-plugin': 11.10.5
       '@emotion/cache': 11.10.5
       '@emotion/serialize': 1.1.1
@@ -937,18 +936,6 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@tailwindcss/typography/0.5.9_tailwindcss@3.2.4:
-    resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==}
-    peerDependencies:
-      tailwindcss: '>=3.0.0 || insiders'
-    dependencies:
-      lodash.castarray: 4.4.0
-      lodash.isplainobject: 4.0.6
-      lodash.merge: 4.6.2
-      postcss-selector-parser: 6.0.10
-      tailwindcss: 3.2.4_aesdjsunmf4wiehhujt67my7tu
-    dev: true
-
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
@@ -1535,7 +1522,7 @@ packages:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       cosmiconfig: 7.1.0
       resolve: 1.22.1
     dev: false
@@ -2144,7 +2131,7 @@ packages:
   /dom-helpers/5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       csstype: 3.1.1
     dev: false
 
@@ -3768,16 +3755,8 @@ packages:
       p-locate: 6.0.0
     dev: true
 
-  /lodash.castarray/4.4.0:
-    resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
-    dev: true
-
   /lodash.get/4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
-    dev: true
-
-  /lodash.isplainobject/4.0.6:
-    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
     dev: true
 
   /lodash.merge/4.6.2:
@@ -4731,14 +4710,6 @@ packages:
       postcss-selector-parser: 6.0.11
     dev: true
 
-  /postcss-selector-parser/6.0.10:
-    resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
-    engines: {node: '>=4'}
-    dependencies:
-      cssesc: 3.0.0
-      util-deprecate: 1.0.2
-    dev: true
-
   /postcss-selector-parser/6.0.11:
     resolution: {integrity: sha512-zbARubNdogI9j7WY4nQJBiNqQf3sLS3wCP4WfOidu+p28LofJqDH1tcXypGrcmMHhDk2t9wGhCsYe/+szLTy1g==}
     engines: {node: '>=4'}
@@ -4900,7 +4871,7 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       '@emotion/cache': 11.10.5
       '@emotion/react': 11.10.5_3stiutgnnbnfnf3uowm5cip22i
       '@floating-ui/dom': 1.1.0
@@ -4936,7 +4907,7 @@ packages:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
     dependencies:
-      '@babel/runtime': 7.20.7
+      '@babel/runtime': 7.20.13
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1

@@ -1,5 +1,3 @@
-const typography = require("@tailwindcss/typography")
-
 // Screen sizes
 const mobile = "450px"
 const laptop = "1024px"
@@ -37,8 +35,5 @@ module.exports = {
       xl,
       "2xl": xl2
     }
-  },
-  plugins: [
-    typography
-  ]
+  }
 }
