@@ -1,3 +1,4 @@
+import type {ZodObject, infer as Infer} from "zod"
 import {z} from "zod"
 
 import type {MaybeNull} from "lib/type/MaybeNull"
@@ -15,7 +16,10 @@ const defaults: Required<CreatePageInputOptions> = {
 /**
  * Creates PageInput type with given `maxLimit` option
  */
-export function createPageInput(options: CreatePageInputOptions = {}) {
+export function createPageInput<T extends {}>(
+  options?: CreatePageInputOptions,
+  extensions?: ZodObject<T>
+) {
   const {maxLimit} = {...defaults, ...options}
 
   const Cursor = z.number().int().positive().optional()
@@ -23,10 +27,22 @@ export function createPageInput(options: CreatePageInputOptions = {}) {
 
   const Limit = maxLimit ? LimitBase.max(maxLimit).default(maxLimit) : LimitBase
 
-  return z
+  const PageBaseInput = z
     .object({cursor: Cursor, limit: Limit.optional()})
-    .transform(args => new PageArgs({...args, maxLimit}))
     .default(maxLimit ? {limit: maxLimit} : {})
+
+  const PageInput = extensions
+    ? z.intersection(extensions, PageBaseInput)
+    : PageBaseInput
+
+  return PageInput
+    .transform(({cursor, limit, ...rest}) => ({
+      ...rest as Infer<ZodObject<T>>,
+
+      args: new PageArgs({cursor, limit, maxLimit})
+    }))
+    .optional()
+    .default({})
 }
 
 /**

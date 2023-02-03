@@ -11,11 +11,12 @@ export const list = procedure
   .output(NotesPageOutput)
   .query(async ({input, ctx}) => {
     const {orm} = ctx
+    const {args} = input
     const {status} = input.filter
 
     const [items, count] = await orm.em.findAndCount(Note, {}, {
-      limit: input.limit,
-      offset: input.offset,
+      limit: args.limit,
+      offset: args.offset,
       orderBy: {createdAt: "desc"},
       filters: {
         [NoteStatusFilter.ALL]: (!status || status === NoteStatusFilter.ALL),
@@ -25,5 +26,5 @@ export const list = procedure
       }
     })
 
-    return {items, count, args: input}
+    return {items, count, args}
   })
