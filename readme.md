@@ -64,4 +64,19 @@ During my attempts to integrate MikroORM with Next.js I had to fall into several
   })
   ```
 
-* MikroORM can't discover native TypeScipt enums if you were to define those in a separate file. To fix avoid this problem, you'll have to extract emun values manually (but remember about TS enum [quirks](https://youtu.be/jjMbPt_H3RQ)) and put those to `items` option of the `Enum` decorator, along with the `type` options set to needed column type.
+* MikroORM can't discover native TypeScipt enums if you were to define those in a separate file. To fix avoid this problem, you'll have to extract emun values manually (but remember about TS enum [quirks](https://youtu.be/jjMbPt_H3RQ)) and put those to `items` option of the `Enum` decorator, along with the `type` options set to needed column type. Here's how you can do this:
+
+  ```ts
+  import {Entity, Enum} from "@mikro-orm/core"
+  import {isString} from "lodash"
+
+  import {NoteStatus} from "server/trpc/type/common/NoteStatus"
+
+  const statuses = [...new Set(Object.values(NoteStatus).filter(isString))]
+
+  @Entity()
+  class Note {
+    @Enum({type: "string", items: statuses})
+    status: NoteStatus = NoteStatus.INCOMPLETED
+  }
+  ```
