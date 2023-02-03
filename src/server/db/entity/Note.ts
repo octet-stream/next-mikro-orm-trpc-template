@@ -13,6 +13,7 @@ import {
 import isString from "lodash/isString"
 
 import {NoteStatus} from "server/trpc/type/common/NoteStatus"
+import {NoteStatusFilter} from "server/trpc/type/common/NoteStatusFilter"
 
 import type {MaybeNull} from "lib/type/MaybeNull"
 import type {PickKeys} from "lib/type/PickKeys"
@@ -26,9 +27,21 @@ const statuses = Object.values(NoteStatus).filter(isString)
 
 @Entity()
 @Filter<Note>({
-  name: "active",
+  name: NoteStatusFilter.ALL,
   cond: {status: {$ne: NoteStatus.REJECTED}},
   default: true
+})
+@Filter<Note>({
+  name: NoteStatusFilter.ACTIVE,
+  cond: {status: NoteStatus.INCOMPLETED}
+})
+@Filter<Note>({
+  name: NoteStatusFilter.COMPLETED,
+  cond: {status: NoteStatus.COMPLETED}
+})
+@Filter<Note>({
+  name: NoteStatusFilter.REJECTED,
+  cond: {status: NoteStatus.REJECTED}
 })
 export class Note extends BaseDates {
   // eslint-disable-next-line no-use-before-define
