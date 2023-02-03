@@ -72,7 +72,7 @@ During my attempts to integrate MikroORM with Next.js I had to fall into several
 
   import {NoteStatus} from "server/trpc/type/common/NoteStatus"
 
-  const statuses = [...new Set(Object.values(NoteStatus).filter(isString))]
+  const statuses = Object.values(NoteStatus).filter(isString)
 
   @Entity()
   class Note {

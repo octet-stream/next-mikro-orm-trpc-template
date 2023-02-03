@@ -22,7 +22,7 @@ import type {OptionalDates} from "./BaseDates"
 
 import {Completion} from "./Completion"
 
-const statuses = [...new Set(Object.values(NoteStatus).filter(isString))]
+const statuses = Object.values(NoteStatus).filter(isString)
 
 @Entity()
 @Filter<Note>({
