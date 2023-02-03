@@ -35,14 +35,11 @@ export function createPageInput<T extends {}>(
     ? z.intersection(extensions, PageBaseInput)
     : PageBaseInput
 
-  return PageInput
-    .transform(({cursor, limit, ...rest}) => ({
-      ...rest as Infer<ZodObject<T>>,
+  return PageInput.transform(({cursor, limit, ...rest}) => ({
+    ...rest as Infer<ZodObject<T>>,
 
-      args: new PageArgs({cursor, limit, maxLimit})
-    }))
-    .optional()
-    .default({})
+    args: new PageArgs({cursor, limit, maxLimit})
+  }))
 }
 
 /**
