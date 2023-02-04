@@ -2,7 +2,10 @@
 import type {SubmitHandler} from "react-hook-form"
 import {useEvent} from "react-use-event-hook"
 import {toast} from "react-hot-toast"
+import {useRouter} from "next/router"
 import type {FC} from "react"
+
+import isString from "lodash/isString"
 
 import {NoteCreateInput} from "server/trpc/type/input/NoteCreateInput"
 import type {TNoteCreateInput} from "server/trpc/type/input/NoteCreateInput"
@@ -20,7 +23,12 @@ const Modal = createNoteModal({
   validate: NoteCreateInput
 })
 
-export const NoteCreateModal: FC = () => {
+interface Props {
+  redirect?: string | boolean
+}
+
+export const NoteCreateModal: FC<Props> = ({redirect}) => {
+  const router = useRouter()
   const state = useNotesStateProxy()
 
   const submit = useEvent<SubmitHandler<TNoteCreateInput>>(data => (
@@ -29,6 +37,18 @@ export const NoteCreateModal: FC = () => {
         state.items.unshift(note)
         state.itemsCount++
         state.rowsCount++
+
+        if (redirect) {
+          return router.replace(
+            isString(redirect) ? redirect : `/view/${note.id}`,
+
+            undefined,
+
+            {
+              unstable_skipClientCache: true
+            }
+          )
+        }
       })
       .catch(error => {
         console.log(error)

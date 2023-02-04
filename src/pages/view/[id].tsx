@@ -1,5 +1,6 @@
 import {TRPCError} from "@trpc/server"
 import type {FC} from "react"
+import {useRef} from "react"
 
 import {getPageDataStaticProps} from "lib/util/getPageDataStaticProps"
 import {patchStaticPaths} from "lib/util/patchStaticPaths"
@@ -9,10 +10,14 @@ import {Note} from "server/db/entity"
 import {getORM} from "server/lib/db/orm"
 import {router} from "server/trpc/router"
 import type {TNoteOutput} from "server/trpc/type/output/NoteOutput"
+import {TNotesPageOutput} from "server/trpc/type/output/NotesPageOutput"
 
+import {NotesStateContextProvider} from "context/NotesStateContext"
 import {NoteStateContextProvider} from "context/NoteStateContext"
 
 import {BaseLayout} from "layout/BaseLayout"
+
+import {NoteCreateModal} from "component/NoteModal"
 
 import {NoteView} from "view/NoteView/NoteView"
 
@@ -68,12 +73,31 @@ export const getStaticProps = getPageDataStaticProps<PageData>(async ctx => {
 
 interface Props extends PageData { }
 
-const NoteViewPage: FC<Props> = ({data: note}) => (
-  <NoteStateContextProvider data={note}>
-    <BaseLayout>
-      <NoteView />
-    </BaseLayout>
-  </NoteStateContextProvider>
-)
+const NoteViewPage: FC<Props> = ({data: note}) => {
+  // Probably just a bad design decision. This is just to use NoteCreateModal :)
+  const fakeNotes = useRef<TNotesPageOutput>({
+    pagesCount: 1,
+    rowsCount: 0,
+    itemsCount: 0,
+    items: [],
+    prevCursor: null,
+    nextCursor: null,
+    limit: null,
+    maxLimit: null,
+    current: 1
+  })
+
+  return (
+    <NotesStateContextProvider data={fakeNotes.current}>
+      <NoteStateContextProvider data={note}>
+        <BaseLayout>
+          <NoteView />
+        </BaseLayout>
+      </NoteStateContextProvider>
+
+      <NoteCreateModal redirect />
+    </NotesStateContextProvider>
+  )
+}
 
 export default NoteViewPage

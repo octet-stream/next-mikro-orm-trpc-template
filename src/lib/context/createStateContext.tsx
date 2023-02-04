@@ -1,4 +1,4 @@
-import {useRef, useContext, createContext} from "react"
+import {useMemo, useContext, createContext} from "react"
 import {proxy, useSnapshot} from "valtio"
 import type {FC, ReactNode} from "react"
 
@@ -13,7 +13,8 @@ export const createStateContext = <T extends object>() => {
   const StateContext = createContext<T | undefined>(undefined)
 
   const StateContextProvider: FC<ProviderProps<T>> = ({data, children}) => {
-    const state = useRef(proxy(data)).current
+    // Using `useMemo` instead of `useRef` with valtio allows to reload page state if the `data` is changed
+    const state = useMemo(() => proxy(data), [data])
 
     return (
       <StateContext.Provider value={state}>
