@@ -1,4 +1,4 @@
-import {infer as Infer} from "zod"
+import type {infer as Infer} from "zod"
 
 import {CompletionCreateInput} from "./CompletionCreateInput"
 

@@ -1,4 +1,5 @@
-import {z, infer as Infer} from "zod"
+import type {infer as Infer} from "zod"
+import {z} from "zod"
 
 import {NoteStatusSchema} from "server/trpc/type/common/NoteStatus"
 

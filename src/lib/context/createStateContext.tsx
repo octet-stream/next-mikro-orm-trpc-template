@@ -1,6 +1,7 @@
-import {proxy, useSnapshot, INTERNAL_Snapshot as Snapshot} from "valtio"
+import type {INTERNAL_Snapshot as Snapshot} from "valtio"
 import {useMemo, useContext, createContext} from "react"
 import type {FC, ReactNode, Context} from "react"
+import {proxy, useSnapshot} from "valtio"
 
 import {MaybeUndefined} from "lib/type/MaybeUndefined"
 

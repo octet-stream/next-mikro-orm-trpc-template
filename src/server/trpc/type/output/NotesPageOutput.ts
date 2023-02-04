@@ -1,4 +1,4 @@
-import {infer as Infer} from "zod"
+import type {infer as Infer} from "zod"
 
 import {createPageOutput} from "server/trpc/helper/createPageOutput"
 import {NotesPageInput} from "server/trpc/type/input/NotesPageInput"

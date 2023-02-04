@@ -1,4 +1,5 @@
-import {z, infer as Infer} from "zod"
+import type {infer as Infer} from "zod"
+import {z} from "zod"
 
 export const CompletionCreateInput = z.object({
   details: z.string().min(1),

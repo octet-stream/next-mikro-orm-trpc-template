@@ -1,4 +1,4 @@
-import {infer as Infer} from "zod"
+import type {infer as Infer} from "zod"
 
 import {createCollectionOutput} from "server/trpc/helper/createCollectionOutput"
 import type {TCompletionOutput} from "server/trpc/type/output/CompletionOutput"
