@@ -2,7 +2,6 @@ import {createElement, Fragment, useMemo} from "react"
 import {unified} from "unified"
 import type {FC} from "react"
 
-
 import rehypeSanitize from "rehype-sanitize"
 import remarkRehype from "remark-rehype"
 import rehypeReact from "rehype-react"
@@ -29,7 +28,7 @@ export const NoteDetails: FC = () => {
 
   return (
     <div className="mt-5">
-      {parsedDetails ? parsedDetails : <NoteNoDetails />}
+      {parsedDetails ?? <NoteNoDetails />}
     </div>
   )
 }
