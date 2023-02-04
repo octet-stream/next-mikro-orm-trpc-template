@@ -1,7 +1,7 @@
 import type {MaybeNull} from "lib/type/MaybeNull"
 import {PageArgs} from "./PageArgs"
 
-export interface PageOutputInput<T extends Record<string, unknown>> {
+export interface PageOutputInput<T extends object> {
   /**
    * List of current page items
    */
@@ -18,7 +18,7 @@ export interface PageOutputInput<T extends Record<string, unknown>> {
   args: PageArgs
 }
 
-export interface IPageOutput<T extends Record<string, unknown>> {
+export interface PageOutput<T extends object> {
   /**
    * List of current page items.
    */
@@ -67,7 +67,7 @@ export interface IPageOutput<T extends Record<string, unknown>> {
   pagesCount: number
 }
 
-export class Page<T extends Record<string, unknown>> implements IPageOutput<T> {
+export class Page<T extends object> implements PageOutput<T> {
   readonly #items: T[]
 
   readonly #current: number
@@ -134,7 +134,7 @@ export class Page<T extends Record<string, unknown>> implements IPageOutput<T> {
     return this.#prevCursor
   }
 
-  toJSON(): IPageOutput<T> {
+  toJSON(): PageOutput<T> {
     return {
       items: this.items,
       limit: this.limit,
