@@ -34,7 +34,8 @@ export const ConfirmationDialog: FC<Props> = ({
   openButton,
   onConfirm,
   confirmButton,
-  cancelButton
+  cancelButton,
+  onClose
 }) => {
   const modalRef = useRef<ModalRef>()
 
@@ -54,7 +55,7 @@ export const ConfirmationDialog: FC<Props> = ({
   })
 
   return (
-    <Modal ref={modalRef} openButton={openButton}>
+    <Modal ref={modalRef} openButton={openButton} onClose={onClose}>
       <ModalPanel>
         <ModalTitle>
           {title}
