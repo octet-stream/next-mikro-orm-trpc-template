@@ -9,7 +9,7 @@ export const NoteBaseOutput = Record
   .omit({completions: true})
   .required({status: true})
   .extend({
-    details: z.string().nullish(),
+    details: z.string().nullish().transform(details => details ?? null),
     isCompleted: z.boolean(),
     isRejected: z.boolean(),
     isInProgress: z.boolean()
