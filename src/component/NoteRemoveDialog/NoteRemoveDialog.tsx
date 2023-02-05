@@ -1,6 +1,3 @@
-// TODO: Move thise components outside the dialog
-/* eslint-disable react/no-unstable-nested-components */
-
 import {useEvent} from "react-use-event-hook"
 import {useCallback, useState} from "react"
 import {useRouter} from "next/navigation"
