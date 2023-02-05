@@ -3,7 +3,6 @@
 
 import {useRouter} from "next/navigation"
 import {toast} from "react-hot-toast"
-import {Trash} from "lucide-react"
 import {useCallback} from "react"
 import type {FC} from "react"
 
@@ -12,7 +11,10 @@ import {client} from "lib/trpc/client"
 import {useNoteStateSnapshot} from "context/NoteStateContext"
 
 import {ConfirmationDialog} from "component/ConfirmationDialog"
-import {Button} from "component/Button"
+
+import {Open} from "./Open"
+import {Cancel} from "./Cancel"
+import {Confirm} from "./Confirm"
 
 interface Props { }
 
@@ -34,21 +36,9 @@ export const NoteRemoveDialog: FC<Props> = () => {
     <ConfirmationDialog
       title="Removing the note"
       onConfirm={remove}
-      confirmButton={({confirm}) => (
-        <Button onClick={confirm} variant="secondary" color="red">
-          Confirm
-        </Button>
-      )}
-      cancelButton={({close}) => (
-        <Button onClick={close} variant="primary">
-          Cancel
-        </Button>
-      )}
-      openButton={({open}) => (
-        <button type="button" onClick={open}>
-          <Trash size={28} className="text-red-500 dark:text-red-800" />
-        </button>
-      )}
+      confirmButton={Confirm}
+      cancelButton={Cancel}
+      openButton={Open}
     >
       <div className="select-none">
         <div className="border border-orange-500 dark:border-orange-700 bg-orange-100 dark:bg-orange-200 p-2 rounded-md text-center text-orange-700">

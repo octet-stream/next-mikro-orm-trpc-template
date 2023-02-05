@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import type {SubmitHandler} from "react-hook-form"
 import {toast} from "react-hot-toast"
-import {Pencil} from "lucide-react"
 import {useCallback} from "react"
 import type {FC} from "react"
 
@@ -14,7 +13,9 @@ import {client} from "lib/trpc/client"
 
 import {useNoteStateProxy, useNoteStateSnapshot} from "context/NoteStateContext"
 
-import {createNoteModal} from "./createNoteModal"
+import {createNoteModal} from "../createNoteModal"
+
+import {Open} from "./Open"
 
 type Submit = SubmitHandler<Omit<TNoteUpdateInput, "id">>
 
@@ -47,11 +48,7 @@ export const NoteUpdateModal: FC = () => {
       title="Update the note"
       values={rest}
       submit={submit}
-      openButton={({open}) => (
-        <button type="button" onClick={open}>
-          <Pencil size={28} />
-        </button>
-      )}
+      openButton={Open}
     />
   )
 }

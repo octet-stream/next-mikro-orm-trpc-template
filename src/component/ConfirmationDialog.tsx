@@ -1,6 +1,6 @@
-import type {FC, ReactNode, ReactElement} from "react"
 import {useEvent} from "react-use-event-hook"
-import {useRef} from "react"
+import {useRef, createElement} from "react"
+import type {FC, ReactNode} from "react"
 
 import type {MaybePromise} from "lib/type/MaybePromise"
 
@@ -16,12 +16,16 @@ interface CancelButtonProps {
   close(): void
 }
 
+export type ConfirmButton<P = {}> = FC<P & ConfirmButtonProps>
+
+export type CancelButton<P = {}> = FC<P & CancelButtonProps>
+
 interface Props extends BaseModalProps {
   title: string
   children: ReactNode
   onConfirm(): MaybePromise<void>
-  confirmButton?(props: ConfirmButtonProps): ReactElement<any, any>
-  cancelButton?(props: CancelButtonProps): ReactElement<any, any>
+  confirmButton?: ConfirmButton
+  cancelButton?: CancelButton
 }
 
 export const ConfirmationDialog: FC<Props> = ({
@@ -62,7 +66,7 @@ export const ConfirmationDialog: FC<Props> = ({
           <div className="flex flex-row w-full mt-5">
             {
               confirmButton ? (
-                confirmButton({confirm})
+                createElement(confirmButton, {confirm})
               ) : (
                 <Button onClick={confirm} variant="primary">
                   Confirm
@@ -74,7 +78,7 @@ export const ConfirmationDialog: FC<Props> = ({
 
             {
               cancelButton ? (
-                cancelButton({close: closeModal})
+                createElement(cancelButton, {close: closeModal})
               ) : (
                 <Button onClick={closeModal} variant="secondary">
                   Cancel

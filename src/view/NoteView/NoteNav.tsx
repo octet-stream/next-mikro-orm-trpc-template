@@ -3,7 +3,7 @@ import type {FC} from "react"
 
 import Link from "next/link"
 
-import {NoteUpdateModal} from "component/NoteModal/NoteUpdateModal"
+import {NoteUpdateModal} from "component/NoteModal/NoteUpdateModal/NoteUpdateModal"
 
 export const NoteNav: FC = () => (
   <nav className="flex w-full mb-10">

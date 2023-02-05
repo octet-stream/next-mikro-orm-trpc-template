@@ -3,9 +3,10 @@ import {
   useState,
   useImperativeHandle,
   forwardRef,
-  useMemo
+  useMemo,
+  createElement
 } from "react"
-import type {ReactNode, ReactElement} from "react"
+import type {FC, ReactNode} from "react"
 import {useEvent} from "react-use-event-hook"
 import {Dialog} from "@headlessui/react"
 
@@ -17,9 +18,7 @@ interface RenderProps {
   open(): void
 }
 
-export interface OpenModalButton {
-  (props: RenderProps): ReactElement<any, any>
-}
+export type OpenModalButton<P = {}> = FC<P & RenderProps>
 
 export interface BaseModalProps {
   openButton: OpenModalButton
@@ -78,7 +77,7 @@ export const Modal = forwardRef<ModalRefInput, Props>((
         </Dialog>
       </ModalContext.Provider>
 
-      {openButton({open})}
+      {createElement(openButton, {open})}
     </Fragment>
   )
 })

@@ -14,9 +14,9 @@ import {client} from "lib/trpc/client"
 
 import {useNotesStateProxy} from "context/NotesStateContext"
 
-import {FloatingButton} from "component/FloatingButton"
+import {createNoteModal} from "../createNoteModal"
 
-import {createNoteModal} from "./createNoteModal"
+import {Open} from "./Open"
 
 const Modal = createNoteModal({
   name: "Create",
@@ -60,7 +60,7 @@ export const NoteCreateModal: FC<Props> = ({redirect}) => {
     <Modal
       title="Add a note"
       submit={submit}
-      openButton={({open}) => <FloatingButton onClick={open} />}
+      openButton={Open}
     />
   )
 }
