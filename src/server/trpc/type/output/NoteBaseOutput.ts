@@ -12,7 +12,8 @@ export const NoteBaseOutput = Record
     details: z.string().nullish().transform(details => details ?? null),
     isCompleted: z.boolean(),
     isRejected: z.boolean(),
-    isInProgress: z.boolean()
+    isInProgress: z.boolean(),
+    isPaused: z.boolean()
   })
 
 export type TNoteBaseOutput = Infer<typeof NoteBaseOutput>

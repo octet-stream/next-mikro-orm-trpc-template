@@ -11,11 +11,11 @@ import {StopButton} from "./StopButton"
 interface Props { }
 
 export const NoteControls: FC<Props> = () => {
-  const {isCompleted, isInProgress} = useNoteStateSnapshot()
+  const {isCompleted, isPaused, isInProgress} = useNoteStateSnapshot()
 
   return (
     <div className="flex flex-row select-none">
-      <StopButton disabled={!isInProgress} />
+      <StopButton disabled={!isInProgress && !isPaused} />
 
       {!isInProgress && <PlayButton disabled={isCompleted} />}
 

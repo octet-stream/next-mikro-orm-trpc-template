@@ -5,14 +5,15 @@ import type {PickKeys} from "lib/type/PickKeys"
 
 import type {TNoteBaseOutput} from "server/trpc/type/output/NoteBaseOutput"
 
-type Getters = PickKeys<TNoteBaseOutput, "status" | "isCompleted" | "isInProgress" | "isRejected">
+type Statuses = PickKeys<TNoteBaseOutput, "status" | "isCompleted" | "isInProgress" | "isRejected" | "isPaused">
 
 export const patchNodeStatus = (
   state: TNoteBaseOutput,
   patch: Partial<TNoteBaseOutput>
-) => merge(state, pick<Partial<TNoteBaseOutput>, Getters>(patch, [
+) => merge(state, pick<Partial<TNoteBaseOutput>, Statuses>(patch, [
   "status",
   "isCompleted",
   "isInProgress",
-  "isRejected"
+  "isRejected",
+  "isPaused"
 ]))

@@ -73,4 +73,9 @@ export class Note extends BaseDates {
   get isInProgress(): boolean {
     return this.status === NoteStatus.IN_PROGRESS
   }
+
+  @Property({persist: false})
+  get isPaused(): boolean {
+    return this.status === NoteStatus.PAUSED
+  }
 }
