@@ -23,7 +23,7 @@ export const update = procedure
 
     await orm.em.flush()
 
-    await Promise.all([
+    await Promise.allSettled([
       res.revalidate("/"),
       res.revalidate(`/view/${id}`, {unstable_onlyGenerated: true})
     ])
