@@ -1,5 +1,3 @@
-export interface PageProps<
-  T extends Record<string, unknown> = Record<string, unknown>
-> {
+export interface PageProps<T extends object = object> {
   data: T
 }
