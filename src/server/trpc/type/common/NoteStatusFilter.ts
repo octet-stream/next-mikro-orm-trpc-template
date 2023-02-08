@@ -7,4 +7,11 @@ export enum NoteStatusFilter {
   REJECTED = "rejected"
 }
 
+export const NoteStatusFilterNames = {
+  [NoteStatusFilter.ALL]: "All",
+  [NoteStatusFilter.ACTIVE]: "Active",
+  [NoteStatusFilter.COMPLETED]: "Completed",
+  [NoteStatusFilter.REJECTED]: "Rejected"
+} as const
+
 export const NoteStatusFilterSchema = z.nativeEnum(NoteStatusFilter)

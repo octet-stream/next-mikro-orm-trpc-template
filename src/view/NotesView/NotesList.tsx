@@ -6,11 +6,11 @@ import {NoteStateContextProvider} from "context/NoteStateContext"
 import {NoteCard} from "component/NoteCard"
 
 export const NotesList: FC = () => {
-  const notes = useNotesStateSnapshot()
+  const {items} = useNotesStateSnapshot()
 
   return (
-    <ul className="w-full mobile:max-w-mobile mobile:mx-auto">
-      {notes.items.map(note => (
+    <ul>
+      {items.map(note => (
         <li key={note.id} className="py-1 first:pt-0 last:pb-0">
           <NoteStateContextProvider data={note}>
             <NoteCard />
