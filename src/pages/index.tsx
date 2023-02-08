@@ -8,11 +8,7 @@ import type {PageDataProps} from "lib/type/PageDataProps"
 
 import {BaseLayout} from "layout/BaseLayout"
 
-import {NotesStateContextProvider} from "context/NotesStateContext"
-
-import {NotesView} from "view/NotesView"
-
-import {NoteCreateModal} from "component/NoteModal"
+import {NotesTabs, NotesView} from "view/NotesView"
 
 type PageData = PageDataProps<TNotesPageOutput>
 
@@ -30,11 +26,9 @@ interface Props extends PageData { }
 
 const HomePage: FC<Props> = ({data: notes}) => (
   <BaseLayout>
-    <NotesStateContextProvider data={notes}>
+    <NotesTabs initialNotes={notes}>
       <NotesView />
-
-      <NoteCreateModal />
-    </NotesStateContextProvider>
+    </NotesTabs>
   </BaseLayout>
 )
 
