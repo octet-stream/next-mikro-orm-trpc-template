@@ -17,6 +17,7 @@ export const remove = procedure
 
     const note = await orm.em.findOneOrFail(Note, input.id, {
       filters: false,
+
       failHandler: () => new TRPCError({code: "NOT_FOUND"})
     })
 

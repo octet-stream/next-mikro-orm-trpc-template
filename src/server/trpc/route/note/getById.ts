@@ -15,6 +15,7 @@ export const getById = procedure
 
     return orm.em.findOneOrFail(Note, input.id, {
       filters: false,
+
       failHandler: () => new TRPCError({code: "NOT_FOUND"})
     })
   })
