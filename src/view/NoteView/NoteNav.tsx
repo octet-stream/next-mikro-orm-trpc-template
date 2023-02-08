@@ -5,14 +5,21 @@ import Link from "next/link"
 
 import {NoteUpdateModal} from "component/NoteModal/NoteUpdateModal/NoteUpdateModal"
 
-export const NoteNav: FC = () => (
-  <nav className="flex w-full mb-10">
-    <Link href="/">
-      <ArrowLeft size={28} />
-    </Link>
+import {useNoteStateSnapshot} from "context/NoteStateContext"
 
-    <div className="flex-1" />
+// TODO: Add note restoration button
+export const NoteNav: FC = () => {
+  const {isRejected} = useNoteStateSnapshot()
 
-    <NoteUpdateModal />
-  </nav>
-)
+  return (
+    <nav className="flex w-full mb-10">
+      <Link href="/">
+        <ArrowLeft size={28} />
+      </Link>
+
+      <div className="flex-1" />
+
+      {!isRejected && <NoteUpdateModal />}
+    </nav>
+  )
+}

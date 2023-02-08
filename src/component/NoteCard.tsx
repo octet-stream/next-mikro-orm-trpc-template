@@ -1,5 +1,5 @@
+import {Check, Lock} from "lucide-react"
 import {toast} from "react-hot-toast"
-import {Check} from "lucide-react"
 import {useCallback} from "react"
 import type {FC} from "react"
 
@@ -19,7 +19,7 @@ interface Props { }
 export const NoteCard: FC<Props> = () => {
   const state = useNoteStateProxy()
 
-  const {id, title, status, isCompleted} = useNoteStateSnapshot()
+  const {id, title, status, isCompleted, isRejected} = useNoteStateSnapshot()
 
   const notePath = `/view/${id}`
 
@@ -45,10 +45,13 @@ export const NoteCard: FC<Props> = () => {
 
         <button
           type="button"
-          className="relative z-0 cursor-pointer w-6 h-6 flex items-center justify-center rounded-full border dark:border-gray-500"
+          className="relative z-0 cursor-pointer w-6 h-6 flex items-center justify-center rounded-full border dark:border-gray-500 disabled:cursor-not-allowed disabled:dark:border-gray-700"
+          disabled={isRejected}
           onClick={updateStatus}
         >
           {isCompleted && <Check size={16} className="text-gray-300 dark:text-gray-500" />}
+
+          {isRejected && <Lock size={16} className="text-gray-300 dark:text-gray-700" />}
         </button>
       </div>
 

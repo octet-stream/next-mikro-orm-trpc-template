@@ -3,12 +3,18 @@ import type {FC} from "react"
 import {NoteControls} from "component/NoteControls"
 import {NoteRemoveDialog} from "component/NoteRemoveDialog"
 
-export const NoteFooter: FC = () => (
-  <div className="flex flex-row mt-10">
-    <NoteControls />
+import {useNoteStateSnapshot} from "context/NoteStateContext"
 
-    <div className="flex-1" />
+export const NoteFooter: FC = () => {
+  const {isRejected} = useNoteStateSnapshot()
 
-    <NoteRemoveDialog />
-  </div>
-)
+  return (
+    <div className="flex flex-row mt-10">
+      {!isRejected && <NoteControls />}
+
+      <div className="flex-1" />
+
+      <NoteRemoveDialog />
+    </div>
+  )
+}
