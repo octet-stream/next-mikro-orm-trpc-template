@@ -3,11 +3,12 @@ import type {FC} from "react"
 
 import Link from "next/link"
 
-import {NoteUpdateModal} from "component/NoteModal/NoteUpdateModal/NoteUpdateModal"
+import {NoteUpdateModal} from "component/NoteModal/NoteUpdateModal"
 
 import {useNoteStateSnapshot} from "context/NoteStateContext"
 
-// TODO: Add note restoration button
+import {NoteRestoreButton} from "./NoteRestoreButton"
+
 export const NoteNav: FC = () => {
   const {isRejected} = useNoteStateSnapshot()
 
@@ -19,7 +20,7 @@ export const NoteNav: FC = () => {
 
       <div className="flex-1" />
 
-      {!isRejected && <NoteUpdateModal />}
+      {isRejected ? <NoteRestoreButton /> : <NoteUpdateModal />}
     </nav>
   )
 }
