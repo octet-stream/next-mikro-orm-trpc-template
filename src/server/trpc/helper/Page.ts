@@ -1,18 +1,16 @@
-import type {IPageOutput} from "server/trpc/type/output/PageOutput"
-import type {FilterEntity} from "server/lib/type/FilterEntity"
-
+import type {MaybeNull} from "lib/type/MaybeNull"
 import {PageArgs} from "./PageArgs"
 
-export interface PageOutputInput<T> {
+export interface PageOutputInput<T extends object> {
   /**
    * List of current page items
    */
-  items: FilterEntity<T>[]
+  items: T[]
 
   /**
    * An amount of total rows in a table
    */
-  rows: number
+  count: number
 
   /**
    * Instance of `PageArgs` class
@@ -20,69 +18,133 @@ export interface PageOutputInput<T> {
   args: PageArgs
 }
 
-export class Page<T> implements IPageOutput<T> {
-  readonly #items: FilterEntity<T>[]
-
-  readonly #total: number
-
-  readonly #rows: number
-
-  readonly #nextCursor: number | null
-
-  readonly #prevCursor: number | null
-
-  constructor({items, rows, args}: PageOutputInput<T>) {
-    this.#items = items
-    this.#rows = rows
-    this.#total = (args.limit && Math.ceil(rows / args.limit)) || 1 // If `args.limit` is present, calculate total pages. Otherwise, return `1`.
-    this.#nextCursor = args.getNextCursor(this.total)
-    this.#prevCursor = args.getPrevCursor()
-  }
+export interface PageOutput<T extends object> {
+  /**
+   * List of current page items.
+   */
+  items: T[]
 
   /**
-   * List of current page items
+   * Items per page limit.
    */
-  get items(): FilterEntity<T>[] {
-    return this.#items
-  }
+  limit: MaybeNull<number>
 
   /**
-   * Total number of pages. Will always be `1` when the `limit` is `undefined`.
+   * Max amount of the items for this page type
    */
-  get total(): number {
-    return this.#total
-  }
+  maxLimit: MaybeNull<number>
 
   /**
-   * Total amount of rows in table
+   * The number of the current page.
    */
-  get rows(): number {
-    return this.#rows
-  }
+  current: number
 
   /**
    * Next page number.
    * Will be `null` once you reach the last page.
    */
-  get nextCursor(): number | null {
-    return this.#nextCursor
-  }
+  nextCursor: MaybeNull<number>
 
   /**
    * Previous page number.
    * Will be `null` once you're on the first page.
    */
-  get prevCursor(): number | null {
+  prevCursor: MaybeNull<number>
+
+  /**
+   * Total amount of items in the list
+   */
+  itemsCount: number
+
+  /**
+   * Total amount of rows in table
+   */
+  rowsCount: number
+
+  /**
+   * Total number of pages. Will always be `1` when the `limit` is `undefined`.
+   */
+  pagesCount: number
+}
+
+export class Page<T extends object> implements PageOutput<T> {
+  readonly #items: T[]
+
+  readonly #current: number
+
+  readonly #limit: MaybeNull<number>
+
+  readonly #maxLimit: MaybeNull<number>
+
+  readonly #pagesCount: number
+
+  readonly #rowsCount: number
+
+  readonly #itemsCount: number
+
+  readonly #nextCursor: MaybeNull<number>
+
+  readonly #prevCursor: MaybeNull<number>
+
+  constructor({items, count, args}: PageOutputInput<T>) {
+    this.#items = items
+    this.#rowsCount = count
+    this.#current = args.cursor
+    this.#limit = args.limit ?? null
+    this.#maxLimit = args.maxLimit
+    this.#itemsCount = items.length
+    this.#pagesCount = (args.limit && Math.ceil(count / args.limit)) || 1 // If `args.limit` is present, calculate total pages. Otherwise, return `1`.
+    this.#nextCursor = args.getNextCursor(this.pagesCount)
+    this.#prevCursor = args.getPrevCursor()
+  }
+
+  get items(): T[] {
+    return this.#items
+  }
+
+  get limit(): MaybeNull<number> {
+    return this.#limit
+  }
+
+  get maxLimit(): MaybeNull<number> {
+    return this.#maxLimit
+  }
+
+  get current(): number {
+    return this.#current
+  }
+
+  get pagesCount(): number {
+    return this.#pagesCount
+  }
+
+  get rowsCount(): number {
+    return this.#rowsCount
+  }
+
+  get itemsCount(): number {
+    return this.#itemsCount
+  }
+
+  get nextCursor(): MaybeNull<number> {
+    return this.#nextCursor
+  }
+
+  get prevCursor(): MaybeNull<number> {
     return this.#prevCursor
   }
 
-  toJSON() {
+  toJSON(): PageOutput<T> {
     return {
+      items: this.items,
+      limit: this.limit,
+      maxLimit: this.maxLimit,
+      current: this.current,
       prevCursor: this.prevCursor,
       nextCursor: this.nextCursor,
-      items: this.items,
-      total: this.total,
-      rows: this.rows
+      pagesCount: this.pagesCount,
+      rowsCount: this.rowsCount,
+      itemsCount: this.itemsCount
     }
   }
 }

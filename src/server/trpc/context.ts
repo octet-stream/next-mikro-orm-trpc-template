@@ -1,7 +1,7 @@
 import type {CreateNextContextOptions} from "@trpc/server/adapters/next"
 import type {NextApiRequest, NextApiResponse} from "next"
 
-export type Context = { }
+export type Context = object
 
 export type SSRContext<R = any> = Context & {
   req: NextApiRequest

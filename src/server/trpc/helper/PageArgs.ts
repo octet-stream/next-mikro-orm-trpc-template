@@ -1,33 +1,52 @@
-import {omitBy, isNil} from "lodash"
+import type {MaybeUndefined} from "lib/type/MaybeUndefined"
+import type {MaybeNull} from "lib/type/MaybeNull"
 
-import type {IPageInput} from "server/trpc/type/input/PageInput"
+export interface IPageArgs {
+  /**
+   * The number of the page to navigate to.
+   */
+  cursor?: number
 
-interface IPageArgs extends IPageInput {
-  cursor: number
-  limit: number
-}
+  /**
+   * The items limmit per page.
+   */
+  limit?: MaybeUndefined<number>
 
-export const DEFAULT_PAGE_INPUT: IPageArgs = {
-  cursor: 1,
-  limit: 50
+  /**
+   * The max limit of the items for this page type.
+   *
+   * Unlike the others args, this field is borrowed from the `createPageInput()` helper.
+   */
+  maxLimit?: MaybeNull<number>
 }
 
 export class PageArgs implements IPageArgs {
   readonly #cursor: number
 
-  readonly #limit: number
+  readonly #limit: MaybeUndefined<number>
 
-  readonly #offset: number | undefined
+  readonly #maxLimit: MaybeNull<number>
 
-  constructor(input: IPageInput) {
-    const {cursor, limit} = {...DEFAULT_PAGE_INPUT, ...omitBy(input, isNil)}
+  readonly #offset: MaybeUndefined<number>
 
-    this.#cursor = cursor
+  constructor(input: IPageArgs = {}) {
+    let {cursor, limit, maxLimit} = input
+
+    maxLimit ??= null
+    cursor ??= 1
+
+    // Defaults to the same value as maxLimit
+    if (!limit && maxLimit != null) {
+      limit = maxLimit
+    }
+
     this.#limit = limit
+    this.#cursor = cursor
+    this.#maxLimit = maxLimit
     this.#offset = limit ? limit * (cursor - 1) : undefined
   }
 
-  get offset(): number | undefined {
+  get offset(): MaybeUndefined<number> {
     return this.#offset
   }
 
@@ -35,8 +54,12 @@ export class PageArgs implements IPageArgs {
     return this.#cursor
   }
 
-  get limit(): number {
+  get limit(): MaybeUndefined<number> {
     return this.#limit
+  }
+
+  get maxLimit(): MaybeNull<number> {
+    return this.#maxLimit
   }
 
   /**
@@ -45,15 +68,15 @@ export class PageArgs implements IPageArgs {
    *
    * @param pages Total amount of pages
    */
-  getNextCursor(pages: number): number | null {
+  getNextCursor(pages: number): MaybeNull<number> {
     return pages > 1 && this.cursor < pages ? this.cursor + 1 : null
   }
 
   /**
    * Returns the number of the previous page.
-   * Will be null once you're on the first page.
+   * Will be `null` once you're on the first page.
    */
-  getPrevCursor(): number | null {
+  getPrevCursor(): MaybeNull<number> {
     return this.cursor > 1 ? this.cursor - 1 : null
   }
 }

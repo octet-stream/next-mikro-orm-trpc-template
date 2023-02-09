@@ -43,6 +43,9 @@
     }],
     "semi-style": ["error", "first"],
     "no-shadow": 0,
+
+    "promise/always-return": 0,
+
     "react/require-default-props": 0,
     "react/no-unused-prop-types": ["error", {
       "ignore": ["session"]

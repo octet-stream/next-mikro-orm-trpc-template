@@ -3,7 +3,7 @@ import {urlAlphabet} from "nanoid"
 
 import mysql from "mysql2/promise"
 
-import {getORM} from "server/lib/db"
+import {getORM} from "server/lib/db/orm"
 
 const alphanum = urlAlphabet.replace(/[^a-z0-9]/gi, "")
 const createDatabaseNameSuffix = customAlphabet(alphanum, 21)
@@ -12,7 +12,6 @@ const createDatabaseNameSuffix = customAlphabet(alphanum, 21)
  * Creates a new MySQL connection using mysql2 driver.
  *
  * **Important**: this function requires a user with database management access.
- * You'll probably gonna need to create a user that can manage databases with names starting with twi-test__ name
  */
 const createNativeConnection = () => mysql.createConnection({
   port: parseInt(process.env.MIKRO_ORM_PORT!, 10) || undefined,
@@ -21,6 +20,7 @@ const createNativeConnection = () => mysql.createConnection({
 
 export const setup = async () => {
   const name = `mysql-test-db__${await createDatabaseNameSuffix()}`
+  process.env.MIKRO_ORM_DB_NAME = name
 
   const connection = await createNativeConnection()
 
@@ -28,10 +28,6 @@ export const setup = async () => {
   await connection.end()
 
   const orm = await getORM()
-
-  orm.config.set("dbName", name)
-
-  await orm.connect()
 
   const generator = orm.getSchemaGenerator()
 

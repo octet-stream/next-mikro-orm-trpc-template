@@ -1,0 +1,1 @@
+export {NotesTabs} from "./NotesTabs"

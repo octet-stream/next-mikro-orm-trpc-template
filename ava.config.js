@@ -6,7 +6,7 @@ module.exports = {
     "global-jsdom/register",
     "ts-node/register/transpile-only",
     "reflect-metadata",
-    "./src/server/env.ts",
+    "./src/server/lib/env.ts",
     "./src/server/__helper__/polyfills.ts"
   ],
   environmentVariables: {
