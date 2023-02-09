@@ -40,11 +40,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>((
     shape = "square",
     variant = "primary",
     loading = false,
+    disabled = false,
+    wide = false,
     className,
     color,
     children,
-    disabled,
-    wide,
 
     ...rest
   } = isCircleButton(props) ? {...props, wide: false} : props
