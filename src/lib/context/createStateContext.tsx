@@ -25,7 +25,7 @@ interface CreateStateContextResult<T extends object> {
 
   /**
    * Returns proxy state snapshot.
-   * Use this hook to create local snapshots to *read* the data fro the state.
+   * Use this hook to create local snapshots to *read* the data from the state.
    */
   useStateSnapshot(options?: UseSnapshotOptions): Snapshot<T>
 
