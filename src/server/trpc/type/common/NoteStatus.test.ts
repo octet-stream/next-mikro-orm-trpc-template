@@ -14,7 +14,7 @@ test("Validates note status", async t => {
 test("Fails with invalid note status", async t => {
   const input = "totally_unknown_invalid_status_123"
 
-  const error = await t.throwsAsync<ZodError>(
+  const error = await t.throwsAsync(
     NoteStatusSchema.parseAsync(input),
 
     {

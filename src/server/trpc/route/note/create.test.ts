@@ -43,7 +43,11 @@ test("Fails creating a note with unknown status", withTRPC, async (t, trpc) => {
     status: "some_invalid_status"
   })
 
-  const error = await t.throwsAsync(trap, {instanceOf: TRPCError}) as TRPCError
+  const error = await t.throwsAsync(trap, {instanceOf: TRPCError})
+
+  if (!error) {
+    return t.fail()
+  }
 
   const {errors} = error.cause as ZodError
   const [actual] = errors

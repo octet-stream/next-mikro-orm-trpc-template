@@ -36,7 +36,7 @@ test(
   withTRPC,
 
   async (t, trpc) => {
-    const error = await t.throwsAsync<TRPCError>(
+    const error = await t.throwsAsync(
       trpc.note.restore({id: "this_note_does_not_exist"}),
 
       {

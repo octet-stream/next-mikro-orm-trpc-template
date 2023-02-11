@@ -24,7 +24,7 @@ test("Validates correct record input", async t => {
 })
 
 test("Fails with incorrect input type", async t => {
-  const error = await t.throwsAsync<ZodError>(
+  const error = await t.throwsAsync(
     Record.parseAsync("invalid_type"),
 
     {

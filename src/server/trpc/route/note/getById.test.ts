@@ -29,7 +29,7 @@ test(
   withTRPC,
 
   async (t, trpc) => {
-    await t.throwsAsync<TRPCError>(trpc.note.getById({id: "some_unknown_id"}), {
+    await t.throwsAsync(trpc.note.getById({id: "some_unknown_id"}), {
       instanceOf: TRPCError,
       code: "NOT_FOUND"
     })

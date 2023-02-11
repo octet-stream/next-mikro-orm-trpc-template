@@ -16,7 +16,7 @@ test("Validates correct nanoid string", async t => {
 test("Fails with invalid nanoid string", async t => {
   const input = "You shall not pass!"
 
-  const error = await t.throwsAsync<ZodError>(Node.parseAsync({id: input}), {
+  const error = await t.throwsAsync(Node.parseAsync({id: input}), {
     instanceOf: ZodError
   })
 
