@@ -69,7 +69,7 @@ specifiers:
   typescript: 4.9.5
   unified: 10.1.2
   validator: 13.9.0
-  valtio: 1.10.1
+  valtio: 1.9.0
   zod: 3.20.6
 
 dependencies:
@@ -107,7 +107,7 @@ dependencies:
   superjson: 1.12.2
   unified: 10.1.2
   validator: 13.9.0
-  valtio: 1.10.1_react@18.2.0
+  valtio: 1.9.0_react@18.2.0
   zod: 3.20.6
 
 devDependencies:
@@ -4724,8 +4724,8 @@ packages:
     resolution: {integrity: sha512-kma4U7AFCTwpqq5twzC1YVIDXSqg6qQK6JN0smOw8fgRy1OkMi0CYSzFmsy6dnqSenamAtj0CyXMUJ1Mf6oROg==}
     dev: false
 
-  /proxy-compare/2.4.1:
-    resolution: {integrity: sha512-xkL1upOHOOW6zSSNUDZ09hqGDO9lq//Sg92KF8YK+YsD/Et1dP8fZql/h6vgbFa/ScIAlttE4WjTD7QPEg1Ssg==}
+  /proxy-compare/2.4.0:
+    resolution: {integrity: sha512-FD8KmQUQD6Mfpd0hywCOzcon/dbkFP8XBd9F1ycbKtvVsfv6TsFUKJ2eC0Iz2y+KzlkdT1Z8SY6ZSgm07zOyqg==}
     dev: false
 
   /psl/1.9.0:
@@ -5884,8 +5884,8 @@ packages:
     engines: {node: '>= 0.10'}
     dev: false
 
-  /valtio/1.10.1_react@18.2.0:
-    resolution: {integrity: sha512-VhK/adrsgQsInQ8SvcUV0NYu2XyPItAAWhAX1uhmN0tS0wIroqjUNhb0OG8iEqu6khUdfMsR7s+Q91hZT6pjcg==}
+  /valtio/1.9.0_react@18.2.0:
+    resolution: {integrity: sha512-mQLFsAlKbYascZygFQh6lXuDjU5WHLoeZ8He4HqMnWfasM96V6rDbeFkw1XeG54xycmDonr/Jb4xgviHtuySrA==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
       react: '>=16.8'
@@ -5893,7 +5893,7 @@ packages:
       react:
         optional: true
     dependencies:
-      proxy-compare: 2.4.1
+      proxy-compare: 2.4.0
       react: 18.2.0
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
