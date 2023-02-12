@@ -5,5 +5,6 @@ namespace NodeJS {
     MIKRO_ORM_PORT?: string
     MIKRO_ORM_USER: string
     MIKRO_ORM_PASSWORD: string
+    RUNS_IN_DOCKER?: string
   }
 }
