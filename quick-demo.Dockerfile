@@ -15,7 +15,6 @@ WORKDIR /quick-demo
 
 # Expose env variables for mikro-orm CLI and the app
 ENV MIKRO_ORM_DB_NAME quick-demo
-# TODO: Make --network host work somehow!
 ENV MIKRO_ORM_HOST host.docker.internal
 ENV MIKRO_ORM_PORT 3308
 ENV MIKRO_ORM_USER root
@@ -39,7 +38,6 @@ FROM base as run
 WORKDIR /quick-demo
 
 ENV MIKRO_ORM_DB_NAME quick-demo
-# TODO: Make --network host work somehow!
 ENV MIKRO_ORM_HOST host.docker.internal
 ENV MIKRO_ORM_PORT 3308
 ENV MIKRO_ORM_USER root
