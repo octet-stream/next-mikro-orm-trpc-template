@@ -15,7 +15,7 @@ export const NoteView: FC = () => {
   const {isRejected} = useNoteStateSnapshot()
 
   return (
-    <article className="w-full h-full flex items-center justify-center">
+    <article className="w-full h-full flex flex-1 items-center justify-center">
       <Card className="w-full p-6 mobile:p-10 mobile:w-mobile mobile:max-w-full mobile:mx-auto">
         <NoteNav />
 

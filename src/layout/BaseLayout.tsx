@@ -5,7 +5,9 @@ interface Props {
 }
 
 export const BaseLayout: FC<Props> = ({children}) => (
-  <main className="h-screen min-h-screen lg:w-screen lg:max-w-laptop lg:mx-auto lg:py-5 w-full p-5 overflow-y-auto">
-    {children}
+  <main className="w-screen h-screen">
+    <div className="min-h-screen w-full lg:max-w-laptop lg:mx-auto lg:py-5 p-5 flex flex-col">
+      {children}
+    </div>
   </main>
 )
