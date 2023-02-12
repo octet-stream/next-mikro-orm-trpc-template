@@ -3,7 +3,7 @@
 # Start MySQL
 npm run test:compose-up
 
-docker build --network host -t next-mikro-orm-template-quick-demo -f quick-demo.Dockerfile .
+name=next-mikro-orm-trpc-template-quick-demo
 
-# Stop MySQL
-# npm run test:compose-down
+docker build --network host -t $name -f quick-demo.Dockerfile .
+docker run -d --rm -p 3000:3000 --name $name $name
