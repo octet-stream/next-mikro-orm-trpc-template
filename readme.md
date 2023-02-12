@@ -9,6 +9,15 @@ This template implements minimal architecture on [TypeScript](https://www.typesc
 * Tests with AVA, docker-compose and MySQL setup;
 * CI config for GitHub Actions.
 
+## Quick demo
+
+If you want to test a demo app built upon this template, just follow these steps:
+
+1. Clone this repository: `git@github.com:octet-stream/next-mikro-orm-trpc-template.git quick-demo && cd quick-demo`
+2. Run `./quick-demo.sh --build` script (or via `npm run demo -- --build`)
+3. Once the app is up and running, open [http://localhost:300](http://localhost:300) in your browser
+4. To stop demo app, press `Ctrl+C`
+
 ## Pitfalls
 
 During my attempts to integrate MikroORM with Next.js I had to fall into several issues worth to mention, so here's the list of those:
