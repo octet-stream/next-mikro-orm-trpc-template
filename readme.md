@@ -15,7 +15,7 @@ If you want to test a demo app built upon this template, just follow these steps
 
 1. Clone this repository: `git clone git@github.com:octet-stream/next-mikro-orm-trpc-template.git quick-demo && cd quick-demo`
 2. Run `./quick-demo.sh --build` script (or via `npm run demo -- --build`). To skip the build step, run this script without `--build` flag.
-3. Once the app is up and running, open [http://localhost:300](http://localhost:300) in your browser
+3. Once the app is up and running, open [http://localhost:3000](http://localhost:3000) in your browser
 4. To stop demo app, press `Ctrl+C`
 
 ## Pitfalls
