@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Start MySQL
-npm run test:compose-up
+docker compose -f docker-compose.test.yml up --wait --remove-orphans
 
 name=next-mikro-orm-trpc-template-quick-demo
 
@@ -32,6 +32,6 @@ done
 echo "Stopping containers."
 
 docker stop $name
-npm run test:compose-down
+docker compose -f docker-compose.test.yml down
 
 echo "Done."
