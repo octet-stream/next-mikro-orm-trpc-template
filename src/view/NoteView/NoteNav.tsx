@@ -14,7 +14,7 @@ export const NoteNav: FC = () => {
 
   return (
     <nav className="flex w-full mb-10">
-      <Link href="/">
+      <Link href="/" aria-label="Home page">
         <ArrowLeft size={28} />
       </Link>
 

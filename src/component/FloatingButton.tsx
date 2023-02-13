@@ -11,6 +11,7 @@ export const FloatingButton: FC<Props> = ({className, ...props}) => (
   <Button
     {...props}
 
+    type="button"
     shape="circle"
     className={cn("fixed bottom-5 right-5 shadow-md active:shadow-sm", className)}
   >

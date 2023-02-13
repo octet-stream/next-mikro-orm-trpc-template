@@ -42,7 +42,7 @@ export const NoteCompleteButton: FC<Props> = ({className}) => {
   ), [id, isCompleted])
 
   return (
-    <button type="button" onClick={toggle} className={cn("w-full flex rounded-md py-2 px-6 justify-center border", {"border-gray-300 dark:border-gray-500": isCompleted, "border-black dark:border-gray-400": !isCompleted}, className)}>
+    <button type="button" aria-label="Complete note" onClick={toggle} className={cn("w-full flex rounded-md py-2 px-6 justify-center border", {"border-gray-300 dark:border-gray-500": isCompleted, "border-black dark:border-gray-400": !isCompleted}, className)}>
       <div className="flex flex-row items-center">
         <Icon size={20} className={cn({"text-gray-300 dark:text-gray-500": isCompleted, "text-black dark:text-white": !isCompleted})} />
 

@@ -41,10 +41,11 @@ export const NoteCard: FC<Props> = () => {
   return (
     <Card className="flex flex-row">
       <div className="pl-4 pr-1 relative flex justify-center items-center">
-        <Link href={notePath} className="absolute inset-0" />
+        <Link href={notePath} className="absolute inset-0" aria-label={title} />
 
         <button
           type="button"
+          aria-label="Complete note"
           className="relative z-0 cursor-pointer w-6 h-6 flex items-center justify-center rounded-full border dark:border-gray-500 disabled:cursor-not-allowed disabled:dark:border-gray-700"
           disabled={isRejected}
           onClick={updateStatus}

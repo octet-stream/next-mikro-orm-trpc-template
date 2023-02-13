@@ -15,11 +15,11 @@ export const NoteControls: FC<Props> = () => {
 
   return (
     <div className="flex flex-row select-none">
-      <StopButton disabled={!isInProgress && !isPaused} />
+      <StopButton disabled={!isInProgress && !isPaused} aria-label="Stop" />
 
-      {!isInProgress && <PlayButton disabled={isCompleted} />}
+      {!isInProgress && <PlayButton disabled={isCompleted} aria-label="Play" />}
 
-      {isInProgress && <PauseButton className={cn({"!text-black dark:!text-white": isInProgress})} />}
+      {isInProgress && <PauseButton className={cn({"!text-black dark:!text-white": isInProgress})} aria-label="Pause" />}
     </div>
   )
 }
