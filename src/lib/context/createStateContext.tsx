@@ -48,6 +48,8 @@ export const createStateContext = <
     // Use `useMemo` instead of `useRef` with `valtio`, so that we can reload page state if the `data` is changed
     const state = useMemo(() => proxy(data), [data])
 
+    console.log(state)
+
     return (
       <StateContext.Provider value={state}>
         {children}
