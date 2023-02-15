@@ -95,7 +95,7 @@
     "superjson": "1.12.2",
     "unified": "10.1.2",
     "validator": "13.9.0",
-    "valtio": "1.9.0",
+    "valtio": "1.10.2",
     "zod": "3.20.6"
   }
 }
