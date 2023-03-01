@@ -1,4 +1,5 @@
 const headlessui = require("@headlessui/tailwindcss")
+const typography = require("@tailwindcss/typography")
 
 // Screen sizes
 const mobile = "450px"
@@ -39,6 +40,7 @@ module.exports = {
     }
   },
   plugins: [
-    headlessui
+    headlessui,
+    typography
   ]
 }

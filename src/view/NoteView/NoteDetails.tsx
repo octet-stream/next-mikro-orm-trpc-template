@@ -9,13 +9,22 @@ import remarkParse from "remark-parse"
 
 import {useNoteStateSnapshot} from "context/NoteStateContext"
 
+import {Anchor} from "component/Anchor"
+
+import {NoteDetailsContent} from "./NoteDetailsContent"
 import {NoteNoDetails} from "./NoteNoDetails"
 
 const parser = unified()
   .use(remarkParse)
   .use(remarkRehype)
   .use(rehypeSanitize)
-  .use(rehypeReact, {createElement, Fragment})
+  .use(rehypeReact, {
+    createElement,
+    Fragment,
+    components: {
+      a: Anchor as any // IDW why it does not like props
+    }
+  })
 
 export const NoteDetails: FC = () => {
   const {details} = useNoteStateSnapshot()
@@ -28,7 +37,15 @@ export const NoteDetails: FC = () => {
 
   return (
     <div className="mt-5">
-      {parsedDetails ?? <NoteNoDetails />}
+      {
+        parsedDetails
+          ? (
+            <NoteDetailsContent>
+              {parsedDetails}
+            </NoteDetailsContent>
+          )
+          : <NoteNoDetails />
+      }
     </div>
   )
 }
