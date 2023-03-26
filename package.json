@@ -104,6 +104,7 @@
     "remark-rehype": "10.1.0",
     "spinners-react": "1.0.7",
     "superjson": "1.12.2",
+    "type-fest": "^3.7.1",
     "unified": "10.1.2",
     "validator": "13.9.0",
     "valtio": "1.10.3",

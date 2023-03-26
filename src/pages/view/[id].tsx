@@ -2,6 +2,8 @@ import {TRPCError} from "@trpc/server"
 import {Fragment} from "react"
 import type {FC} from "react"
 
+import Head from "next/head"
+
 import {getPageDataStaticProps} from "lib/util/getPageDataStaticProps"
 import {patchStaticPaths} from "lib/util/patchStaticPaths"
 import type {PageDataProps} from "lib/type/PageDataProps"
@@ -74,6 +76,11 @@ interface Props extends PageData { }
 
 const NoteViewPage: FC<Props> = ({data: note}) => (
   <Fragment>
+    <Head>
+      <title>
+        {`${note.title} | Simple Notes`}
+      </title>
+    </Head>
     <NoteStateContextProvider data={note}>
       <BaseLayout>
         <NoteView />

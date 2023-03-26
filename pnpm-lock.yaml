@@ -68,6 +68,7 @@ specifiers:
   tailwindcss: 3.2.7
   ts-node: 10.9.1
   tsconfig-paths: 4.1.2
+  type-fest: ^3.7.1
   typescript: 4.9.5
   unified: 10.1.2
   validator: 13.9.0
@@ -108,6 +109,7 @@ dependencies:
   remark-rehype: 10.1.0
   spinners-react: 1.0.7_3xleytyzprlgycb2ded54tx72i
   superjson: 1.12.2
+  type-fest: 3.7.1
   unified: 10.1.2
   validator: 13.9.0
   valtio: 1.10.3_react@18.2.0
@@ -5642,6 +5644,11 @@ packages:
   /type-fest/2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
+
+  /type-fest/3.7.1:
+    resolution: {integrity: sha512-8LZNdvuztgxCF4eYpEmPYUPS0lbbByM2qHcp2oMxHZhWLIQB9QE36EeQ1PKwsUIDZXEP8HCBEmkBbT1//kLU4Q==}
+    engines: {node: '>=14.16'}
+    dev: false
 
   /typed-array-length/1.0.4:
     resolution: {integrity: sha512-KjZypGq+I/H7HI5HlOoGHkWUUGq+Q0TPhQurLbyrVrvnKTBgzLhIJ7j6J/XTQOi0d1RjyZ0wdas8bKs2p0x3Ng==}
