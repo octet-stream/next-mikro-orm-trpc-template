@@ -1,4 +1,4 @@
-import type {infer as Infer} from "zod"
+import type {input, output} from "zod"
 
 import {Record} from "server/trpc/type/common/Record"
 import {
@@ -7,4 +7,6 @@ import {
 
 export const CompletionOutput = Record.extend(CompletionCreateInput.shape)
 
-export type TCompletionOutput = Infer<typeof CompletionOutput>
+export type ICompletionOutput = input<typeof CompletionOutput>
+
+export type OCompletionOutput = output<typeof CompletionOutput>

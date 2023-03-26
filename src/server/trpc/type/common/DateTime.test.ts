@@ -1,10 +1,12 @@
 import test from "ava"
 
+import {parseISO} from "date-fns"
+
 import {DateTime} from "./DateTime"
 
 test("Validates Date object and returns the same date", async t => {
   const expected = new Date()
-  const actual = await DateTime.parseAsync(expected)
+  const actual = parseISO(await DateTime.parseAsync(expected))
 
   t.true(actual instanceof Date)
   t.is(Number(actual), Number(expected))
@@ -12,7 +14,7 @@ test("Validates Date object and returns the same date", async t => {
 
 test("Accepts iso string and returns date object", async t => {
   const expected = new Date().toISOString()
-  const actual = await DateTime.parseAsync(expected)
+  const actual = parseISO(await DateTime.parseAsync(expected))
 
   t.true(actual instanceof Date)
   t.is(actual.toISOString(), expected)
@@ -20,7 +22,7 @@ test("Accepts iso string and returns date object", async t => {
 
 test("Accepts a number and returns date object", async t => {
   const expected = Date.now()
-  const actual = await DateTime.parseAsync(expected)
+  const actual = parseISO(await DateTime.parseAsync(expected))
 
   t.true(actual instanceof Date)
   t.is(Number(actual), expected)

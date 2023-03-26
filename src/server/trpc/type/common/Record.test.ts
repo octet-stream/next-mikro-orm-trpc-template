@@ -5,22 +5,22 @@ import {nanoid} from "nanoid/async"
 import {ZodError} from "zod"
 
 import {Record} from "./Record"
-import type {TRecord} from "./Record"
+import type {ORecord} from "./Record"
 
 test("Validates correct record input", async t => {
   const now = new Date()
 
-  const expected: TRecord = {
+  const expected: ORecord = {
     id: await nanoid(),
-    createdAt: now,
-    updatedAt: now
+    createdAt: now.toISOString(),
+    updatedAt: now.toISOString()
   }
 
   const actual = await Record.parseAsync(expected)
 
   t.is(actual.id, expected.id)
-  t.is(Number(actual.createdAt), Number(expected.createdAt))
-  t.is(Number(actual.updatedAt), Number(expected.updatedAt))
+  t.is(actual.createdAt, expected.createdAt)
+  t.is(actual.updatedAt, expected.updatedAt)
 })
 
 test("Fails with incorrect input type", async t => {

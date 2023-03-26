@@ -1,4 +1,4 @@
-import type {infer as Infer} from "zod"
+import type {input, output} from "zod"
 
 import {Node} from "server/trpc/type/common/Node"
 
@@ -8,4 +8,6 @@ export const CompletionUpdateInput = Node.extend(
   CompletionCreateInput.partial().shape
 )
 
-export type TCompletionUpdateInput = Infer<typeof CompletionUpdateInput>
+export type ICompletionUpdateInput = input<typeof CompletionUpdateInput>
+
+export type OCompletionUpdateInput = output<typeof CompletionUpdateInput>

@@ -44,8 +44,7 @@ const statuses = Object.values(NoteStatus).filter(isString)
   cond: {status: NoteStatus.REJECTED}
 })
 export class Note extends BaseDates {
-  // eslint-disable-next-line no-use-before-define
-  [OptionalProps]?: OptionalDates | PickKeys<Note, "details" | "status" | "isCompleted" | "isInProgress" | "isRejected" | "isPaused">
+  [OptionalProps]?: PickKeys<Note, OptionalDates | "details" | "status" | "isCompleted" | "isInProgress" | "isRejected" | "isPaused">
 
   @Property({length: 255})
   title!: string

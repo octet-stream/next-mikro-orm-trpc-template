@@ -1,4 +1,4 @@
-import type {infer as Infer} from "zod"
+import type {input, output} from "zod"
 import {z} from "zod"
 
 export const CompletionCreateInput = z.object({
@@ -6,4 +6,6 @@ export const CompletionCreateInput = z.object({
   completed: z.boolean().default(false)
 })
 
-export type TCompletionCreateInput = Infer<typeof CompletionCreateInput>
+export type ICompletionCreateInput = input<typeof CompletionCreateInput>
+
+export type OCompletionCreateInput = output<typeof CompletionCreateInput>

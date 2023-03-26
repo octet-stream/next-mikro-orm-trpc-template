@@ -1,8 +1,8 @@
 import type {ReactNode} from "react"
 
-import type {TNotesPageOutput} from "server/trpc/type/output/NotesPageOutput"
+import type {ONotesPageOutput} from "server/trpc/type/output/NotesPageOutput"
 
 export interface NotesTabsBaseProps {
-  initialNotes: TNotesPageOutput
+  initialNotes: ONotesPageOutput
   children: ReactNode
 }

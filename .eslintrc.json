@@ -16,6 +16,7 @@
     }],
 
     // TODO: Add these to my eslint config
+    "react/prop-types": 0,
     "react/function-component-definition": ["error", {
       "namedComponents": "arrow-function",
       "unnamedComponents": "arrow-function"

@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import type {OpenModalButton} from "component/Modal"
 
 import {FloatingButton} from "component/FloatingButton"

@@ -1,6 +1,6 @@
 import {TRPCError} from "@trpc/server"
+import {Fragment} from "react"
 import type {FC} from "react"
-import {useRef} from "react"
 
 import {getPageDataStaticProps} from "lib/util/getPageDataStaticProps"
 import {patchStaticPaths} from "lib/util/patchStaticPaths"
@@ -9,11 +9,10 @@ import type {PageDataProps} from "lib/type/PageDataProps"
 import {Note} from "server/db/entity"
 import {getORM} from "server/lib/db/orm"
 import {router} from "server/trpc/router"
-import type {TNoteOutput} from "server/trpc/type/output/NoteOutput"
-import {TNotesPageOutput} from "server/trpc/type/output/NotesPageOutput"
+import type {ONoteOutput} from "server/trpc/type/output/NoteOutput"
 
-import {NotesStateContextProvider} from "context/NotesStateContext"
 import {NoteStateContextProvider} from "context/NoteStateContext"
+import {FakeNotesContext} from "context/FakeNotesContext"
 
 import {BaseLayout} from "layout/BaseLayout"
 
@@ -49,7 +48,7 @@ interface Params {
   id: string
 }
 
-type PageData = PageDataProps<TNoteOutput>
+type PageData = PageDataProps<ONoteOutput>
 
 export const getStaticProps = getPageDataStaticProps<PageData>(async ctx => {
   const {id} = ctx.params as unknown as Params
@@ -73,31 +72,18 @@ export const getStaticProps = getPageDataStaticProps<PageData>(async ctx => {
 
 interface Props extends PageData { }
 
-const NoteViewPage: FC<Props> = ({data: note}) => {
-  // Probably just a bad design decision. This is just to use NoteCreateModal :)
-  const fakeNotes = useRef<TNotesPageOutput>({
-    pagesCount: 1,
-    rowsCount: 0,
-    itemsCount: 0,
-    items: [],
-    prevCursor: null,
-    nextCursor: null,
-    limit: null,
-    maxLimit: null,
-    current: 1
-  })
+const NoteViewPage: FC<Props> = ({data: note}) => (
+  <Fragment>
+    <NoteStateContextProvider data={note}>
+      <BaseLayout>
+        <NoteView />
+      </BaseLayout>
+    </NoteStateContextProvider>
 
-  return (
-    <NotesStateContextProvider data={fakeNotes.current}>
-      <NoteStateContextProvider data={note}>
-        <BaseLayout>
-          <NoteView />
-        </BaseLayout>
-      </NoteStateContextProvider>
-
+    <FakeNotesContext>
       <NoteCreateModal redirect />
-    </NotesStateContextProvider>
-  )
-}
+    </FakeNotesContext>
+  </Fragment>
+)
 
 export default NoteViewPage

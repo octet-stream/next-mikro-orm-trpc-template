@@ -1,4 +1,4 @@
-import type {infer as Infer} from "zod"
+import type {input, output} from "zod"
 import {z} from "zod"
 
 import {Record} from "server/trpc/type/common/Record"
@@ -6,7 +6,6 @@ import {NoteCreateInput} from "server/trpc/type/input/NoteCreateInput"
 
 export const NoteBaseOutput = Record
   .extend(NoteCreateInput.shape)
-  .omit({completions: true})
   .required({status: true})
   .extend({
     details: z.string().nullish().transform(details => details ?? null),
@@ -16,4 +15,6 @@ export const NoteBaseOutput = Record
     isPaused: z.boolean()
   })
 
-export type TNoteBaseOutput = Infer<typeof NoteBaseOutput>
+export type INoteBaseOutput = input<typeof NoteBaseOutput>
+
+export type ONoteBaseOutput = output<typeof NoteBaseOutput>

@@ -9,7 +9,7 @@ import TextArea from "react-textarea-autosize"
 import isEmpty from "lodash/isEmpty"
 import omitBy from "lodash/omitBy"
 
-import {TNoteCreateInput} from "server/trpc/type/input/NoteCreateInput"
+import {INoteCreateInput} from "server/trpc/type/input/NoteCreateInput"
 
 import type {ModalRef, BaseModalProps} from "component/Modal"
 import {Modal, ModalPanel, ModalTitle} from "component/Modal"
@@ -45,10 +45,10 @@ export function createNoteModal<T extends AnyZodObject>({
       register,
       formState,
       handleSubmit,
-    } = useForm<TNoteCreateInput>({
+    } = useForm<INoteCreateInput>({
       mode: "onTouched",
       resolver: zodResolver(validate),
-      values: values as TNoteCreateInput
+      values: values as INoteCreateInput
     })
 
     const blockReturn = useEvent<BlockReturnHandler>(event => {

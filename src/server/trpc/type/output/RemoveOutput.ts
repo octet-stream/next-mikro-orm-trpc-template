@@ -1,4 +1,4 @@
-import type {infer as Infer} from "zod"
+import type {input, output} from "zod"
 import {z} from "zod"
 
 import {Node} from "server/trpc/type/common/Node"
@@ -8,4 +8,6 @@ export const RemoveOutput = Node.extend({
   soft: z.boolean().default(false)
 })
 
-export type TRemoveOutput = Infer<typeof RemoveOutput>
+export type IRemoveOutput = input<typeof RemoveOutput>
+
+export type ORemoveOutput = output<typeof RemoveOutput>
