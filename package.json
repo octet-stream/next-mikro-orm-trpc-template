@@ -25,6 +25,14 @@
       "./src/server/lib/db/cli.ts"
     ]
   },
+  "pnpm": {
+    "updateConfig": {
+      "ignoreDependencies": [
+        "nanoid",
+        "is-absolute-url"
+      ]
+    }
+  },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.1.2",
     "@mikro-orm/cli": "5.6.11",
