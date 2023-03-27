@@ -1,5 +1,7 @@
 import {procedure} from "server/trpc/procedure/base"
 
+import {withPageAssert} from "server/trpc/middleware/withPageAssert"
+
 import {NotesPageInput} from "server/trpc/type/input/NotesPageInput"
 import {NotesPageOutput} from "server/trpc/type/output/NotesPageOutput"
 import {NoteStatusFilter} from "server/trpc/type/common/NoteStatusFilter"
@@ -7,6 +9,7 @@ import {NoteStatusFilter} from "server/trpc/type/common/NoteStatusFilter"
 import {Note} from "server/db/entity/Note"
 
 export const list = procedure
+  .use(withPageAssert)
   .input(NotesPageInput)
   .output(NotesPageOutput)
   .query(async ({input, ctx}) => {

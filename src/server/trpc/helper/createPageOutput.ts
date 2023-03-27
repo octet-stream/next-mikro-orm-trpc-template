@@ -1,8 +1,9 @@
 /* eslint-disable indent */
 
-import {z, ZodObject, ZodRawShape} from "zod"
+import {z} from "zod"
+import type {ZodObject, ZodRawShape, input, output} from "zod"
 
-import {createPageInput} from "./createPageInput"
+import {createPageInput, DefaultPageInput} from "./createPageInput"
 import {Page} from "./Page"
 
 /**
@@ -21,3 +22,13 @@ export const createPageOutput = <
     args: input.transform(({args}) => args)
   })
   .transform(page => new Page(page).toJSON())
+
+export const DefaultPageOutput = createPageOutput(
+  z.object({}),
+
+  DefaultPageInput
+)
+
+export type IDefaultPageOutput = input<typeof DefaultPageOutput>
+
+export type ODefaultPageOutput = output<typeof DefaultPageOutput>

@@ -6,7 +6,7 @@ import {middleware} from "server/trpc/def"
 /**
  * Checks whether SSRContext is present. Throws an error if is not. Narrows GlobalContext to SSRContext type.
  */
-const ssrContextCheck = middleware(({ctx, next}) => {
+export const withHttpContext = middleware(({ctx, next}) => {
   if (!isSSRContext(ctx)) {
     throw new TRPCError({
       code: "INTERNAL_SERVER_ERROR",
@@ -16,5 +16,3 @@ const ssrContextCheck = middleware(({ctx, next}) => {
 
   return next({ctx})
 })
-
-export default ssrContextCheck

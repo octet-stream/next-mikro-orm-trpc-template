@@ -1,9 +1,8 @@
-import {TRPCError} from "@trpc/server"
-
 import {procedure} from "server/trpc/procedure/base"
 
-import {Node} from "server/trpc/type/common/Node"
 import {NoteOutput} from "server/trpc/type/output/NoteOutput"
+import {notFound} from "server/trpc/error/notFound"
+import {Node} from "server/trpc/type/common/Node"
 
 import {Note} from "server/db/entity"
 
@@ -16,6 +15,6 @@ export const getById = procedure
     return orm.em.findOneOrFail(Note, input.id, {
       filters: false,
 
-      failHandler: () => new TRPCError({code: "NOT_FOUND"})
+      failHandler: notFound
     })
   })

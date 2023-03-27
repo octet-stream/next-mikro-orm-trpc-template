@@ -1,7 +1,7 @@
-import {TRPCError} from "@trpc/server"
 import {wrap} from "@mikro-orm/core"
 
 import {procedure} from "server/trpc/procedure/server"
+import {notFound} from "server/trpc/error/notFound"
 
 import {NoteUpdateInput} from "server/trpc/type/input/NoteUpdateInput"
 import {NoteOutput} from "server/trpc/type/output/NoteOutput"
@@ -16,7 +16,7 @@ export const update = procedure
     const {orm, res} = ctx
 
     const note = await orm.em.findOneOrFail(Note, id, {
-      failHandler: () => new TRPCError({code: "NOT_FOUND"})
+      failHandler: notFound
     })
 
     wrap(note).assign(fields)

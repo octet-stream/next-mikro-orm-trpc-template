@@ -1,7 +1,6 @@
-import {TRPCError} from "@trpc/server"
-
 import {procedure} from "server/trpc/procedure/server"
 
+import {notFound} from "server/trpc/error/notFound"
 import {RemoveOutput} from "server/trpc/type/output/RemoveOutput"
 import {NoteRemoveInput} from "server/trpc/type/input/NoteRemoveInput"
 import {NoteStatus} from "server/trpc/type/common/NoteStatus"
@@ -18,7 +17,7 @@ export const remove = procedure
     const note = await orm.em.findOneOrFail(Note, input.id, {
       filters: false,
 
-      failHandler: () => new TRPCError({code: "NOT_FOUND"})
+      failHandler: notFound
     })
 
     if (soft) {

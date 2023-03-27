@@ -1,9 +1,8 @@
-import {TRPCError} from "@trpc/server"
-
 import {NoteStatusFilter} from "server/trpc/type/common/NoteStatusFilter"
 import {NoteStatus} from "server/trpc/type/common/NoteStatus"
 import {NoteOutput} from "server/trpc/type/output/NoteOutput"
 import {procedure} from "server/trpc/procedure/server"
+import {notFound} from "server/trpc/error/notFound"
 import {Node} from "server/trpc/type/common/Node"
 
 import {Note} from "server/db/entity"
@@ -20,7 +19,7 @@ export const restore = procedure
         [NoteStatusFilter.ALL]: false
       },
 
-      failHandler: () => new TRPCError({code: "NOT_FOUND"})
+      failHandler: notFound
     })
 
     note.status = NoteStatus.INCOMPLETED

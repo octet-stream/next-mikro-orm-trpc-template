@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/indent */
 
-import type {ZodObject, input, output, ZodRawShape} from "zod"
+import type {ZodObject, ZodRawShape, input, output} from "zod"
 import {z} from "zod"
 
 import type {MaybeNull} from "lib/type/MaybeNull"
@@ -30,8 +30,8 @@ export function createPageInput<T extends ZodRawShape = never>(
 
   const Cursor = z
     .union([
-      z.number().int().positive(),
-      z.string().regex(/^[0-9]+$/)
+      z.number().int(),
+      z.string().regex(/^-?[0-9]+$/)
     ])
     .optional()
     .transform(cursor => cursor == null ? undefined : Number(cursor))
