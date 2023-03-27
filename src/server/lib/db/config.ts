@@ -6,7 +6,7 @@ import {Note, Completion} from "server/db/entity"
 
 const ROOT = resolve("db")
 
-export const getConfig = () => defineConfig({
+export const getConfig = async () => defineConfig({
   implicitTransactions: true,
   dbName: process.env.MIKRO_ORM_DB_NAME || undefined,
   host: process.env.MIKRO_ORM_HOST || undefined,
