@@ -1,10 +1,9 @@
-import type {GetServerSideProps} from "next"
-import {TRPCError} from "@trpc/server"
 import type {FC} from "react"
 
 import type {ONotesPageOutput} from "server/trpc/type/output/NotesPageOutput"
 import {NoteStatusFilter} from "server/trpc/type/common/NoteStatusFilter"
 
+import {createServerSidePropsLoader} from "lib/util/createPagePropsLoader"
 import type {MaybeUndefined} from "lib/type/MaybeUndefined"
 import type {PageDataProps} from "lib/type/PageDataProps"
 import {useSearchParams} from "lib/hook/useSearchParams"
@@ -32,11 +31,9 @@ const getNotes = createCaller(
   })
 )
 
-// TODO Add helper with TRPCError handler
-export const getServerSideProps: GetServerSideProps<Props> = async ctx => {
-  const searchParams = ctx.query as unknown as SearchParams
-
-  try {
+export const getServerSideProps = createServerSidePropsLoader<Props>(
+  async ctx => {
+    const searchParams = ctx.query as unknown as SearchParams
     const notes = await getNotes(searchParams)
 
     return {
@@ -44,16 +41,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async ctx => {
         data: notes
       }
     }
-  } catch (error) {
-    if (error instanceof TRPCError && error.code === "NOT_FOUND") {
-      return {
-        notFound: true
-      }
-    }
-
-    throw error
   }
-}
+)
 
 const HomePage: FC<Props> = ({data: notes}) => {
   const search = useSearchParams()
