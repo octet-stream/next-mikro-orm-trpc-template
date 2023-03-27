@@ -32,6 +32,11 @@ export const NotesTab: FC<Props> = ({active, name, status}) => {
       result.set("status", status)
     }
 
+    // Reset page counter
+    if (result.has("page")) {
+      result.set("page", "1")
+    }
+
     return [router.pathname || "/", result.toString()].filter(Boolean).join("?")
   }, [status, router.pathname, search])
 
