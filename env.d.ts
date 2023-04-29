@@ -6,6 +6,6 @@ namespace NodeJS {
     MIKRO_ORM_USER: string
     MIKRO_ORM_PASSWORD: string
     RUNS_IN_DOCKER?: string
-    NEXT_PUBLIC_SERVER_URL: string
+    SERVER_URL: string
   }
 }

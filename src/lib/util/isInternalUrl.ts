@@ -1,9 +1,6 @@
-import isAbsolute from "is-absolute-url"
+import isAbsoluteUrl from "is-absolute-url"
 
-/* c8 ignore next 3 */
-const base = typeof window === "undefined"
-  ? process.env.NEXT_PUBLIC_SERVER_URL
-  : window.location.origin
+import {serverAddress} from "./serverAddress"
 
 /**
  * Checks if given url string is external
@@ -11,5 +8,5 @@ const base = typeof window === "undefined"
  * @param url
  */
 export const isInternalUrl = (url: string): boolean => (
-  isAbsolute(url) ? url.startsWith(new URL(base).origin) : true
+  isAbsoluteUrl(url) ? url.startsWith(serverAddress) : true
 )
