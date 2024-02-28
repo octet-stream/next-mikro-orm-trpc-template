@@ -29,7 +29,8 @@
     "updateConfig": {
       "ignoreDependencies": [
         "nanoid",
-        "is-absolute-url"
+        "is-absolute-url",
+        "superjson"
       ]
     }
   },
@@ -103,7 +104,7 @@
     "remark-parse": "11.0.0",
     "remark-rehype": "11.1.0",
     "spinners-react": "1.0.7",
-    "superjson": "2.2.1",
+    "superjson": "1.13.3",
     "type-fest": "^4.10.3",
     "unified": "11.0.4",
     "validator": "13.11.0",
