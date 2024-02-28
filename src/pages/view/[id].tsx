@@ -4,23 +4,23 @@ import type {FC} from "react"
 
 import Head from "next/head"
 
-import {getPageDataStaticProps} from "lib/utils/getPageDataStaticProps"
-import {patchStaticPaths} from "lib/utils/patchStaticPaths"
-import type {PageDataProps} from "lib/types/PageDataProps"
+import {getPageDataStaticProps} from "../../lib/utils/getPageDataStaticProps"
+import {patchStaticPaths} from "../../lib/utils/patchStaticPaths"
+import type {PageDataProps} from "../../lib/types/PageDataProps"
 
-import {Note} from "server/db/entity"
-import {getORM} from "server/lib/db/orm"
-import {router} from "server/trpc/router"
-import type {ONoteOutput} from "server/trpc/types/note/NoteOutput"
+import {Note} from "../../server/db/entities"
 
-import {NoteStateContextProvider} from "contexts/NoteStateContext"
-import {FakeNotesContext} from "contexts/FakeNotesContext"
+import {getORM} from "../../server/lib/db/orm"
+import {router} from "../../server/trpc/router"
+import type {ONoteOutput} from "../../server/trpc/types/note/NoteOutput"
 
-import {BaseLayout} from "layouts/BaseLayout"
+import {NoteStateContextProvider} from "../../contexts/NoteStateContext"
+import {FakeNotesContext} from "../../contexts/FakeNotesContext"
 
-import {NoteCreateModal} from "components/NoteModal"
+import {BaseLayout} from "../../layouts/BaseLayout"
 
-import {NoteView} from "views/NoteView/NoteView"
+import {NoteCreateModal} from "../../components/NoteModal"
+import {NoteView} from "../../views/NoteView"
 
 export const getStaticPaths = patchStaticPaths(async () => {
   const orm = await getORM()

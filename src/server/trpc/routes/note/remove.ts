@@ -5,7 +5,7 @@ import {RemoveOutput} from "../../types/note/RemoveOutput"
 import {NoteRemoveInput} from "../../types/note/NoteRemoveInput"
 import {NoteStatus} from "../../types/common/NoteStatus"
 
-import {Note} from "../../../db/entity/Note"
+import {Note} from "../../../db/entities"
 
 export const remove = procedure
   .input(NoteRemoveInput)

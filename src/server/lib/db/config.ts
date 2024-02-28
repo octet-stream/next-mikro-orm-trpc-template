@@ -3,7 +3,7 @@ import {resolve, join} from "node:path"
 import {defineConfig} from "@mikro-orm/mysql"
 import {z, ZodIssueCode} from "zod"
 
-import {Note, Completion} from "server/db/entity"
+import * as entities from "../../db/entities"
 
 const ROOT = resolve("db")
 
@@ -45,11 +45,11 @@ export const getConfig = async () => {
 
     implicitTransactions: true,
     migrations: {
-      path: join(ROOT, "migration")
+      path: join(ROOT, "migrations")
     },
     seeder: {
-      path: join(ROOT, "seed")
+      path: join(ROOT, "seeders")
     },
-    entities: [Note, Completion]
+    entities: Object.values(entities)
   })
 }

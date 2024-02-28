@@ -8,7 +8,7 @@ import {setup, cleanup} from "../../../__helpers__/database"
 import type {WithTRPCContext} from "../../../__macros__/withTRPC"
 
 import {NoteStatus} from "../../types/common/NoteStatus"
-import {Note} from "../../../db/entity"
+import {Note} from "../../../db/entities"
 
 const test = anyTest as TestFn<WithTRPCContext>
 

@@ -6,7 +6,7 @@ import {NotesPageInput} from "../../types/note/NotesPageInput"
 import {NotesPageOutput} from "../../types/note/NotesPageOutput"
 import {NoteStatusFilter} from "../../types/common/NoteStatusFilter"
 
-import {Note} from "../../../db/entity/Note"
+import {Note} from "../../../db/entities"
 
 export const list = procedure
   .use(withPageAssert)

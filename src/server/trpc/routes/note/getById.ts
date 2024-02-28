@@ -4,7 +4,7 @@ import {NoteOutput} from "../../types/note/NoteOutput"
 import {notFound} from "../../errors/notFound"
 import {Node} from "../../types/common/Node"
 
-import {Note} from "../../../db/entity"
+import {Note} from "../../../db/entities"
 
 export const getById = procedure
   .input(Node)

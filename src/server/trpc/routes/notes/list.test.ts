@@ -8,7 +8,7 @@ import type {WithTRPCContext} from "../../../__macros__/withTRPC"
 
 import {runIsolatied} from "../../../lib/db/orm"
 
-import {Note} from "../../../db/entity"
+import {Note} from "../../../db/entities"
 
 const test = anyTest as TestFn<WithTRPCContext>
 

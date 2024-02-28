@@ -7,8 +7,8 @@ import type {FC} from "react"
 import Head from "next/head"
 import isString from "lodash/isString"
 
-import "styles/tailwind.css"
-import "styles/global.css"
+import "../styles/tailwind.css"
+import "../styles/global.css"
 
 import type {SerializedPageDataProps} from "../lib/types/PageDataProps"
 

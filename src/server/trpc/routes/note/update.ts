@@ -6,7 +6,7 @@ import {notFound} from "../../errors/notFound"
 import {NoteUpdateInput} from "../../types/note/NoteUpdateInput"
 import {NoteOutput} from "../../types/note/NoteOutput"
 
-import {Note} from "../../../db/entity"
+import {Note} from "../../../db/entities"
 
 export const update = procedure
   .input(NoteUpdateInput)

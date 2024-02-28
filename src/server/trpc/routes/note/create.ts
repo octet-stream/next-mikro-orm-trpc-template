@@ -3,7 +3,7 @@ import {procedure} from "../../procedures/server"
 import {NoteCreateInput} from "../../types/note/NoteCreateInput"
 import {NoteOutput} from "../../types/note/NoteOutput"
 
-import {Note} from "../../../db/entity"
+import {Note} from "../../../db/entities"
 
 export const create = procedure
   .input(NoteCreateInput)
