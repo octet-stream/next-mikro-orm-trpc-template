@@ -13,37 +13,23 @@ interface RunIsolatedCallback<T> {
 }
 
 interface WithORM {
-  __CACHED_ORM__: MikroORM
-  __CACHED_ORM_PROMISE__?: Promise<MikroORM>
+  __CACHED_ORM__: Promise<MikroORM>
 }
 
-const globalObject = globalThis as typeof globalThis & WithORM
+const globalObject = global as typeof global & WithORM
 
 /**
  * Returns MikroORM instance.
  * Creates the new if one does not exists, then caches it.
  */
 export function getORM(): Promise<MikroORM> {
-  // Return cached orm initialization to deduplicate unnecessary connections (when page or layout requests run concurrently)
-  if (globalObject.__CACHED_ORM_PROMISE__ instanceof Promise) {
-    return Promise.resolve(globalObject.__CACHED_ORM_PROMISE__)
-  }
-
   // If no MikroORM instance is cached, initialize new ORM and cache its initialization Promise.
   if (!globalObject.__CACHED_ORM__) {
-    globalObject.__CACHED_ORM_PROMISE__ = getConfig()
+    globalObject.__CACHED_ORM__ = getConfig()
       .then(config => MikroORM.init(config))
-      .then(orm => {
-        globalObject.__CACHED_ORM_PROMISE__ = undefined // Remove initialization promise
-        globalObject.__CACHED_ORM__ = orm // Cache ORM instance
-
-        return orm
-      })
-
-    return Promise.resolve(globalObject.__CACHED_ORM_PROMISE__)
   }
 
-  return Promise.resolve(globalObject.__CACHED_ORM__)
+  return globalObject.__CACHED_ORM__
 }
 
 export async function forkEntityManager(): Promise<EntityManager> {
