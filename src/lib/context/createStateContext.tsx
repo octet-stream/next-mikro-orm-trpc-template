@@ -56,19 +56,19 @@ export const createStateContext = <
   }
 
   function useStateProxy() {
-    const proxy = useContext(StateContext)
+    const state = useContext(StateContext)
 
-    if (!proxy) {
+    if (!state) {
       throw new Error("Can't get access to state context.")
     }
 
-    return proxy
+    return state
   }
 
   function useStateSnapshot(options?: UseSnapshotOptions) {
-    const proxy = useStateProxy()
+    const state = useStateProxy()
 
-    return useSnapshot(proxy, options)
+    return useSnapshot(state, options)
   }
 
   return {

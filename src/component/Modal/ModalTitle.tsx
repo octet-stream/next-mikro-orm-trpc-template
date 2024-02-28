@@ -23,7 +23,7 @@ export const ModalTitle: FC<Props> = ({className, children}) => {
 
       <div className="flex-1" />
 
-      <button type="button" onClick={close}>
+      <button type="button" aria-label="Close modal" onClick={close}>
         <X size={28} />
       </button>
 

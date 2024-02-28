@@ -25,7 +25,7 @@ export const list = procedure
         [NoteStatusFilter.ALL]: (!status || status === NoteStatusFilter.ALL),
         [NoteStatusFilter.ACTIVE]: status === NoteStatusFilter.ACTIVE,
         [NoteStatusFilter.COMPLETED]: status === NoteStatusFilter.COMPLETED,
-        [NoteStatusFilter.REJECTED]: status === NoteStatusFilter.REJECTED,
+        [NoteStatusFilter.REJECTED]: status === NoteStatusFilter.REJECTED
       }
     })
 

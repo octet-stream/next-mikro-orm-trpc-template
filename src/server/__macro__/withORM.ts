@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import test from "ava"
 
 import type {ImplementationFn} from "ava"
@@ -16,5 +17,5 @@ type Implementation = ImplementationFn<Args>
 export const withORM = test.macro(async (t, fn: Implementation) => {
   const orm = await getORM()
 
-  return RequestContext.createAsync(orm.em, async () => fn(t, orm))
+  return RequestContext.create(orm.em, async () => fn(t, orm))
 })

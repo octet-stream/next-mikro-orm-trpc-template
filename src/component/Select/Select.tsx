@@ -53,14 +53,14 @@ export const Select = <
 
         option({isFocused, data, isSelected}) {
           switch (true) {
-          case isFocused && props.value !== data.value:
-            return styles["option-active"]
+            case isFocused && props.value !== data.value:
+              return styles["option-active"]
 
-          case isSelected:
-            return styles["option-selected"]
+            case isSelected:
+              return styles["option-selected"]
 
-          default:
-            return styles.option
+            default:
+              return styles.option
           }
         }
       }}

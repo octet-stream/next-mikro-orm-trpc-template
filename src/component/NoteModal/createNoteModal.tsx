@@ -44,7 +44,7 @@ export function createNoteModal<T extends AnyZodObject>({
       reset,
       register,
       formState,
-      handleSubmit,
+      handleSubmit
     } = useForm<INoteCreateInput>({
       mode: "onTouched",
       resolver: zodResolver(validate),
@@ -64,7 +64,7 @@ export function createNoteModal<T extends AnyZodObject>({
     const onCloseReset = useEvent(() => reset())
 
     const handler = handleSubmit(data => (
-      submit(omitBy(data, isEmpty)).then(() => closeModal())
+      Promise.resolve(submit(omitBy(data, isEmpty))).then(() => closeModal())
     ))
 
     return (

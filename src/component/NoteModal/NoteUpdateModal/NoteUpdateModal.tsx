@@ -28,19 +28,16 @@ export const NoteUpdateModal: FC = () => {
 
   const proxy = useNoteStateProxy()
 
-  const submit = useCallback<Submit>(data => (
-    client.note.update.mutate({...data, id})
-      .then(updated => {
-        // Update state
-        merge(proxy, updated)
+  const submit = useCallback<Submit>(async data => {
+    try {
+      merge(proxy, await client.note.update.mutate({...data, id}))
 
-        toast.success("Note updated!")
-      })
-      .catch(error => {
-        console.log(error)
-        toast.error("Can't update this note.")
-      })
-  ), [id])
+      toast.success("Note updated!")
+    } catch (error) {
+      console.log(error)
+      toast.error("Can't update this note.")
+    }
+  }, [id, proxy])
 
   return (
     <Modal

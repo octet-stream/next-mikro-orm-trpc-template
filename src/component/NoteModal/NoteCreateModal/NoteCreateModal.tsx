@@ -30,30 +30,30 @@ export const NoteCreateModal: FC<Props> = ({redirect}) => {
   const router = useRouter()
   const state = useNotesStateProxy()
 
-  const submit = useEvent<SubmitHandler<INoteCreateInput>>(data => (
-    client.note.create.mutate(data)
-      .then(note => {
-        state.items.unshift(note)
-        state.itemsCount++
-        state.rowsCount++
+  const submit = useEvent<SubmitHandler<INoteCreateInput>>(async data => {
+    try {
+      const note = await client.note.create.mutate(data)
 
-        if (redirect) {
-          return router.replace(
-            isString(redirect) ? redirect : `/view/${note.id}`,
+      state.items.unshift(note)
+      state.itemsCount++
+      state.rowsCount++
 
-            undefined,
+      if (redirect) {
+        return router.replace(
+          isString(redirect) ? redirect : `/view/${note.id}`,
 
-            {
-              unstable_skipClientCache: true
-            }
-          )
-        }
-      })
-      .catch(error => {
-        console.log(error)
-        toast.error("Can't create a note.")
-      })
-  ))
+          undefined,
+
+          {
+            unstable_skipClientCache: true
+          }
+        )
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("Can't create a note.")
+    }
+  })
 
   return (
     <Modal

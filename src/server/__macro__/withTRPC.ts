@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import anyTest from "ava"
 
 import {RequestContext} from "@mikro-orm/core"
@@ -35,5 +36,5 @@ export const withTRPC = test.macro(async (t, fn: Implementation) => {
     }
   })
 
-  return RequestContext.createAsync(orm.em, async () => fn(t, caller, orm))
+  return RequestContext.create(orm.em, async () => fn(t, caller, orm))
 })

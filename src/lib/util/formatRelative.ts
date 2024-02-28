@@ -1,16 +1,18 @@
 /* eslint-disable import/no-duplicates */
 
-import differenceInCalendarWeeks from "date-fns/differenceInCalendarWeeks"
-import differenceInCalendarDays from "date-fns/differenceInCalendarDays"
-import differenceInMinutes from "date-fns/differenceInMinutes"
-import differenceInMonths from "date-fns/differenceInMonths"
-import differenceInYears from "date-fns/differenceInYears"
-import differenceInHours from "date-fns/differenceInHours"
-import format from "date-fns/format"
+import {
+  format,
+  toDate,
+  differenceInCalendarWeeks,
+  differenceInCalendarDays,
+  differenceInMinutes,
+  differenceInMonths,
+  differenceInYears,
+  differenceInHours
+} from "date-fns"
 
 import type {RawDate} from "lib/type/RawDate"
 
-import {normalizeDate} from "./normalizeDate"
 import {formatTime, TIME_FORMAT} from "./formatTime"
 
 export const LAST_WEEK_FORMAT = `'Last' EEEE 'at' ${TIME_FORMAT}`
@@ -65,8 +67,8 @@ export function formatRelative(
   date: RawDate,
   from: RawDate = new Date()
 ): string {
-  const left = normalizeDate(date)
-  const right = normalizeDate(from)
+  const left = toDate(date)
+  const right = toDate(from)
 
   const yearsDiff = differenceInYears(left, right)
   const daysDiff = differenceInCalendarDays(left, right)

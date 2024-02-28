@@ -19,7 +19,7 @@ interface Props { }
 export const NoteCard: FC<Props> = () => {
   const state = useNoteStateProxy()
 
-  const {id, title, status, isCompleted, isRejected} = useNoteStateSnapshot()
+  const {id, title, isCompleted, isRejected} = useNoteStateSnapshot()
 
   const notePath = `/view/${id}`
 
@@ -36,7 +36,7 @@ export const NoteCard: FC<Props> = () => {
           toast.error("Can't update this note")
         })
     )
-  }, [id, status, isCompleted])
+  }, [id, isCompleted, state])
 
   return (
     <Card className="flex flex-row">

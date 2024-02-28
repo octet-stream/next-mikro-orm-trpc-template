@@ -28,14 +28,14 @@ export const createControlButton = ({
 
     const {id} = useNoteStateSnapshot()
 
-    const updateStatus = useCallback(() => (
-      client.note.update.mutate({id, status})
-        .then(updated => patchNodeStatus(state, updated))
-        .catch(error => {
-          console.error(error)
-          toast.error("Can't update note's status")
-        })
-    ), [id])
+    const updateStatus = useCallback(async () => {
+      try {
+        patchNodeStatus(state, await client.note.update.mutate({id, status}))
+      } catch (error) {
+        console.error(error)
+        toast.error("Can't update note's status")
+      }
+    }, [id, state])
 
     return (
       <button

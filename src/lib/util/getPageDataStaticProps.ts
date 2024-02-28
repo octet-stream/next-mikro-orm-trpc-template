@@ -18,26 +18,27 @@ export interface GetPageDataStaticProps {
 }
 
 // TODO: Make universal serialization function for getStaticProps and getServerSideProps
-export const getPageDataStaticProps: GetPageDataStaticProps
-  = fn => async (...args) => {
-    const result = await fn(...args)
+export const getPageDataStaticProps: GetPageDataStaticProps = fn => async (
+  ...args
+) => {
+  const result = await fn(...args)
 
-    if (!("props" in result)) {
-      return result
-    }
+  if (!("props" in result)) {
+    return result
+  }
 
-    let data: string | undefined
-    if (result.props.data) {
-      data = stringify(result.props.data)
-    }
+  let data: string | undefined
+  if (result.props.data) {
+    data = stringify(result.props.data)
+  }
 
-    return {
-      ...result,
+  return {
+    ...result,
 
-      props: {
-        ...result.props,
+    props: {
+      ...result.props,
 
-        data
-      }
+      data
     }
   }
+}

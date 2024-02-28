@@ -1,18 +1,18 @@
-/* eslint-disable @typescript-eslint/indent */
 import {Collection} from "@mikro-orm/core"
-import {z, NEVER, ZodIssueCode} from "zod"
+import {z} from "zod"
 
-// FIXME: Find a way to improve collections validation with Zod
-export const createCollectionOutput = <T extends object>() => z
-  .unknown()
-  .superRefine((arg, ctx): arg is Collection<T> => {
-    if (!(arg instanceof Collection)) {
-      ctx.addIssue({
-        code: ZodIssueCode.custom,
-        message: "Input must be a Collection",
-      })
+export const createCollectionOutput = <T extends z.ZodRawShape>(
+  schema: z.ZodObject<T>
+) => z
+  .instanceof(Collection)
+  .transform(async (value, ctx) => {
+    const result = await z.array(schema).safeParseAsync(value.toArray())
+
+    if (result.success) {
+      return result.data
     }
 
-    return NEVER
+    for (const error of result.error.errors) {
+      ctx.addIssue(error)
+    }
   })
-  .transform(arg => Array.from(arg))

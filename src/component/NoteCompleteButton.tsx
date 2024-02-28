@@ -39,7 +39,7 @@ export const NoteCompleteButton: FC<Props> = ({className}) => {
         console.error(error)
         toast.error("Can't update this note.")
       })
-  ), [id, isCompleted])
+  ), [id, isCompleted, state])
 
   return (
     <button type="button" aria-label="Complete note" onClick={toggle} className={cn("w-full flex rounded-md py-2 px-6 justify-center border", {"border-gray-300 dark:border-gray-500": isCompleted, "border-black dark:border-gray-400": !isCompleted}, className)}>

@@ -1,11 +1,12 @@
-import {createElement, Fragment, useMemo} from "react"
+import * as prod from "react/jsx-runtime"
+import {useMemo} from "react"
 import {unified} from "unified"
 import type {FC} from "react"
 
 import rehypeSanitize from "rehype-sanitize"
 import remarkRehype from "remark-rehype"
-import rehypeReact from "rehype-react"
 import remarkParse from "remark-parse"
+import rehypeReact, {Options} from "rehype-react"
 
 import {useNoteStateSnapshot} from "context/NoteStateContext"
 
@@ -19,12 +20,13 @@ const parser = unified()
   .use(remarkRehype)
   .use(rehypeSanitize)
   .use(rehypeReact, {
-    createElement,
-    Fragment,
+    jsx: prod.jsx,
+    Fragment: prod.Fragment,
+    jsxs: prod.jsxs,
     components: {
-      a: Anchor as any // IDW why it does not like props
+      a: Anchor // IDW why it does not like props
     }
-  })
+  } as Options)
 
 export const NoteDetails: FC = () => {
   const {details} = useNoteStateSnapshot()

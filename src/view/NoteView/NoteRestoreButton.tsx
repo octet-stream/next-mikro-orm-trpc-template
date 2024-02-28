@@ -21,7 +21,7 @@ export const NoteRestoreButton: FC = () => {
   ))
 
   return (
-    <button type="button" onClick={restore}>
+    <button type="button" aria-label="Restore note" onClick={restore}>
       <RotateCcw size={28} className="text-black dark:text-white" />
     </button>
   )
