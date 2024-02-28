@@ -22,7 +22,7 @@ If you want to test a demo app built upon this template, just follow these steps
 
 During my attempts to integrate MikroORM with Next.js I had to fall into several issues worth to mention, so here's the list of those:
 
-* MikroORM can't discover entity, when you're trying to use class constructos to instaniate your entities and them persist and flus the data. I'm not sure why is this happening, but to avoid this problem use `EntiyManager` only with entity classes, not with their instances, so that the entity could be discovered (by it's name).
+1. MikroORM can't discover entity, when you're trying to use class constructos to instaniate your entities and them persist and flus the data. I'm not sure why is this happening, but to avoid this problem use `EntiyManager` only with entity classes, not with their instances, so that the entity could be discovered (by it's name).
 
   So, do this:
 
@@ -40,7 +40,7 @@ During my attempts to integrate MikroORM with Next.js I had to fall into several
   await orm.em.persistAndFlush(note) // Fails on the 2nd attempt to use it with the `Note` instance.
   ```
 
-* During the development, if you'd have to implement a page with dynamic route params, you'll might get MikroORM re-instaniated multiple times (each time you navigate to that page), if you use it in `getStaticPaths` to fetch the data. To avoid this, you can use `lib/util/patchStaticPaths.ts` helper. It simply returns empty paths in `development` env. Here's the example:
+1. During the development, if you'd have to implement a page with dynamic route params, you'll might get MikroORM re-instaniated multiple times (each time you navigate to that page), if you use it in `getStaticPaths` to fetch the data. To avoid this, you can use `lib/util/patchStaticPaths.ts` helper. It simply returns empty paths in `development` env. Here's the example:
 
   ```ts
   import {patchStaticPaths} from "lib/util/patchStaticPaths"
@@ -73,7 +73,7 @@ During my attempts to integrate MikroORM with Next.js I had to fall into several
   })
   ```
 
-* MikroORM can't discover native TypeScipt enums if you were to define those in a separate file. To fix avoid this problem, you'll have to extract emun values manually (but remember about TS enum [quirks](https://youtu.be/jjMbPt_H3RQ)) and put those to `items` option of the `Enum` decorator, along with the `type` options set to needed column type. Here's how you can do this:
+3. MikroORM can't discover native TypeScipt enums if you were to define those in a separate file. To fix avoid this problem, you'll have to extract emun values manually (but remember about TS enum [quirks](https://youtu.be/jjMbPt_H3RQ)) and put those to `items` option of the `Enum` decorator, along with the `type` options set to needed column type. Here's how you can do this:
 
   ```ts
   import {Entity, Enum} from "@mikro-orm/core"
