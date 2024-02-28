@@ -1,5 +1,5 @@
-import type {Caller} from "server/trpc/router"
-import {router} from "server/trpc/router"
+import {createCaller as routerCreateCaller} from "../../server/trpc/router"
+import type {Caller} from "../../server/trpc/router"
 
 interface CallerImplementation<TResult, TArgs extends readonly unknown[]> {
   (trpc: Caller, ...args: TArgs): TResult
@@ -19,7 +19,7 @@ interface DecoratedCaller<TResult, TArgs extends readonly unknown[]> {
 export function createCaller<TResult, TArgs extends readonly unknown[]>(
   caller: CallerImplementation<TResult, TArgs>
 ): DecoratedCaller<TResult, TArgs> {
-  const trpc = router.createCaller({})
+  const trpc = routerCreateCaller({})
 
   return function decoratedCaller(...args: TArgs): TResult {
     return caller(trpc, ...args)

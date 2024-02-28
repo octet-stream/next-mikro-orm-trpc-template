@@ -7,10 +7,10 @@ import type {FC} from "react"
 import Head from "next/head"
 import isString from "lodash/isString"
 
-import "style/tailwind.css"
-import "style/global.css"
+import "styles/tailwind.css"
+import "styles/global.css"
 
-import type {SerializedPageDataProps} from "lib/type/PageDataProps"
+import type {SerializedPageDataProps} from "../lib/types/PageDataProps"
 
 interface PageProps extends SerializedPageDataProps { }
 

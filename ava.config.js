@@ -7,7 +7,7 @@ module.exports = {
     "ts-node/register/transpile-only",
     "reflect-metadata",
     "./src/server/lib/env.ts",
-    "./src/server/__helper__/polyfills.ts"
+    "./src/server/__helpers__/polyfills.ts"
   ],
   environmentVariables: {
     "TS_NODE_PROJECT": "tsconfig.ava.json"

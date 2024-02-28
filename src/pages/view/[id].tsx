@@ -4,23 +4,23 @@ import type {FC} from "react"
 
 import Head from "next/head"
 
-import {getPageDataStaticProps} from "lib/util/getPageDataStaticProps"
-import {patchStaticPaths} from "lib/util/patchStaticPaths"
-import type {PageDataProps} from "lib/type/PageDataProps"
+import {getPageDataStaticProps} from "lib/utils/getPageDataStaticProps"
+import {patchStaticPaths} from "lib/utils/patchStaticPaths"
+import type {PageDataProps} from "lib/types/PageDataProps"
 
 import {Note} from "server/db/entity"
 import {getORM} from "server/lib/db/orm"
 import {router} from "server/trpc/router"
-import type {ONoteOutput} from "server/trpc/type/output/NoteOutput"
+import type {ONoteOutput} from "server/trpc/types/note/NoteOutput"
 
-import {NoteStateContextProvider} from "context/NoteStateContext"
-import {FakeNotesContext} from "context/FakeNotesContext"
+import {NoteStateContextProvider} from "contexts/NoteStateContext"
+import {FakeNotesContext} from "contexts/FakeNotesContext"
 
-import {BaseLayout} from "layout/BaseLayout"
+import {BaseLayout} from "layouts/BaseLayout"
 
-import {NoteCreateModal} from "component/NoteModal"
+import {NoteCreateModal} from "components/NoteModal"
 
-import {NoteView} from "view/NoteView/NoteView"
+import {NoteView} from "views/NoteView/NoteView"
 
 export const getStaticPaths = patchStaticPaths(async () => {
   const orm = await getORM()

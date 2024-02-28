@@ -8,4 +8,10 @@ export const trpc = initTRPC.context<GlobalContext>().create({
   transformer: Superjson
 })
 
-export const {middleware, procedure, router, mergeRouters} = trpc
+export const {
+  middleware,
+  procedure,
+  router,
+  mergeRouters,
+  createCallerFactory
+} = trpc

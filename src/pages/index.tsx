@@ -1,19 +1,19 @@
 import type {FC} from "react"
 
-import type {ONotesPageOutput} from "server/trpc/type/output/NotesPageOutput"
-import {NoteStatusFilter} from "server/trpc/type/common/NoteStatusFilter"
+import type {ONotesPageOutput} from "../server/trpc/types/note/NotesPageOutput"
+import {NoteStatusFilter} from "../server/trpc/types/common/NoteStatusFilter"
 
-import {createServerSidePropsLoader} from "lib/util/createPagePropsLoader"
-import type {MaybeUndefined} from "lib/type/MaybeUndefined"
-import type {PageDataProps} from "lib/type/PageDataProps"
-import {useSearchParams} from "lib/hook/useSearchParams"
-import {createCaller} from "lib/trpc/server"
+import {createServerSidePropsLoader} from "../lib/utils/createPagePropsLoader"
+import type {MaybeUndefined} from "../lib/types/MaybeUndefined"
+import type {PageDataProps} from "../lib/types/PageDataProps"
+import {useSearchParams} from "../lib/hooks/useSearchParams"
+import {createCaller} from "../lib/trpc/server"
 
-import {NotesStateContextProvider} from "context/NotesStateContext"
+import {NotesStateContextProvider} from "../contexts/NotesStateContext"
 
-import {BaseLayout} from "layout/BaseLayout"
+import {BaseLayout} from "../layouts/BaseLayout"
 
-import {NotesView, NotesTabs} from "view/NotesView"
+import {NotesView, NotesTabs} from "../views/NotesView"
 
 type PageData = PageDataProps<ONotesPageOutput>
 

@@ -2,9 +2,9 @@ import {httpBatchLink, createTRPCProxyClient} from "@trpc/client"
 
 import Superjson from "superjson"
 
-import {serverAddress} from "lib/util/serverAddress"
+import {serverAddress} from "../utils/serverAddress"
 
-import type {Router} from "server/trpc/router"
+import type {Router} from "../../server/trpc/router"
 
 export const client = createTRPCProxyClient<Router>({
   transformer: Superjson,

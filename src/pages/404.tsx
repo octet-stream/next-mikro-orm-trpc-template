@@ -2,7 +2,7 @@ import type {FC} from "react"
 
 import Link from "next/link"
 
-import {BaseLayout} from "layout/BaseLayout"
+import {BaseLayout} from "../layouts/BaseLayout"
 
 const NotFound: FC = () => (
   <BaseLayout>
