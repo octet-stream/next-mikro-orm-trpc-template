@@ -4,7 +4,6 @@
     "@octetstream/eslint-config/typescript/ava"
   ],
   "rules": {
-    "import/extensions": "off",
     "no-console": "off",
     "no-shadow": "off"
   }
